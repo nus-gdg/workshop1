@@ -3,7 +3,7 @@ using UnityEngine.UI;
 
 namespace DefaultNamespace
 {
-    public class Demo : MonoBehaviour
+    public class DemoController : MonoBehaviour
     {
         [SerializeField]
         private Text nameUi;
@@ -11,14 +11,15 @@ namespace DefaultNamespace
         private Text textUi;
 
         [SerializeField]
-        private string[] names;
-        [SerializeField]
+        private BaseDemo demo;
+
+        [SerializeField, Range(0, 9)]
         private int nameIndex;
 
         public void Update()
         {
-            nameUi.text = $"{names[nameIndex]}\n";
-            textUi.text = $"Thank you for coming!\n";
+            nameUi.text = demo.GetName(nameIndex);
+            textUi.text = demo.GetMessage();
         }
     }
 }
