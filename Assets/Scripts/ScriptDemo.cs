@@ -5,7 +5,7 @@ namespace DefaultNamespace
         private string[] names =
         {
             "Gabe",
-            "Bob",
+            "Ernest",
             "Charlie",
             "Dave",
             "Eve",
