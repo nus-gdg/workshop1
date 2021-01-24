@@ -4,9 +4,9 @@ namespace DefaultNamespace
     {
         private string[] names =
         {
-            "Alice",
-            "Bob",
-            "Charlie",
+            "Gabe",
+            "Ernest",
+            "Jeremy",
             "Jun Rong",
             "Eve",
             "Faythe",
