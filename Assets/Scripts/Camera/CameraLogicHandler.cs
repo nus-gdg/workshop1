@@ -15,6 +15,8 @@ public class CameraLogicHandler : MonoBehaviour
     private CameraController cameraController;
     private Camera attachedCamera;
 
+    public GameEvent action;
+
     private class CameraLogicAndControllerPropertyPair
     {
         public ICameraLogic CameraLogic;
@@ -30,6 +32,9 @@ public class CameraLogicHandler : MonoBehaviour
         Assert.IsNotNull(attachedCamera, "CameraLogicHandler.Awake CameraController expects an attached camera");
         cameraController = GetComponent<CameraController>();
         Assert.IsNotNull(cameraController, "CameraLogicHandler.Awake CameraController expects a CameraController");
+
+        Assert.IsNull(Common.Game.Instance.World.CameraManager.CameraLogicHandler, "CameraLogicHandler.Awake More than one registered CameraLogicHandler");
+        Common.Game.Instance.World.CameraManager.CameraLogicHandler = this;
     }
 
     void Start()
@@ -40,6 +45,7 @@ public class CameraLogicHandler : MonoBehaviour
     void OnApplicationQuit()
     {
         CameraLogicStack.Clear();
+        Common.Game.Instance.World.CameraManager.CameraLogicHandler = null;
     }
 
     /// <summary>
@@ -65,7 +71,7 @@ public class CameraLogicHandler : MonoBehaviour
         Assert.IsNotNull(logicAndControllerPropertyPair, "CameraLogicHandler.PopCameraLogic top of queue is null, something went wrong");
         if (cameraLogic != null)
         {
-            Assert.AreEqual(cameraLogic, CameraLogicStack.Peek().CameraLogic, "CameraLogicHandler.PopCameraLogic top of queue isnt expected camera logic");
+            Assert.AreEqual(cameraLogic, logicAndControllerPropertyPair.CameraLogic, "CameraLogicHandler.PopCameraLogic top of queue isnt expected camera logic");
         }
         logicAndControllerPropertyPair.CameraLogic?.OnPop(cameraController);
         cameraController.CurrentProperties = logicAndControllerPropertyPair.PreviousLogicProperties;

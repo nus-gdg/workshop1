@@ -7,6 +7,8 @@ namespace Common
 {
     public class CameraManager : MonoBehaviour
     {
+        public CameraLogicHandler CameraLogicHandler;
+
         public static Vector2 ClampWorldPositionInsideCamera2D(Vector2 position, Camera camera)
         {
             Vector2 camPos = camera.transform.position;
