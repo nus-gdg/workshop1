@@ -4,8 +4,19 @@ namespace Common
 {
     public class WorldManager : MonoBehaviour
     {
-        // TODO: Add Camera property
-        // TODO: Add Player property
+        public Entity.Player Player { get; set; }
+        public Entity.Cursor Cursor { get; set; }
+
+        [SerializeField]
+        private CameraManager cameraManager;
+        public CameraManager CameraManager => cameraManager;
+
         // TODO: Add system to pause entities
+
+        void OnApplicationQuit()
+        {
+            Player = null;
+            Cursor = null;
+        }
     }
 }
