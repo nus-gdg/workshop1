@@ -10,26 +10,38 @@ namespace Common
         public Entity.Player Player { get; set; }
         public Entity.Cursor Cursor { get; set; }
 
+        /// <summary>
+        /// Callback when world is paused
+        /// </summary>
         public UnityEvent OnPauseEvent;
+
+        /// <summary>
+        /// Callback when world is unpaused
+        /// </summary>
         public UnityEvent OnUnpauseEvent;
 
         [SerializeField]
         private CameraManager cameraManager;
         public CameraManager CameraManager => cameraManager;
 
-        // TODO: Add system to pause entities
         void OnApplicationQuit()
         {
             Player = null;
             Cursor = null;
         }
 
+        /// <summary>
+        /// Pauses world
+        /// </summary>
         public void PauseWorld()
         {
             Time.timeScale = 0.0f;
             OnPauseEvent.Invoke();
         }
 
+        /// <summary>
+        /// Unpauses world
+        /// </summary>
         public void UnpauseWorld()
         {
             Time.timeScale = 1.0f;
@@ -39,11 +51,21 @@ namespace Common
         public delegate void OnSceneLoadedFunc(Scene scene);
         public delegate void OnSceneLoadFailFunc();
 
+        /// <summary>
+        /// Loads scene via name
+        /// </summary>
+        /// <param name="name">Name of scene. Expects scene to be regesitered in build settings</param>
         public void LoadScene(string name)
         {
             LoadScene(name, (scene) => { }, () => { });
         }
 
+        /// <summary>
+        /// Loads scene via name
+        /// </summary>
+        /// <param name="name">Name of scene. Expects scene to be regesitered in build settings</param>
+        /// <param name="successFunc">Callback when load succeeds</param>
+        /// <param name="failFunc">Callback when load fails</param>
         public void LoadScene(string name, OnSceneLoadedFunc successFunc, OnSceneLoadFailFunc failFunc)
         {
             Scene scene = SceneManager.GetSceneByName(name);
@@ -59,10 +81,20 @@ namespace Common
 
         public delegate void OnSceneUnloaded();
 
+        /// <summary>
+        /// Unload scene via name
+        /// </summary>
+        /// <param name="name">Name of scene. Expects scene to be regesitered in build settings</param>
         public void UnloadScene(string name)
         {
             StartCoroutine(UnloadSceneAsyncOperation(name, () => { }));
         }
+
+        /// <summary>
+        /// Unload scene via name
+        /// </summary>
+        /// <param name="name">Name of scene. Expects scene to be regesitered in build settings</param>
+        /// <param name="func">Callback when unload finishes</param>
         public void UnloadScene(string name, OnSceneUnloaded func)
         {
             StartCoroutine(UnloadSceneAsyncOperation(name, func));
