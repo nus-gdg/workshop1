@@ -42,6 +42,10 @@ public class CameraLogicHandler : MonoBehaviour
         CameraLogicStack.Clear();
     }
 
+    /// <summary>
+    /// Pushes a new camera logic
+    /// </summary>
+    /// <param name="cameraLogic">Camera Logic to push</param>
     public void PushCameraLogic(ICameraLogic cameraLogic)
     {
         CameraLogicAndControllerPropertyPair logicAndControllerPropertyPair = new CameraLogicAndControllerPropertyPair();
@@ -51,6 +55,10 @@ public class CameraLogicHandler : MonoBehaviour
         cameraLogic.OnPush(cameraController);
     }
 
+    /// <summary>
+    /// Pops camera logic off the stack. If you provide the camera logic, will do runtime check if cameralogic was indeed on top of stack
+    /// </summary>
+    /// <param name="cameraLogic">Camera Logic to check</param>
     public void PopCameraLogic(ICameraLogic cameraLogic = null)
     {
         CameraLogicAndControllerPropertyPair logicAndControllerPropertyPair = CameraLogicStack.Pop();
