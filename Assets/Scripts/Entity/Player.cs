@@ -1,5 +1,6 @@
 using Common;
 using UnityEngine;
+using UnityEngine.Assertions;
 
 namespace Entity
 {
@@ -7,19 +8,20 @@ namespace Entity
     {
         // Dependencies
         private InputManager.PlayerActions _controls;
-        
+
         // Components
         [SerializeField]
         private new Rigidbody2D rigidbody;
-        
+
         // Movement variables
         public float speed;
         private Vector2 _direction;
-        
+
         private void Awake()
         {
             _controls = Game.Instance.Input.Player;
-            // Game.Instance.World.Add(this);
+            Assert.IsNull(Game.Instance.World.Player, "Player.Awake Player registed in world is not null");
+            Game.Instance.World.Player = this;
         }
 
         private void OnEnable()
