@@ -4,5 +4,11 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/exp-movement-system.unity
+    guid: fc5ba13258d1e4f759e1433728b0012d
+  - enabled: 1
+    path: Assets/Scenes/exp-second-scene.unity
+    guid: 67b278040ae6492468486515f20f7245
   m_configObjects: {}
