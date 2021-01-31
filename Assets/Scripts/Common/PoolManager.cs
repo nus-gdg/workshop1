@@ -12,6 +12,8 @@ namespace Common
      * In the object to be pooled:
      * 1) DO NOT DESTROY pooled objects (except for when exiting the 
      * application). Instead, use the DestroyPooled method. 
+     * If the prefab has children, ensure that your scripts call 
+     * DestroyPooled on the prefab instead of its descendents. 
      * 2) Call setup functions in OnEnable instead of Start. Also 
      * ensure that the prefab is disabled by default before assigning 
      * to the prefab
@@ -185,6 +187,7 @@ namespace Common
                 if (instantiatedObjects.Contains(id))
                 {
                     gameObject.SetActive(false);
+                    gameObject.transform.SetParent(transform);
                     return;
                 }
             }
