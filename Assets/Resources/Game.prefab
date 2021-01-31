@@ -93,6 +93,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 235a4d1a346f4ad3977eef6b30195108, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  OnPauseEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  OnUnpauseEvent:
+    m_PersistentCalls:
+      m_Calls: []
   cameraManager: {fileID: 8490460611327019523}
 --- !u!1 &2507624866664202590
 GameObject:

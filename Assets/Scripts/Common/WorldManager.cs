@@ -10,6 +10,9 @@ namespace Common
         public Entity.Player Player { get; set; }
         public Entity.Cursor Cursor { get; set; }
 
+        public UnityEvent OnPauseEvent;
+        public UnityEvent OnUnpauseEvent;
+
         [SerializeField]
         private CameraManager cameraManager;
         public CameraManager CameraManager => cameraManager;
@@ -24,11 +27,13 @@ namespace Common
         public void PauseWorld()
         {
             Time.timeScale = 0.0f;
+            OnPauseEvent.Invoke();
         }
 
         public void UnpauseWorld()
         {
             Time.timeScale = 1.0f;
+            OnUnpauseEvent.Invoke();
         }
 
         public delegate void OnSceneLoadedFunc(Scene scene);
