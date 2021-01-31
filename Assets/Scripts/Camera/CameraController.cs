@@ -2,6 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Handles the low-level controls of the camera. For now, \n
+/// it only controls the camera's position. 
+/// </summary>
 public class CameraController : MonoBehaviour
 {
     public float SmoothTime = 0.3f;
