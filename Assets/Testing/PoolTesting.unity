@@ -121,60 +121,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1 &308139617
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 308139619}
-  - component: {fileID: 308139618}
-  m_Layer: 0
-  m_Name: Pooler
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &308139618
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 308139617}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 128d98cb1de845df9f6eb3e07aae22c0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  itemsToPool:
-  - objectToPool: {fileID: 1054246393078026606, guid: 3847cd2063bef1f47a37c12a2c41db2e,
-      type: 3}
-    objectId: Red Bullet
-    amountToPool: 10
-    shouldExpand: 0
-  - objectToPool: {fileID: 4748061280068629671, guid: f22009dd110d55343b5eb3de375ea089,
-      type: 3}
-    objectId: Blue Bullet
-    amountToPool: 10
-    shouldExpand: 1
---- !u!4 &308139619
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 308139617}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1524663701
 GameObject:
   m_ObjectHideFlags: 0
@@ -267,10 +213,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1580912543}
+  - component: {fileID: 1580912544}
   - component: {fileID: 1580912542}
   - component: {fileID: 1580912541}
   m_Layer: 0
-  m_Name: Bullet Spawner
+  m_Name: Bullet Spawner and Pooler
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -301,7 +248,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f6f841752d0eee468b9c5d0a4adba10, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  poolManager: {fileID: 308139618}
+  blueBullet: {fileID: 4748061280068629671, guid: f22009dd110d55343b5eb3de375ea089,
+    type: 3}
+  redBullet: {fileID: 1054246393078026606, guid: 3847cd2063bef1f47a37c12a2c41db2e,
+    type: 3}
+  yellowBullet: {fileID: 1054246393078026606, guid: 91284e3cccf6895479dae012d37c2f67,
+    type: 3}
 --- !u!4 &1580912543
 Transform:
   m_ObjectHideFlags: 0
@@ -314,5 +266,26 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1580912544
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1580912540}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 128d98cb1de845df9f6eb3e07aae22c0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemsToPool:
+  - objectToPool: {fileID: 1054246393078026606, guid: 3847cd2063bef1f47a37c12a2c41db2e,
+      type: 3}
+    amountToPool: 10
+    shouldExpand: 0
+  - objectToPool: {fileID: 4748061280068629671, guid: f22009dd110d55343b5eb3de375ea089,
+      type: 3}
+    amountToPool: 10
+    shouldExpand: 1

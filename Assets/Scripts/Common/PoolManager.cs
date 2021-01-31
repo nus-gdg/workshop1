@@ -6,12 +6,12 @@ namespace Common
     /* Notes:
      * 1) Get a reference to this class (should be a singleton placed with 
      * a game manager)
-     * 2) Instantiate objects using the Instantiate method in this class 
-     * instead of using GameObject.Instantiate
+     * 2) Instantiate objects using the InstantiatePooled method 
+     * in this class instead of using GameObject.Instantiate
      * 
      * In the object to be pooled:
      * 1) DO NOT DESTROY pooled objects (except for when exiting the 
-     * application). Instead, disable them. 
+     * application). Instead, use the DestroyPooled method. 
      * 2) Call setup functions in OnEnable instead of Start. Also 
      * ensure that the prefab is disabled by default before assigning 
      * to the prefab
@@ -22,49 +22,48 @@ namespace Common
     */
 
     /// <summary>
-    /// A struct containing data for PoolManager. \n
-    /// objectToPool: a disabled prefab that you want to pool \n
-    /// objectId: a name to reference the object when calling \n
-    /// PoolManager.Instantiate \n
-    /// amountToPool: number of objects to pool upon initialisation \n
-    /// shouldExpand: whether new objects should be instantiated if pool \n
-    /// is emptied
+    /// <para>A struct containing data for PoolManager.</para>
+    /// <para>objectToPool: a disabled prefab that you want to pool</para>
+    /// <para>amountToPool: number of objects to pool upon initialisation</para>
+    /// <para>shouldExpand: whether new objects should be instantiated if pool is emptied</para>
     /// </summary>
     [System.Serializable]
     public struct ObjectPoolItem
     {
         public GameObject objectToPool;
-        public string objectId;
         public int amountToPool;
         public bool shouldExpand;
     }
 
     /// <summary>
-    /// The PoolManager preloads commonly used objects to prevent \n
+    /// <para>The PoolManager preloads commonly used objects to prevent</para>
     /// lag when instantiating and destroying large number of objects.
     /// </summary>
     public class PoolManager : MonoBehaviour
     {
         [SerializeField]
         private ObjectPoolItem[] itemsToPool;
+
         private List<GameObject>[] pooledObjects;
-        private Dictionary<string, int> stringHash;
+        private Dictionary<int, int> idHash;
+        // Note: not reliable, not updated if Destroy() is called
+        private HashSet<int> instantiatedObjects; 
 
         private void Awake()
         {
-            // Don't iterate through a list to do string search, EVER. 
-            stringHash = new Dictionary<string, int>();
+            // Don't iterate through a list to do a search, EVER. 
+            idHash = new Dictionary<int, int>();
             for (int i = 0; i < itemsToPool.Length; i++)
             {
                 ObjectPoolItem itemData = itemsToPool[i];
-                if (stringHash.ContainsKey(itemData.objectId))
+                int id = itemData.objectToPool.GetInstanceID();
+                if (idHash.ContainsKey(id))
                 {
                     throw new System.ArgumentException(
-                        "Pooled items contain duplicate object IDs: "
-                        + itemData.objectId + " at index " + i.ToString()
+                        "Duplicate prefab detected at index " + i.ToString()
                     );
                 }
-                stringHash[itemData.objectId] = i;
+                idHash[id] = i;
             }
         }
 
@@ -72,12 +71,14 @@ namespace Common
         {
             //Initialises pooledObjects as an empty list of GameObjects.
             pooledObjects = new List<GameObject>[itemsToPool.Length];
+            instantiatedObjects = new HashSet<int>();
 
             //Instantiates every object that's supposed to be pooled, disables them, and makes them a 
             //child of the gameObject containing this script to keep the hierarchy view neat.
             foreach (ObjectPoolItem item in itemsToPool)
             {
-                int position = stringHash[item.objectId];
+                int id = item.objectToPool.GetInstanceID();
+                int position = idHash[id];
                 pooledObjects[position] = new List<GameObject>();
 
                 for (int i = 0; i < item.amountToPool; i++)
@@ -90,65 +91,114 @@ namespace Common
 
                     //After the object is instantiated, tells pooledObjects that this object is available
                     pooledObjects[position].Add(obj);
+                    instantiatedObjects.Add(obj.GetInstanceID());
                 }
             }
         }
 
         /// <summary>
-        /// Retrieves a GameObject by a given object ID from the pool, 
-        /// or returns null if there are no more GameObjects and the pool 
-        /// cannot be expanded
+        /// <para>Retrieves a GameObject by a given prefab from the pool.</para>
+        /// <para>If the prefab is not found in the pool, this method will 
+        /// fallback to the default GameObject.Instantiate method 
+        /// unless strict=true.</para>
+        /// <para>The function may return null if the pool is empty and 
+        /// cannot expand. If strict=true, the function throws an exception 
+        /// if you attempt to retrieve a prefab not in the pool</para>
         /// </summary>
-        /// <param name="objectId">Name of object to instantiate</param>
-        /// <returns>The pooled GameObject, or null if the pool is too small</returns>
-        public GameObject Instantiate(string objectId)
+        /// <param name="prefab">Original prefab to instantiate</param>
+        /// <param name="strict">Whether you want to fall back to 
+        /// GameObject.Instantiate if object is not pooled</param>
+        /// <returns>The pooled GameObject, or null if instantiation failed</returns>
+        public GameObject InstantiatePooled(
+            GameObject prefab,
+            bool strict = false)
         {
-            int position = stringHash[objectId];
-            return this.Instantiate(position);
+            int id = prefab.GetInstanceID();
+            if (idHash.ContainsKey(id))
+            {
+                int position = idHash[id];
+                List<GameObject> selectedObjects = pooledObjects[position];
+
+                for (int i = selectedObjects.Count - 1; i >= 0; i--)
+                {
+                    // This shouldn't happen if you disabled instead of 
+                    // destroyed, but it's a failsafe.
+                    if (selectedObjects[i] == null)
+                    {
+                        selectedObjects.RemoveAt(i);
+                    }
+                    else if (!selectedObjects[i].activeInHierarchy)
+                    {
+                        selectedObjects[i].SetActive(true);
+                        return selectedObjects[i];
+                    }
+                }
+
+                // If there are no inactive objects in the hierarchy, we 
+                // expand the pool and return the new object provided that 
+                // this is permitted.
+                ObjectPoolItem itemData = itemsToPool[position];
+                if (itemData.shouldExpand)
+                {
+                    GameObject obj = Instantiate(itemData.objectToPool);
+                    obj.transform.SetParent(transform);
+                    selectedObjects.Add(obj);
+                    instantiatedObjects.Add(obj.GetInstanceID());
+                    return obj;
+                }
+
+                // If there are no objects with the specified tag, 
+                // or if the object pool for that object should not expand,
+                // then nothing is returned.
+                return null;
+            }
+            else
+            {
+                if (strict)
+                {
+                    throw new System.NullReferenceException(
+                        "Object is not found in the pool: " +
+                        prefab.name
+                    );
+                }
+                else
+                {
+                    return Instantiate(prefab);
+                }
+            }
         }
 
         /// <summary>
-        /// Retrieves a GameObject by a given object ID from the pool, 
-        /// or returns null if there are no more GameObjects and the pool 
-        /// cannot be expanded
+        /// Destroys the supplied object using PoolManager's API if 
+        /// the object is pooled, or destroys it normally if not pooled 
+        /// unless strict=true, in which this function will throw an 
+        /// exception instead. 
         /// </summary>
-        /// <param name="position">Index of object to instantiate</param>
-        /// <returns>The pooled GameObject, or null if the pool is too small</returns>
-        public GameObject Instantiate(int position)
+        /// <param name="obj">The object to destroy</param>
+        /// <param name="strict">Whether you want to fall back to 
+        /// GameObject.Instantiate if object is not pooled</param>
+        public void DestroyPooled(Object obj, bool strict=false)
         {
-            List<GameObject> selectedObjects = pooledObjects[position];
-
-            for (int i = selectedObjects.Count - 1; i >= 0; i--)
+            if (obj is GameObject gameObject)
             {
-                // This shouldn't happen if you disabled instead of 
-                // destroyed, but it's a failsafe.
-                if (selectedObjects[i] == null)
+                int id = gameObject.GetInstanceID();
+                if (instantiatedObjects.Contains(id))
                 {
-                    selectedObjects.RemoveAt(i);
-                }
-                else if (!selectedObjects[i].activeInHierarchy)
-                {
-                    selectedObjects[i].SetActive(true);
-                    return selectedObjects[i];
+                    gameObject.SetActive(false);
+                    return;
                 }
             }
-
-            // If there are no inactive objects in the hierarchy, we 
-            // expand the pool and return the new object provided that 
-            // this is permitted.
-            ObjectPoolItem itemData = itemsToPool[position];
-            if (itemData.shouldExpand)
+            if (strict)
             {
-                GameObject obj = Instantiate(itemData.objectToPool);
-                obj.transform.SetParent(transform);
-                selectedObjects.Add(obj);
-                return obj;
+                throw new System.NullReferenceException(
+                    "Object is not found in the pool: " +
+                    obj.name
+                );
             }
-
-            // If there are no objects with the specified tag, 
-            // or if the object pool for that object should not expand,
-            // then nothing is returned.
-            return null;
+            else
+            {
+                Destroy(obj);
+            }
         }
     }
 }

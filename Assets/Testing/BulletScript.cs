@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Common;
 
 namespace danielnyan.Testing
 {
@@ -10,6 +11,8 @@ namespace danielnyan.Testing
 
         // Not needed, just an example for instantiation
         private Rigidbody rb;
+        // Don't do this. Reference the global instance instead
+        private PoolManager pool;
         private bool setupDone = false;
 
         private void OnEnable()
@@ -19,14 +22,35 @@ namespace danielnyan.Testing
 
         private IEnumerator Setup()
         {
+            int currentPhase = 0;
             while (true)
             {
-                rb = GetComponent<Rigidbody>();
-                if (rb == null)
+                if (currentPhase == 0)
                 {
-                    yield return new WaitForEndOfFrame();
+                    rb = GetComponent<Rigidbody>();
+                    if (rb == null)
+                    {
+                        yield return new WaitForEndOfFrame();
+                    }
+                    else
+                    {
+                        currentPhase += 1;
+                    }
                 }
-                else
+                if (currentPhase == 1)
+                {
+                    // Don't do this. Use the appropriate API instead
+                    pool = GameObject.Find("Bullet Spawner and Pooler").GetComponent<PoolManager>();
+                    if (pool == null)
+                    {
+                        yield return new WaitForEndOfFrame();
+                    }
+                    else
+                    {
+                        currentPhase += 1;
+                    }
+                }
+                if (currentPhase == 2)
                 {
                     setupDone = true;
                     break;
@@ -43,7 +67,7 @@ namespace danielnyan.Testing
 
         private void OnTriggerExit(Collider other)
         {
-            gameObject.SetActive(false);
+            pool.DestroyPooled(gameObject);
         }
     }
 }
