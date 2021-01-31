@@ -7,8 +7,10 @@ using UnityEngine.Assertions;
 [RequireComponent(typeof(CameraController))]
 public class CameraLogic : MonoBehaviour
 {
-    public Transform PlayerTransform;
-    public Transform Cursor;
+    [SerializeField]
+    [Range(0.0f, 0.5f)]
+    private float PlayerBias = 0.25f;
+
     private CameraController cameraController;
     private Camera attachedCamera;
 
@@ -22,7 +24,13 @@ public class CameraLogic : MonoBehaviour
 
     void LateUpdate()
     {
-        Vector3 targetPosition = PlayerTransform.position * 0.75f + Cursor.position * 0.25f;
+        Entity.Player player = Common.Game.Instance.World.Player;
+        Assert.IsNotNull(player, "CameraLogic.LateUpdate player registered in world is null");
+
+        Entity.Cursor cursor = Common.Game.Instance.World.Cursor;
+        Assert.IsNotNull(cursor, "CameraLogic.LateUpdate cursor registered in world is null");
+
+        Vector3 targetPosition = Vector3.Lerp(player.transform.position, cursor.transform.position, PlayerBias);
         cameraController.TargetPosition = targetPosition;
     }
 }
