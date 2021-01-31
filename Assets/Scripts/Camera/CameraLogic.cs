@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.Assertions;
 
 /// <summary>
-/// Gives instructions to a CameraController component \n
+/// <para>Gives instructions to a CameraController component</para>
 /// on where its target location should be. 
 /// </summary>
 [RequireComponent(typeof(Camera))]
@@ -23,7 +23,7 @@ public class CameraLogic : MonoBehaviour
      */
 
     /// <summary>
-    /// The extent that the cursor's position will influence the camera's position. \n
+    /// <para>The extent that the cursor's position will influence the camera's position.</para>
     /// More specifically, cameraPos = x * playerPos + (1-x) * cursorPos
     /// </summary>
     [SerializeField]
