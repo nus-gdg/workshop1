@@ -10,20 +10,12 @@ namespace Entity
 
         public Vector2 velocity;
 
-        // private TestBulletPool _pool;
-
         protected override void OnAwake()
         {
         }
 
         protected override void OnRecycle()
         {
-            transform.position = Vector3.zero;
-        }
-
-        private void Start()
-        {
-            // _pool = Game.Instance.Pool.TestBullets;
         }
 
         // Update is called once per frame
