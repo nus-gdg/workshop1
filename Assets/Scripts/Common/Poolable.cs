@@ -73,14 +73,18 @@ namespace Common
         /// <remarks>
         /// This ensures that <see cref="Poolable"/> objects are disabled when initialized.
         /// </remarks>
-        protected abstract void OnAwake();
-        
+        protected virtual void OnAwake()
+        { 
+        }
+
         /// <summary>
         /// Performs initialization during the <see cref="Recycle"/> callback.
         /// </summary>
         /// <remarks>
         /// This ensures that <see cref="Poolable"/> objects are disabled when recycled.
         /// </remarks>
-        protected abstract void OnRecycle();
+        protected virtual void OnRecycle()
+        {
+        }
     }
 }
