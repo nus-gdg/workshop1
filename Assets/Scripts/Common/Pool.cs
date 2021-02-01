@@ -87,6 +87,10 @@ namespace Common
 
             // Store the item for reuse
             _inactiveItems.Enqueue(item);
+            
+            // Place item back into the pool as a child object
+            item.transform.position = Vector3.zero;
+            item.transform.SetParent(_parent);
         }
 
         private T CreateItem()
