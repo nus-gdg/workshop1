@@ -24,16 +24,6 @@ namespace Entity
             Game.Instance.World.Player = this;
         }
 
-        private void OnEnable()
-        {
-            _controls.Enable();
-        }
-
-        private void OnDisable()
-        {
-            _controls.Disable();
-        }
-
         private void Update()
         {
             var moveInput = _controls.Move.ReadValue<Vector2>();
