@@ -36,7 +36,7 @@ public class CameraController : MonoBehaviour
         CurrentProperties = DefaultProperties;
     }
 
-    void LateUpdate()
+    void FixedUpdate()
     {
         CurrentProperties.TargetPosition.z = transform.position.z;
         transform.position = Vector3.SmoothDamp(transform.position, CurrentProperties.TargetPosition, ref velocity, CurrentProperties.SmoothTime);

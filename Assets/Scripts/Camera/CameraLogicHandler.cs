@@ -15,8 +15,6 @@ public class CameraLogicHandler : MonoBehaviour
     private CameraController cameraController;
     private Camera attachedCamera;
 
-    public GameEvent action;
-
     private class CameraLogicAndControllerPropertyPair
     {
         public ICameraLogic CameraLogic;
