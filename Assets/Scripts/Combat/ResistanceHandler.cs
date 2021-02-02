@@ -14,16 +14,16 @@ namespace Combat
         [SerializeField]
         private List<ResistanceMapping> rawResistances
             = new List<ResistanceMapping>();
-        private List<ElementModifier> resistances;
+        private List<ElementModifier> resistances 
+            = new List<ElementModifier>();
         #endregion
 
         #region MonoBehaviour Callbacks
         public void Start()
         {
-            resistances = new List<ElementModifier>();
-            foreach (ResistanceMapping map in rawResistances)
+            for (int i = 0; i < rawResistances.Count; i++)
             {
-                AddResistance(map);
+                UpdateResistances(i);
             }
         }
         #endregion

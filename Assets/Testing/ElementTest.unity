@@ -213,6 +213,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1610773992}
+  - component: {fileID: 1610773991}
+  - component: {fileID: 1610773993}
   m_Layer: 0
   m_Name: Damager1
   m_TagString: Untagged
@@ -220,6 +222,27 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &1610773991
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1610773990}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 29de480394b0e9d4894a16ebc3985fd9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rawResistances:
+  - element: {fileID: 11400000, guid: 418f8d862057e074d807406561e0fa3e, type: 2}
+    damageTransform: {fileID: 11400000, guid: d24c42dff6fecb742abd9fe3e45f2af5, type: 2}
+    hyperparameters:
+    - 2
+  - element: {fileID: 11400000, guid: 7ea085501faac8e4e8f5f128aa254511, type: 2}
+    damageTransform: {fileID: 11400000, guid: d24c42dff6fecb742abd9fe3e45f2af5, type: 2}
+    hyperparameters:
+    - 0.5
 --- !u!4 &1610773992
 Transform:
   m_ObjectHideFlags: 0
@@ -234,3 +257,16 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1610773993
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1610773990}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2cb10f87d89f680419228ea7de577c25, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  element: {fileID: 11400000, guid: 418f8d862057e074d807406561e0fa3e, type: 2}
