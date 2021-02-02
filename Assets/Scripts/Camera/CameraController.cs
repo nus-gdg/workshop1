@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.Assertions;
 
 /// <summary>
-/// Handles the low-level controls of the camera. For now, \n
+/// <para>Handles the low-level controls of the camera. For now,</para>
 /// it only controls the camera's position. 
 /// </summary>
 [RequireComponent(typeof(Camera))]

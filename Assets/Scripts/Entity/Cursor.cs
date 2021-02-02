@@ -33,16 +33,6 @@ namespace Entity
             Game.Instance.World.Cursor = this;
         }
 
-        private void OnEnable()
-        {
-            _controls.Enable();
-        }
-
-        private void OnDisable()
-        {
-            _controls.Disable();
-        }
-
         private void Update()
         {
             var aimInput = _controls.Aim.ReadValue<Vector2>();

@@ -30,7 +30,10 @@ namespace Common
         private static void Load()
         {
             _instance = Instantiate(Resources.Load<Game>("Game"));
+
             _instance._input = new InputManager();
+            _instance._input.Player.Enable();
+
             DontDestroyOnLoad(_instance);
         }
     }
