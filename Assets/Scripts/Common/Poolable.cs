@@ -32,25 +32,25 @@ namespace Common
         /// </summary>
         /// <remarks>
         /// Please do not override <see cref="Awake"/>.
-        /// If you need to perform additional steps, override <see cref="OnAwake"/>.
+        /// If you need to perform additional steps, override <see cref="DuringAwake"/>.
         /// </remarks>
         public void Awake()
         {
-            OnAwake();
+            DuringAwake();
             gameObject.SetActive(false);
         }
 
         /// <summary>
         /// Destroys the object by deactivating the <see cref="GameObject"/> that it is attached to,
-        /// and returning it to its original <see cref="Pool{T}"/> for reuse.
+        /// and returns it to its original <see cref="Pool{T}"/> for reuse.
         /// </summary>
         /// <remarks>
         /// Please do not override <see cref="Recycle"/>.
-        /// If you need to perform additional steps, override <see cref="OnRecycle"/>.
+        /// If you need to perform additional steps, override <see cref="DuringRecycle"/>.
         /// </remarks>
         public void Recycle()
         {
-            OnRecycle();
+            DuringRecycle();
             recycler?.NotifyRecycle(GetInstanceID());
             gameObject.SetActive(false);
         }
@@ -73,7 +73,7 @@ namespace Common
         /// <remarks>
         /// This ensures that <see cref="Poolable"/> objects are disabled when initialized.
         /// </remarks>
-        protected virtual void OnAwake()
+        protected virtual void DuringAwake()
         { 
         }
 
@@ -83,7 +83,7 @@ namespace Common
         /// <remarks>
         /// This ensures that <see cref="Poolable"/> objects are disabled when recycled.
         /// </remarks>
-        protected virtual void OnRecycle()
+        protected virtual void DuringRecycle()
         {
         }
     }
