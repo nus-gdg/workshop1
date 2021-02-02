@@ -10,14 +10,6 @@ namespace Entity
 
         public Vector2 velocity;
 
-        protected override void OnAwake()
-        {
-        }
-
-        protected override void OnRecycle()
-        {
-        }
-
         // Update is called once per frame
         private void FixedUpdate()
         {
