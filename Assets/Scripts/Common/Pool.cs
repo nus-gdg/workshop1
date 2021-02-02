@@ -16,7 +16,7 @@ namespace Common
         /// <summary>
         /// The number of items to pool upon initialisation.
         /// </summary>
-        [SerializeField]
+        [SerializeField, Min(0)]
         private int minAmount;
         /// <summary>
         /// Whether new items should be instantiated if the pool is emptied.
@@ -28,6 +28,8 @@ namespace Common
 
         private Queue<T> _inactiveItems;
         private Dictionary<int, T> _activeItemsById;
+        
+        private int _size;
 
         /// <summary>
         /// Prepares the settings and the required items for the pool.
@@ -44,6 +46,7 @@ namespace Common
             {
                 _inactiveItems.Enqueue(CreateItem());
             }
+            _size = minAmount;
         }
         
         /// <summary>
@@ -56,14 +59,15 @@ namespace Common
             {
                 // If the pool is emptied, check if more items should be created
 
-                // Pool has a fixed size
-                if (!shouldExpand)
+                // Pool has a fixed size, and has reached its limit
+                if (!shouldExpand && _size >= minAmount)
                 {
                     item = null;
                     return false;
                 }
                 // Pool is flexible
                 item = CreateItem();
+                _size++;
             }
             else
             {
@@ -91,6 +95,20 @@ namespace Common
             // Place item back into the pool as a child object
             item.transform.position = Vector3.zero;
             item.transform.SetParent(_parent);
+        }
+        
+        public void NotifyDestroy(int itemId)
+        {
+            // Ignore instances that are not managed by the pool.
+            if (!_activeItemsById.TryGetValue(itemId, out T item))
+            {
+                return;
+            }
+            // Stop tracking the item
+            _activeItemsById.Remove(itemId);
+
+            // Reduce the number of available items
+            --_size;
         }
 
         private T CreateItem()

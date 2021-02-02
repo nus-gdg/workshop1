@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 
 namespace Common
@@ -15,6 +14,13 @@ namespace Common
         /// <param name="itemId">The instance id of the <see cref="Poolable"/> object.</param>
         /// <seealso cref="UnityEngine.Object.GetInstanceID"/>
         void NotifyRecycle(int itemId);
+
+        /// <summary>
+        /// Executes after observing the <see cref="UnityEngine.Object.Destroy(UnityEngine.Object)"/> callback of a <see cref="Poolable"/> object.
+        /// </summary>
+        /// <param name="itemId">The instance id of the <see cref="Poolable"/> object.</param>
+        /// <seealso cref="UnityEngine.Object.GetInstanceID"/>
+        void NotifyDestroy(int itemId);
     }
 
     /// <summary>
@@ -56,15 +62,17 @@ namespace Common
         }
         
         /// <summary>
-        /// <b>Warning</b>: <see cref="Destroy"/> has been disabled.
-        /// Please use <see cref="Recycle"/> to destroy <see cref="Poolable"/> object.
+        /// Destroys the object permanently.
+        /// Please use <see cref="Recycle"/> to reuse <see cref="Poolable"/> objects.
         /// </summary>
         /// <remarks>
         /// Please do not override <see cref="Destroy"/>.
+        /// If you need to perform additional steps, override <see cref="DuringDestroy"/>.
         /// </remarks>
         public void Destroy()
         {
-            throw new InvalidOperationException("Please do not destroy poolable objects. Use Recycle() instead!");
+            DuringDestroy();
+            recycler?.NotifyDestroy(GetInstanceID());
         }
 
         /// <summary>
@@ -84,6 +92,16 @@ namespace Common
         /// This ensures that <see cref="Poolable"/> objects are disabled when recycled.
         /// </remarks>
         protected virtual void DuringRecycle()
+        {
+        }
+        
+        /// <summary>
+        /// Performs initialization during the <see cref="Destroy"/> callback.
+        /// </summary>
+        /// <remarks>
+        /// This ensures that <see cref="Poolable"/> objects are destroyed properly.
+        /// </remarks>
+        protected virtual void DuringDestroy()
         {
         }
     }
