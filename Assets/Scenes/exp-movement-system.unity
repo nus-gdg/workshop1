@@ -900,17 +900,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a72ec21091206324e81ba85c37d40c68, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  BaseCameraLogic: {fileID: 11400000, guid: 38cce3ccd82730e4eb281e95ad4f467e, type: 2}
-  CurrentProperties:
+  DefaultCameraLogic: {fileID: 11400000, guid: 38cce3ccd82730e4eb281e95ad4f467e, type: 2}
+  CurrentSettings:
     TargetPosition: {x: 0, y: 0, z: 0}
     SmoothTime: 0
     TargetOrthographicSize: 0
     ZoomSmoothTime: 0
-  DefaultProperties:
+  DefaultSettings:
     TargetPosition: {x: 0, y: 0, z: 0}
     SmoothTime: 0.1
-    TargetOrthographicSize: 5
-    ZoomSmoothTime: 0.3
+    TargetOrthographicSize: 1
+    ZoomSmoothTime: 0.1
 --- !u!1 &1081548552
 GameObject:
   m_ObjectHideFlags: 0
@@ -2113,13 +2113,28 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4922775218733545311, guid: 050c8fe75e4b1e5479b7c75ea626bff2,
         type: 3}
+      propertyPath: DefaultSettings.SmoothTime
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4922775218733545311, guid: 050c8fe75e4b1e5479b7c75ea626bff2,
+        type: 3}
       propertyPath: DefaultProperties.SmoothTime
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4922775218733545311, guid: 050c8fe75e4b1e5479b7c75ea626bff2,
+        type: 3}
+      propertyPath: DefaultSettings.ZoomSmoothTime
       value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 4922775218733545311, guid: 050c8fe75e4b1e5479b7c75ea626bff2,
         type: 3}
       propertyPath: DefaultProperties.ZoomSmoothTime
       value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4922775218733545311, guid: 050c8fe75e4b1e5479b7c75ea626bff2,
+        type: 3}
+      propertyPath: DefaultSettings.TargetOrthographicSize
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4922775218733545311, guid: 050c8fe75e4b1e5479b7c75ea626bff2,
         type: 3}

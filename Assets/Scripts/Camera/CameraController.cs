@@ -6,31 +6,16 @@ using UnityEngine.Assertions;
 [RequireComponent(typeof(Camera))]
 public class CameraController : MonoBehaviour
 {
-    public CameraLogic BaseCameraLogic;
-
-    [System.Serializable]
-    public struct ControllerProperties
-    {
-        public Vector3 TargetPosition;
-        public float SmoothTime;
-        public float TargetOrthographicSize;
-        public float ZoomSmoothTime;
-    }
+    public CameraLogic DefaultCameraLogic;
 
     [HideInInspector]
-    public ControllerProperties CurrentProperties;
-    public ControllerProperties DefaultProperties;
+    public CameraControllerSettings CurrentSettings;
+    public CameraControllerSettings DefaultSettings;
 
+    private CameraControllerLogic logic;
     private Camera attachedCamera;
     private Vector3 velocity = Vector3.zero;
     private float zoomSpeed = 0.0f;
-
-    private class CameraLogicAndControllerPropertyPair
-    {
-        public CameraLogic CameraLogic;
-        public CameraController.ControllerProperties PreviousLogicProperties;
-    }
-    private Stack<CameraLogicAndControllerPropertyPair> CameraLogicStack;
  
     /// <summary>
     /// Pushes a new camera logic
@@ -38,11 +23,7 @@ public class CameraController : MonoBehaviour
     /// <param name="cameraLogic">Camera Logic to push</param>
     public void PushCameraLogic(CameraLogic cameraLogic)
     {
-        CameraLogicAndControllerPropertyPair logicAndControllerPropertyPair = new CameraLogicAndControllerPropertyPair();
-        logicAndControllerPropertyPair.CameraLogic = cameraLogic;
-        logicAndControllerPropertyPair.PreviousLogicProperties = CurrentProperties; // copy
-        CameraLogicStack.Push(logicAndControllerPropertyPair);
-        cameraLogic.OnPush(this);
+        logic.PushCameraLogic(cameraLogic, CurrentSettings);
     }
 
     /// <summary>
@@ -51,14 +32,7 @@ public class CameraController : MonoBehaviour
     /// <param name="cameraLogic">Camera Logic to check</param>
     public void PopCameraLogic(CameraLogic cameraLogic = null)
     {
-        CameraLogicAndControllerPropertyPair logicAndControllerPropertyPair = CameraLogicStack.Pop();
-        Assert.IsNotNull(logicAndControllerPropertyPair, "CameraLogicHandler.PopCameraLogic top of queue is null, something went wrong");
-        if (cameraLogic != null)
-        {
-            Assert.AreEqual(cameraLogic, logicAndControllerPropertyPair.CameraLogic, "CameraLogicHandler.PopCameraLogic top of queue isnt expected camera logic");
-        }
-        logicAndControllerPropertyPair.CameraLogic?.OnPop(this);
-        CurrentProperties = logicAndControllerPropertyPair.PreviousLogicProperties;
+        logic.PopCameraLogic(cameraLogic, out CurrentSettings);
     }
 
     public Vector2 ClampWorldPositionInsideCamera2D(Vector2 position)
@@ -79,36 +53,40 @@ public class CameraController : MonoBehaviour
 
     void Awake()
     {
-        CameraLogicStack = new Stack<CameraLogicAndControllerPropertyPair>();
         attachedCamera = GetComponent<Camera>();
         Assert.IsNotNull(attachedCamera, "CameraController.Awake CameraController expects an attached camera");
 
         Assert.IsNull(Common.Game.Instance.World.Camera, "CameraController.Awake More than one registered Camera");
         Common.Game.Instance.World.Camera = this;
+
+        logic = new CameraControllerLogic(this);
     }
 
     void Start()
     {
-        CurrentProperties = DefaultProperties;
-        PushCameraLogic(BaseCameraLogic);
+        CurrentSettings = DefaultSettings;
+        PushCameraLogic(DefaultCameraLogic);
     }
 
     void OnApplicationQuit()
     {
-        CameraLogicStack.Clear();
+        logic = null;
         Common.Game.Instance.World.Camera = null;
     }
 
     void LateUpdate()
     {
-        CameraLogicStack.Peek()?.CameraLogic?.OnLateUpdate(this);
+        logic.LateUpdate();
     }
 
     void FixedUpdate()
     {
-        CurrentProperties.TargetPosition.z = transform.position.z;
-        transform.position = Vector3.SmoothDamp(transform.position, CurrentProperties.TargetPosition, ref velocity, CurrentProperties.SmoothTime);
-        attachedCamera.orthographicSize = Mathf.SmoothDamp(attachedCamera.orthographicSize, CurrentProperties.TargetOrthographicSize, ref zoomSpeed, CurrentProperties.ZoomSmoothTime);
+        CurrentSettings.TargetPosition.z = transform.position.z;
+        transform.position = Vector3.SmoothDamp(transform.position, CurrentSettings.TargetPosition, ref velocity, CurrentSettings.SmoothTime);
+        attachedCamera.orthographicSize = Mathf.SmoothDamp(attachedCamera.orthographicSize, CurrentSettings.TargetOrthographicSize, ref zoomSpeed, CurrentSettings.ZoomSmoothTime);
+
+        Assert.IsTrue(CurrentSettings.TargetOrthographicSize > 0, "CameraController.FixedUpdate Target Orthographic size is less than or equal to 0 Check default orthographic size settings");
+    
     }
 
 }

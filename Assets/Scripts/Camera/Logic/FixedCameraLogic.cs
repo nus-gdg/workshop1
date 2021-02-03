@@ -12,8 +12,8 @@ public class FixedCameraLogic : CameraLogic
     public override void OnPush(CameraController controller)
     {
         base.OnPush(controller);
-        controller.CurrentProperties.TargetPosition = Position;
-        controller.CurrentProperties.TargetOrthographicSize = OrthographicSize;
+        controller.CurrentSettings.TargetPosition = Position;
+        controller.CurrentSettings.TargetOrthographicSize = OrthographicSize;
     }
 }
 
