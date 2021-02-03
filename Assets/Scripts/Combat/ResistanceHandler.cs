@@ -19,7 +19,7 @@ namespace Combat
         #endregion
 
         #region MonoBehaviour Callbacks
-        public void Start()
+        public void Awake()
         {
             for (int i = 0; i < rawResistances.Count; i++)
             {

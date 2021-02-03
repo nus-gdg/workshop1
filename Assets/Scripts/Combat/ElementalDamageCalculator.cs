@@ -64,7 +64,6 @@ namespace Combat
             int damage, ResistanceHandler resistances)
         {
             DamageTransform modifier = resistances.GetResistanceFunction(element);
-            Debug.Log(modifier);
             if (modifier != null)
             {
                 return modifier.DamageFunction(damage);
