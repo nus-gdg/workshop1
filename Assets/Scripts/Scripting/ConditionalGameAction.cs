@@ -13,6 +13,6 @@ public class ConditionalGameAction : GameAction
         {
             return Action.Evaluate(context);
         }
-        return Status.Invalid;
+        return Status.Fail;
     }
 }

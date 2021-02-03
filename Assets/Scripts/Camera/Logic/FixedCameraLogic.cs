@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEditor;
 
 [CreateAssetMenu(fileName = "FixedCameraLogic", menuName = "ScriptableObjects/CameraLogic/FixedCameraLogic", order = 1)]
-public class FixedCameraLogic : ICameraLogic
+public class FixedCameraLogic : CameraLogic
 {
     public Vector3 Position;
     public float OrthographicSize = 0.0f;

@@ -9,7 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d20e51c459fdf4a4aaf057a5183f47c2, type: 3}
-  m_Name: Push Camera Logic Fixed Camera 1
+  m_Script: {fileID: 11500000, guid: e480005ae6938dc4baa7abc6c5b1e6bd, type: 3}
+  m_Name: Top Right Camera
   m_EditorClassIdentifier: 
-  CameraLogic: {fileID: 11400000, guid: f1dba1961cd587c43be37327c5f58d54, type: 2}
+  Position: {x: 1.8, y: 1.44, z: -10}
+  OrthographicSize: 2

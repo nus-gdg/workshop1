@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.Assertions;
 
 [CreateAssetMenu(fileName = "PlayerAndCursorCameraLogic", menuName = "ScriptableObjects/CameraLogic/PlayerAndCursorCameraLogic", order = 1)]
-public class PlayerAndCursorCameraLogic : ICameraLogic
+public class PlayerAndCursorCameraLogic : CameraLogic
 {
     /// <summary>
     /// The extent that the cursor's position will influence the camera's position. \n

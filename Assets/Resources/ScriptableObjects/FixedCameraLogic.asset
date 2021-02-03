@@ -12,3 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e480005ae6938dc4baa7abc6c5b1e6bd, type: 3}
   m_Name: FixedCameraLogic
   m_EditorClassIdentifier: 
+  Position: {x: -0.26, y: 1.44, z: -10}
+  OrthographicSize: 8

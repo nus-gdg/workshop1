@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class ICameraLogic : ScriptableObject
+public abstract class CameraLogic : ScriptableObject
 {
     public virtual void OnPush(CameraController controller) { }
     public virtual void OnPop(CameraController controller) { }
