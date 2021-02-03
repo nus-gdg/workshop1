@@ -269,4 +269,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2cb10f87d89f680419228ea7de577c25, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  element: {fileID: 11400000, guid: 418f8d862057e074d807406561e0fa3e, type: 2}
+  element1: {fileID: 11400000, guid: 418f8d862057e074d807406561e0fa3e, type: 2}
+  element2: {fileID: 11400000, guid: 7ea085501faac8e4e8f5f128aa254511, type: 2}
+  element3: {fileID: 11400000, guid: 2d5c340f597d7524a90535c279d3eb51, type: 2}
+  resistanceMapping1:
+    element: {fileID: 11400000, guid: 418f8d862057e074d807406561e0fa3e, type: 2}
+    damageTransform: {fileID: 11400000, guid: d24c42dff6fecb742abd9fe3e45f2af5, type: 2}
+    hyperparameters:
+    - 1
+  resistanceMapping2:
+    element: {fileID: 11400000, guid: 7ea085501faac8e4e8f5f128aa254511, type: 2}
+    damageTransform: {fileID: 11400000, guid: d24c42dff6fecb742abd9fe3e45f2af5, type: 2}
+    hyperparameters:
+    - 1
+  resistanceMapping3:
+    element: {fileID: 11400000, guid: 893d2bc5db9c7684ebb504fc4734bf8b, type: 2}
+    damageTransform: {fileID: 11400000, guid: d24c42dff6fecb742abd9fe3e45f2af5, type: 2}
+    hyperparameters:
+    - 1
