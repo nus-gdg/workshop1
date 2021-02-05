@@ -9,7 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3abc1593b0116a24c8ecfc6171ce44f1, type: 3}
-  m_Name: DebugLogGameAction
+  m_Script: {fileID: 11500000, guid: e480005ae6938dc4baa7abc6c5b1e6bd, type: 3}
+  m_Name: Fixed Camera 1 - nich's demo scene
   m_EditorClassIdentifier: 
-  DebugText: Bla bla
+  Position: {x: 0, y: -1.23, z: -10}
+  OrthographicSize: 3

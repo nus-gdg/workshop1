@@ -9,7 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a9070cd221af999459f9360ffc50d249, type: 3}
-  m_Name: Pop Any Camera Logic
+  m_Script: {fileID: 11500000, guid: d20e51c459fdf4a4aaf057a5183f47c2, type: 3}
+  m_Name: Push Fixed Cam - nich's demo scene
   m_EditorClassIdentifier: 
-  CameraLogic: {fileID: 0}
+  CameraLogic: {fileID: 11400000, guid: 10bfc2c1e4ecd8d4e8b35b77cda008ca, type: 2}

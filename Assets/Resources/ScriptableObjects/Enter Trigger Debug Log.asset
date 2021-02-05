@@ -9,8 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e480005ae6938dc4baa7abc6c5b1e6bd, type: 3}
-  m_Name: Top Right Camera
+  m_Script: {fileID: 11500000, guid: 3abc1593b0116a24c8ecfc6171ce44f1, type: 3}
+  m_Name: Enter Trigger Debug Log
   m_EditorClassIdentifier: 
-  Position: {x: 1.8, y: 1.44, z: -10}
-  OrthographicSize: 2
+  DebugText: Enter Trigger!

@@ -9,8 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e480005ae6938dc4baa7abc6c5b1e6bd, type: 3}
-  m_Name: FixedCameraLogic
+  m_Script: {fileID: 11500000, guid: 64435bc4f558d2c4fb8ff7b7aaa86553, type: 3}
+  m_Name: PlayerAndCursorCameraLogic 1
   m_EditorClassIdentifier: 
-  Position: {x: -0.26, y: 1.44, z: -10}
-  OrthographicSize: 8
+  CursorBias: 0.25
