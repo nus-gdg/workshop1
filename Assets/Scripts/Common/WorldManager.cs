@@ -7,9 +7,7 @@ namespace Common
         public Entity.Player Player { get; set; }
         public Entity.Cursor Cursor { get; set; }
 
-        [SerializeField]
-        private CameraManager cameraManager;
-        public CameraManager CameraManager => cameraManager;
+        public CameraController Camera { get; set; }
 
         // TODO: Add system to pause entities
 

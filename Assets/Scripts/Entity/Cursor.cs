@@ -37,7 +37,7 @@ namespace Entity
         {
             var aimInput = _controls.Aim.ReadValue<Vector2>();
             Position = _camera.ScreenToWorldPoint(aimInput);
-            Position = Common.CameraManager.ClampWorldPositionInsideCamera2D(Position, _camera);
+            Position = Game.Instance.World.Camera.ClampWorldPositionInsideCamera2D(Position);
         }
     }
 }
