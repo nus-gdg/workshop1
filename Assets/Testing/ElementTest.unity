@@ -213,8 +213,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1610773992}
-  - component: {fileID: 1610773991}
   - component: {fileID: 1610773993}
+  - component: {fileID: 1610773991}
   m_Layer: 0
   m_Name: Damager1
   m_TagString: Untagged
@@ -231,18 +231,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1610773990}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 29de480394b0e9d4894a16ebc3985fd9, type: 3}
+  m_Script: {fileID: 11500000, guid: df3be48792c6db042872d26d4190ab74, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rawResistances:
-  - element: {fileID: 11400000, guid: 418f8d862057e074d807406561e0fa3e, type: 2}
-    damageTransform: {fileID: 11400000, guid: d24c42dff6fecb742abd9fe3e45f2af5, type: 2}
-    hyperparameters:
-    - 2
-  - element: {fileID: 11400000, guid: 7ea085501faac8e4e8f5f128aa254511, type: 2}
-    damageTransform: {fileID: 11400000, guid: d24c42dff6fecb742abd9fe3e45f2af5, type: 2}
-    hyperparameters:
-    - 0.5
+  CombatStats: {fileID: 0}
 --- !u!4 &1610773992
 Transform:
   m_ObjectHideFlags: 0
@@ -269,21 +261,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2cb10f87d89f680419228ea7de577c25, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  element1: {fileID: 11400000, guid: 418f8d862057e074d807406561e0fa3e, type: 2}
-  element2: {fileID: 11400000, guid: 7ea085501faac8e4e8f5f128aa254511, type: 2}
-  element3: {fileID: 11400000, guid: 2d5c340f597d7524a90535c279d3eb51, type: 2}
-  resistanceMapping1:
-    element: {fileID: 11400000, guid: 418f8d862057e074d807406561e0fa3e, type: 2}
-    damageTransform: {fileID: 11400000, guid: d24c42dff6fecb742abd9fe3e45f2af5, type: 2}
-    hyperparameters:
-    - 1
-  resistanceMapping2:
-    element: {fileID: 11400000, guid: 7ea085501faac8e4e8f5f128aa254511, type: 2}
-    damageTransform: {fileID: 11400000, guid: d24c42dff6fecb742abd9fe3e45f2af5, type: 2}
-    hyperparameters:
-    - 1
-  resistanceMapping3:
-    element: {fileID: 11400000, guid: 893d2bc5db9c7684ebb504fc4734bf8b, type: 2}
-    damageTransform: {fileID: 11400000, guid: d24c42dff6fecb742abd9fe3e45f2af5, type: 2}
-    hyperparameters:
-    - 1
