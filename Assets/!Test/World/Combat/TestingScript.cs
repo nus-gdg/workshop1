@@ -15,6 +15,7 @@ namespace Testing
         {
             // Initial parameters: Fire (x2), Water (x0.5)
             handler = GetComponent<DamageHandler>();
+
             {
                 Element element = ScriptableObject.CreateInstance<Element>();
 
@@ -24,11 +25,37 @@ namespace Testing
                 targetCombatStats.DamageModifiers = new List<DamageModifier>();
                 handler.CombatStats = targetCombatStats;
 
+                DamageParams damageParams = new DamageParams();
+                damageParams.DamageAmount = 15;
+                damageParams.SourceStats = sourceCombatStats;
+                damageParams.SourceEntity = gameObject;
+                damageParams.Element = element;
+
+                handler.ApplyDamage(ref damageParams);
+
+                Assert.AreEqual(damageParams.DamageAmount, 15);
+                handler.CombatStats = null;
+            }
+
+            {
+                Element element = ScriptableObject.CreateInstance<Element>();
+
+                CombatStats sourceCombatStats = ScriptableObject.CreateInstance<CombatStats>();
+                sourceCombatStats.DamageModifiers = new List<DamageModifier>();
+                CombatStats targetCombatStats = ScriptableObject.CreateInstance<CombatStats>();
+                targetCombatStats.DamageModifiers = new List<DamageModifier>();
+                handler.CombatStats = targetCombatStats;
+
+                DamageStep damageStep = ScriptableObject.CreateInstance<DamageStep>();
+                damageStep.Priority = 0;
+
                 FunctionOperation operation = new FunctionOperation();
                 operation.Operation = FunctionOperation.OperationType.Multiply;
                 operation.Value = 2f;
+
                 ElementDamageModifier modifier = ScriptableObject.CreateInstance<ElementDamageModifier>();
                 modifier.Element = element;
+                modifier.DamageStep = damageStep;
                 modifier.Function.Operations = new FunctionOperation[1] { operation };
 
                 targetCombatStats.DamageModifiers.Add(modifier);
@@ -54,6 +81,9 @@ namespace Testing
                 targetCombatStats.DamageModifiers = new List<DamageModifier>();
                 handler.CombatStats = targetCombatStats;
 
+                DamageStep damageStep = ScriptableObject.CreateInstance<DamageStep>();
+                damageStep.Priority = 0;
+
                 FunctionOperation operation = new FunctionOperation();
                 operation.Operation = FunctionOperation.OperationType.Add;
                 operation.Value = 3f;
@@ -64,6 +94,7 @@ namespace Testing
 
                 ElementDamageModifier modifier = ScriptableObject.CreateInstance<ElementDamageModifier>();
                 modifier.Element = element;
+                modifier.DamageStep = damageStep;
                 modifier.Function.Operations = new FunctionOperation[3] { operation, operation2, operation }; // ((value + 3) * 3) + 3
 
                 targetCombatStats.DamageModifiers.Add(modifier);
@@ -90,6 +121,9 @@ namespace Testing
                 targetCombatStats.DamageModifiers = new List<DamageModifier>();
                 handler.CombatStats = targetCombatStats;
 
+                DamageStep damageStep = ScriptableObject.CreateInstance<DamageStep>();
+                damageStep.Priority = 0;
+
                 FunctionOperation operation = new FunctionOperation();
                 operation.Operation = FunctionOperation.OperationType.Add;
                 operation.Value = 3f;
@@ -100,6 +134,7 @@ namespace Testing
 
                 ElementDamageModifier modifier = ScriptableObject.CreateInstance<ElementDamageModifier>();
                 modifier.Element = element;
+                modifier.DamageStep = damageStep;
                 modifier.Function.Operations = new FunctionOperation[2] { operation, operation2 };
 
                 targetCombatStats.DamageModifiers.Add(modifier);
@@ -125,6 +160,12 @@ namespace Testing
                 targetCombatStats.DamageModifiers = new List<DamageModifier>();
                 handler.CombatStats = targetCombatStats;
 
+                DamageStep damageStep = ScriptableObject.CreateInstance<DamageStep>();
+                damageStep.Priority = 0;
+
+                DamageStep damageStep2 = ScriptableObject.CreateInstance<DamageStep>();
+                damageStep2.Priority = 1;
+
                 FunctionOperation operation = new FunctionOperation();
                 operation.Operation = FunctionOperation.OperationType.Add;
                 operation.Value = 3f;
@@ -135,6 +176,52 @@ namespace Testing
 
                 ElementDamageModifier modifier = ScriptableObject.CreateInstance<ElementDamageModifier>();
                 modifier.Element = element;
+                modifier.DamageStep = damageStep;
+                modifier.Function.Operations = new FunctionOperation[1] { operation };
+
+                ElementDamageModifier modifier2 = ScriptableObject.CreateInstance<ElementDamageModifier>();
+                modifier2.Element = element;
+                modifier2.DamageStep = damageStep2;
+                modifier2.Function.Operations = new FunctionOperation[1] { operation2 };
+
+                targetCombatStats.DamageModifiers.Add(modifier2);
+                targetCombatStats.DamageModifiers.Add(modifier);
+
+                DamageParams damageParams = new DamageParams();
+                damageParams.DamageAmount = 15;
+                damageParams.SourceStats = sourceCombatStats;
+                damageParams.SourceEntity = gameObject;
+                damageParams.Element = element;
+
+                handler.ApplyDamage(ref damageParams);
+
+                Assert.AreEqual(damageParams.DamageAmount, 54);
+                handler.CombatStats = null;
+            }
+
+            {
+                Element element = ScriptableObject.CreateInstance<Element>();
+
+                CombatStats sourceCombatStats = ScriptableObject.CreateInstance<CombatStats>();
+                sourceCombatStats.DamageModifiers = new List<DamageModifier>();
+                CombatStats targetCombatStats = ScriptableObject.CreateInstance<CombatStats>();
+                targetCombatStats.DamageModifiers = new List<DamageModifier>();
+                handler.CombatStats = targetCombatStats;
+
+                FunctionOperation operation = new FunctionOperation();
+                operation.Operation = FunctionOperation.OperationType.Add;
+                operation.Value = 3f;
+
+                FunctionOperation operation2 = new FunctionOperation();
+                operation2.Operation = FunctionOperation.OperationType.Multiply;
+                operation2.Value = 3f;
+
+                DamageStep damageStep = ScriptableObject.CreateInstance<DamageStep>();
+                damageStep.Priority = 0;
+
+                ElementDamageModifier modifier = ScriptableObject.CreateInstance<ElementDamageModifier>();
+                modifier.Element = element;
+                modifier.DamageStep = damageStep;
                 modifier.Function.Operations = new FunctionOperation[2] { operation, operation2 };
 
                 for (int i = 0; i < 1000; ++i)
@@ -167,7 +254,7 @@ namespace Testing
         {
             for (int i = 0; i < 1; ++i)
             {
-                DamageParams p = new DamageParams();
+                new DamageParams();
             }
         }
     }

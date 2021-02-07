@@ -7,6 +7,7 @@ namespace Combat
 {
     public abstract class DamageModifier : ScriptableObject
     {
+        public DamageStep DamageStep;
         public abstract void Evaluate(ref DamageParams damageParams);
     }
 }
