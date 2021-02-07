@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Assertions;
+using System.Linq;
 
 namespace Combat
 {
@@ -19,14 +20,15 @@ namespace Combat
             Assert.IsNotNull(dmgParams.TargetEntity, "DamageHandler.ApplyDamage expects DamageParams TargetEntity to be not null");
             Assert.IsNotNull(dmgParams.TargetStats, "DamageHandler.ApplyDamage expects DamageParams TargetStats to be not null");
 
-            // we need to sort this...
-            foreach (DamageModifier modifier in dmgParams.SourceStats.DamageModifiers)
-            {
-                modifier.Evaluate(ref dmgParams);
-            }
+            IEnumerable<DamageModifier> modifiers = dmgParams.SourceStats.DamageModifiers.Concat(dmgParams.TargetStats.DamageModifiers);
+            IEnumerable<DamageModifier> modifierQuery = from modifier in modifiers
+                                                        orderby modifier.DamageStep ? modifier.DamageStep?.Priority : System.Int32.MaxValue
+                                                        select modifier;
 
-            foreach (DamageModifier modifier in dmgParams.TargetStats.DamageModifiers)
+            foreach (DamageModifier modifier in modifierQuery)
             {
+                Assert.IsNotNull(modifier.DamageStep, "DamageHandler.ApplyDamage expects DamageModifier damage step to be not null");
+                // we can log here too
                 modifier.Evaluate(ref dmgParams);
             }
         }
