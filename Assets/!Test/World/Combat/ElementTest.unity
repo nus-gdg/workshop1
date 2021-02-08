@@ -340,12 +340,12 @@ GameObject:
   m_Component:
   - component: {fileID: 1610773992}
   - component: {fileID: 1610773993}
-  - component: {fileID: 1610773994}
-  - component: {fileID: 1610773991}
   - component: {fileID: 1610773997}
   - component: {fileID: 1610773996}
   - component: {fileID: 1610773995}
   - component: {fileID: 1610773998}
+  - component: {fileID: 1610773991}
+  - component: {fileID: 1610773994}
   m_Layer: 0
   m_Name: Receiver
   m_TagString: Untagged
@@ -362,11 +362,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 1610773990}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 028a2efc49f9c194282115e3b1f44537, type: 3}
+  m_Script: {fileID: 11500000, guid: 9e05d49faf37bba43b147d773d85fa6b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  OffensiveDamageModifiers: []
-  DefensiveDamageModifiers: []
 --- !u!4 &1610773992
 Transform:
   m_ObjectHideFlags: 0
@@ -403,9 +401,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1610773990}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c2eb3781c47af204bb9f73e4d41c3b77, type: 3}
+  m_Script: {fileID: 11500000, guid: 162a577cb7ae22a439731af06ebb6572, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  OffensiveDamageModifiers: []
+  DefensiveDamageModifiers: []
 --- !u!212 &1610773995
 SpriteRenderer:
   m_ObjectHideFlags: 0
