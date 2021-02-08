@@ -4,14 +4,16 @@ using UnityEngine;
 
 namespace Combat
 {
-    public struct DamageParams
+
+    [System.Serializable]
+    public struct DamageSource
     {
         public int DamageAmount;
         public Element Element;
-        public CombatStats SourceStats;
-        public CombatStats TargetStats;
-        public GameObject SourceEntity;
-        public GameObject TargetEntity;
-    }
-}
+        public List<DamageModifier> Modifiers;
 
+        [HideInInspector] // runtime value
+        public GameObject SourceEntity;
+    }
+
+}
