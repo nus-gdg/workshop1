@@ -11,7 +11,7 @@ namespace Combat
         public Element Element;
         public Function Function;
 
-        public override void Evaluate(ref DamageParams damageParams)
+        public override void Evaluate(ref DamageModifierRuntimeParams damageParams)
         {
             if (Element == damageParams.Element)
             {
