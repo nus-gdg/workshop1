@@ -18,7 +18,7 @@ namespace World.Camera
             Entity.Player player = Core.Game.Instance.World.Player;
             Assert.IsNotNull(player, "CameraLogic.LateUpdate player registered in world is null");
 
-            Entity.Cursor cursor = Core.Game.Instance.World.Cursor;
+            Ui.Cursor cursor = Core.Game.Instance.World.Cursor;
             Assert.IsNotNull(cursor, "CameraLogic.LateUpdate cursor registered in world is null");
 
             Vector3 targetPosition = Vector3.Lerp(player.transform.position, cursor.transform.position, CursorBias);

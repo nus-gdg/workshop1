@@ -3,13 +3,13 @@ using Core.Managers;
 using UnityEngine;
 using UnityEngine.Assertions;
 
-namespace Entity
+namespace World.Ui
 {
     public class Cursor : MonoBehaviour
     {
         // Dependencies
         private InputManager.PlayerActions _controls;
-        private Camera _camera;
+        private UnityEngine.Camera _camera;
 
         // Components
         // [SerializeField]
@@ -26,7 +26,7 @@ namespace Entity
         private void Awake()
         {
             _controls = Game.Instance.Input.Player;
-            _camera = Camera.main;
+            _camera = UnityEngine.Camera.main;
             _transform = transform;
 
             // Game.Instance.World.Add(this);

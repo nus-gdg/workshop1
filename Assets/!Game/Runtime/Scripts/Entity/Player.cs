@@ -3,7 +3,7 @@ using Core.Managers;
 using UnityEngine;
 using UnityEngine.Assertions;
 
-namespace Entity
+namespace World.Entity
 {
     public class Player : MonoBehaviour
     {

@@ -5,8 +5,8 @@ namespace Core.Managers
 {
     public class WorldManager : MonoBehaviour
     {
-        public Entity.Player Player { get; set; }
-        public Entity.Cursor Cursor { get; set; }
+        public World.Entity.Player Player { get; set; }
+        public World.Ui.Cursor Cursor { get; set; }
 
         public CameraController Camera { get; set; }
 
