@@ -1,4 +1,4 @@
-// GENERATED AUTOMATICALLY FROM 'Assets/Resources/InputManager.inputactions'
+// GENERATED AUTOMATICALLY FROM 'Assets/!Game/Runtime/Data/Core/Resources/InputManager.inputactions'
 
 using System;
 using System.Collections;
@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Utilities;
 
-namespace Common
+namespace Core.Managers
 {
     public class @InputManager : IInputActionCollection, IDisposable
     {

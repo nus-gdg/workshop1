@@ -8,7 +8,7 @@ public class PushCameraLogicAction : GameAction
     public override Status Evaluate(GameContext context)
     {
         Assert.IsNotNull(CameraLogic, "PushCameraLogicAction.Evaluate, CameraLogic is null!");
-        Common.Game.Instance.World.Camera.PushCameraLogic(CameraLogic);
+        Core.Game.Instance.World.Camera.PushCameraLogic(CameraLogic);
         return Status.Success;
     }
 }

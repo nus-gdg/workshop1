@@ -54,8 +54,8 @@ public class CameraController : MonoBehaviour
         attachedCamera = GetComponent<Camera>();
         Assert.IsNotNull(attachedCamera, "CameraController.Awake CameraController expects an attached camera");
 
-        Assert.IsNull(Common.Game.Instance.World.Camera, "CameraController.Awake More than one registered Camera");
-        Common.Game.Instance.World.Camera = this;
+        Assert.IsNull(Core.Game.Instance.World.Camera, "CameraController.Awake More than one registered Camera");
+        Core.Game.Instance.World.Camera = this;
 
         logic = new CameraControllerLogic(this);
     }
@@ -69,7 +69,7 @@ public class CameraController : MonoBehaviour
     void OnApplicationQuit()
     {
         logic = null;
-        Common.Game.Instance.World.Camera = null;
+        Core.Game.Instance.World.Camera = null;
     }
 
     void LateUpdate()

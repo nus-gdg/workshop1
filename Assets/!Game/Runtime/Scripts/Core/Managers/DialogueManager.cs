@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Common
+namespace Core.Managers
 {
     public class DialogueManager : MonoBehaviour
     {

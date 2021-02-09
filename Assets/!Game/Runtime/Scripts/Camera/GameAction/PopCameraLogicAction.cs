@@ -6,7 +6,7 @@ public class PopCameraLogicAction : GameAction
     public CameraLogic CameraLogic;
     public override Status Evaluate(GameContext context)
     {
-        Common.Game.Instance.World.Camera.PopCameraLogic(CameraLogic);
+        Core.Game.Instance.World.Camera.PopCameraLogic(CameraLogic);
         return Status.Success;
     }
 }

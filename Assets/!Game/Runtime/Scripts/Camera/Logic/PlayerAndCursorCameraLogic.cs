@@ -13,10 +13,10 @@ public class PlayerAndCursorCameraLogic : CameraLogic
     private float CursorBias = 0.25f;
     public override void OnLateUpdate(CameraController controller)
     {
-        Entity.Player player = Common.Game.Instance.World.Player;
+        Entity.Player player = Core.Game.Instance.World.Player;
         Assert.IsNotNull(player, "CameraLogic.LateUpdate player registered in world is null");
 
-        Entity.Cursor cursor = Common.Game.Instance.World.Cursor;
+        Entity.Cursor cursor = Core.Game.Instance.World.Cursor;
         Assert.IsNotNull(cursor, "CameraLogic.LateUpdate cursor registered in world is null");
 
         Vector3 targetPosition = Vector3.Lerp(player.transform.position, cursor.transform.position, CursorBias);

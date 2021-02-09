@@ -1,6 +1,7 @@
+using Core.Managers;
 using UnityEngine;
 
-namespace Common
+namespace Core
 {
     public class Game : MonoBehaviour
     {
