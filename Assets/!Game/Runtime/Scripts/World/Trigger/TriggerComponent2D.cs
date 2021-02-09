@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Core.Events;
+using UnityEngine;
 
 namespace World.Trigger
 {
