@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 [CreateAssetMenu(fileName = "ConditionalGameAction", menuName = "ScriptableObjects/GameAction/ConditionalGameAction", order = 1)]
 public class ConditionalGameAction : GameAction
