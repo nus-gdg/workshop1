@@ -1,13 +1,16 @@
-﻿using UnityEngine;
-using UnityEngine.SceneManagement;
+﻿using UnityEngine.SceneManagement;
 
-public class GameEnd : MonoBehaviour 
+namespace UnityEngine.Tilemaps.Samples
 {
-    void OnTriggerEnter2D(Collider2D other) {
-        var ball = other.GetComponent<Ball>();
-        if (ball != null)
+    public class GameEnd : MonoBehaviour 
+    {
+        void OnTriggerEnter2D(Collider2D other)
         {
-            SceneManager.LoadScene(0);
+            var ball = other.GetComponent<Ball>();
+            if (ball != null)
+            {
+                SceneManager.LoadScene(0);
+            }
         }
     }
 }

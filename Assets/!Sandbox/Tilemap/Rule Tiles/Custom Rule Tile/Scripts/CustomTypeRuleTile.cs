@@ -1,20 +1,20 @@
-﻿using UnityEngine;
-using UnityEngine.Tilemaps;
-
-[CreateAssetMenu]
-public class CustomTypeRuleTile : RuleTile<CustomTypeRuleTile.Neighbor> 
+﻿namespace UnityEngine.Tilemaps.Samples
 {
-    public class Neighbor : RuleTile.TilingRule.Neighbor 
+    [CreateAssetMenu]
+    public class CustomTypeRuleTile : RuleTile<CustomTypeRuleTile.Neighbor> 
     {
-        public const int SameType = 3;
-    }
-
-    public override bool RuleMatch(int neighbor, TileBase tile) 
-    {
-        switch (neighbor) {
-            case 2: return tile == null || !(tile is CustomTypeRuleTile); 
-            case Neighbor.SameType: return tile is CustomTypeRuleTile;
+        public class Neighbor : RuleTile.TilingRule.Neighbor 
+        {
+            public const int SameType = 3;
         }
-        return base.RuleMatch(neighbor, tile);
+
+        public override bool RuleMatch(int neighbor, TileBase tile) 
+        {
+            switch (neighbor) {
+                case 2: return tile == null || !(tile is CustomTypeRuleTile); 
+                case Neighbor.SameType: return tile is CustomTypeRuleTile;
+            }
+            return base.RuleMatch(neighbor, tile);
+        }
     }
 }

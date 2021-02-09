@@ -1,12 +1,13 @@
-﻿using UnityEngine;
-
-public class HideTilemapColliderOnPlay : MonoBehaviour
+﻿namespace UnityEngine.Tilemaps.Samples
 {
-    private Renderer colliderRenderer;
-
-    void Start()
+    public class HideTilemapColliderOnPlay : MonoBehaviour
     {
-        colliderRenderer = GetComponent<Renderer>();
-        colliderRenderer.enabled = false;
+        private Renderer colliderRenderer;
+
+        void Start()
+        {
+            colliderRenderer = GetComponent<Renderer>();
+            colliderRenderer.enabled = false;
+        }
     }
 }

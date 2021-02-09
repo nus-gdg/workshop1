@@ -1,11 +1,12 @@
-﻿using UnityEngine;
-
-public class CustomAxisSortCamera : MonoBehaviour 
+﻿namespace UnityEngine.Tilemaps.Samples
 {
-    void Start()
+    public class CustomAxisSortCamera : MonoBehaviour 
     {
-        var camera = GetComponent<Camera>();
-        camera.transparencySortMode = TransparencySortMode.CustomAxis;
-        camera.transparencySortAxis = new Vector3(0.0f, 0.5f, -0.25f);
+        void Start()
+        {
+            var camera = GetComponent<Camera>();
+            camera.transparencySortMode = TransparencySortMode.CustomAxis;
+            camera.transparencySortAxis = new Vector3(0.0f, 0.5f, -0.25f);
+        }
     }
 }

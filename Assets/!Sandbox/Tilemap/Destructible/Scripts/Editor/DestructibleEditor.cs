@@ -1,17 +1,18 @@
 using UnityEditor;
-using UnityEngine;
 
-[CustomEditor(typeof(Destructible))]
-public class DestructibleEditor : Editor
+namespace UnityEngine.Tilemaps.Samples
 {
-	public Destructible tile
+	[CustomEditor(typeof(Destructible))]
+	public class DestructibleEditor : Editor
 	{
-		get { return (target as Destructible); }
-	}
+		public Destructible tile
+		{
+			get { return (target as Destructible); }
+		}
 
-	public override Texture2D RenderStaticPreview(string assetPath, Object[] subAssets, int width, int height)
-	{
-		return PreviewUtil.RenderStaticPreview(tile.m_DefaultSprite, width, height);
+		public override Texture2D RenderStaticPreview(string assetPath, Object[] subAssets, int width, int height)
+		{
+			return PreviewUtil.RenderStaticPreview(tile.m_DefaultSprite, width, height);
+		}
 	}
 }
-

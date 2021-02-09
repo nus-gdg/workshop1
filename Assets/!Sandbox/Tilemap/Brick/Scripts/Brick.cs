@@ -1,18 +1,19 @@
-﻿using UnityEngine;
-
-public class Brick : MonoBehaviour 
+﻿namespace UnityEngine.Tilemaps.Samples
 {
-    public float moveSpeed = 1.0f;
-
-    Rigidbody2D rb;
-
-    void Start()
+    public class Brick : MonoBehaviour 
     {
-        rb = GetComponent<Rigidbody2D>();
-    }
+        public float moveSpeed = 1.0f;
 
-    void Update()
-    {
-        rb.velocity = Input.GetAxis("Horizontal") * Vector3.right * moveSpeed;
+        Rigidbody2D rb;
+
+        void Start()
+        {
+            rb = GetComponent<Rigidbody2D>();
+        }
+
+        void Update()
+        {
+            rb.velocity = Input.GetAxis("Horizontal") * Vector3.right * moveSpeed;
+        }
     }
 }

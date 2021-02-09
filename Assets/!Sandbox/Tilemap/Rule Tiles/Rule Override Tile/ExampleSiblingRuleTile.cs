@@ -1,36 +1,36 @@
-﻿using UnityEngine;
-using UnityEngine.Tilemaps;
-
-[CreateAssetMenu]
-public class ExampleSiblingRuleTile : RuleTile
+﻿namespace UnityEngine.Tilemaps.Samples
 {
-
-    public enum SibingGroup
+    [CreateAssetMenu]
+    public class ExampleSiblingRuleTile : RuleTile
     {
-        Poles,
-        Terrain,
-    }
-    public SibingGroup sibingGroup;
 
-    public override bool RuleMatch(int neighbor, TileBase other)
-    {
-        if (other is RuleOverrideTile)
-            other = (other as RuleOverrideTile).m_InstanceTile;
-
-        switch (neighbor)
+        public enum SibingGroup
         {
-            case TilingRule.Neighbor.This:
+            Poles,
+            Terrain,
+        }
+        public SibingGroup sibingGroup;
+
+        public override bool RuleMatch(int neighbor, TileBase other)
+        {
+            if (other is RuleOverrideTile)
+                other = (other as RuleOverrideTile).m_InstanceTile;
+
+            switch (neighbor)
+            {
+                case TilingRule.Neighbor.This:
                 {
                     return other is ExampleSiblingRuleTile
-                        && (other as ExampleSiblingRuleTile).sibingGroup == this.sibingGroup;
+                           && (other as ExampleSiblingRuleTile).sibingGroup == this.sibingGroup;
                 }
-            case TilingRule.Neighbor.NotThis:
+                case TilingRule.Neighbor.NotThis:
                 {
                     return !(other is ExampleSiblingRuleTile
-                        && (other as ExampleSiblingRuleTile).sibingGroup == this.sibingGroup);
+                             && (other as ExampleSiblingRuleTile).sibingGroup == this.sibingGroup);
                 }
-        }
+            }
 
-        return base.RuleMatch(neighbor, other);
+            return base.RuleMatch(neighbor, other);
+        }
     }
 }
