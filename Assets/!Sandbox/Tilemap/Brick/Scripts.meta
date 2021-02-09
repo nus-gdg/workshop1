@@ -1,8 +1,14 @@
 fileFormatVersion: 2
+<<<<<<< HEAD:Assets/2d-extras/2d-techdemos-master/Assets/Tilemap/Brick/Scripts.meta
 guid: b3c1af2ff1ddbff4a96a50859312ce03
 folderAsset: yes
 DefaultImporter:
+=======
+guid: fcfabe3cce0c2be439152c75802bd2fb
+NativeFormatImporter:
+>>>>>>> 7b9e1d7... Add priorities for damage modifiers via damage step:Assets/Scripts/Combat/DamageStepOrder.asset.meta
   externalObjects: {}
+  mainObjectFileID: 0
   userData: 
   assetBundleName: 
   assetBundleVariant: 

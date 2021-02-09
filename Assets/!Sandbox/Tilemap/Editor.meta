@@ -1,8 +1,14 @@
 fileFormatVersion: 2
+<<<<<<< HEAD:Assets/2d-extras/2d-techdemos-master/Assets/Tilemap/Editor.meta
 guid: 65e2b3dfac34f624e85c774478227b74
 folderAsset: yes
 DefaultImporter:
+=======
+guid: 24e398aa35f66e240812a90f3c1f053d
+NativeFormatImporter:
+>>>>>>> 7b9e1d7... Add priorities for damage modifiers via damage step:Assets/Scripts/Combat/DamageStep 1.asset.meta
   externalObjects: {}
+  mainObjectFileID: 0
   userData: 
   assetBundleName: 
   assetBundleVariant: 
