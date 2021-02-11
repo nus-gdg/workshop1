@@ -17,8 +17,8 @@ namespace Core
         public AudioManager Audio => audio;
 
         [SerializeField]
-        private DialogueManager dialogue;
-        public DialogueManager Dialogue => dialogue;
+        private StoryManager story;
+        public StoryManager Story => story;
 
         [SerializeField]
         private PoolManager pool;
