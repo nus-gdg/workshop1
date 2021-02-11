@@ -10,9 +10,6 @@ namespace Progression
     [CreateAssetMenu(fileName = "Level", menuName = "ScriptableObjects/Progression/Level")]
     public class Level : ScriptableObject
     {
-#if UNITY_EDITOR
-        public string SceneName;
-#endif
         public string ScenePath;
     }
 
@@ -39,13 +36,13 @@ namespace Progression
             DrawDefaultInspector();
             EditorGUI.EndDisabledGroup();
 
-            string[] sceneNames = new string[SceneManager.sceneCountInBuildSettings];
             string[] scenePaths = new string[SceneManager.sceneCountInBuildSettings];
+            string[] unformattedScenePaths = new string[SceneManager.sceneCountInBuildSettings];
 
             for (int i = 0; i < SceneManager.sceneCountInBuildSettings; ++i)
             {
                 scenePaths[i] = SceneUtility.GetScenePathByBuildIndex(i);
-                sceneNames[i] = System.IO.Path.GetFileNameWithoutExtension(SceneUtility.GetScenePathByBuildIndex(i));
+                unformattedScenePaths[i] = SceneUtility.GetScenePathByBuildIndex(i).Replace("/", "\\"); // hack to remove path selection dropdown menu...
             }
 
             if (_prevSceneCount != SceneManager.sceneCountInBuildSettings)
@@ -54,19 +51,18 @@ namespace Progression
                 _prevSceneCount = SceneManager.sceneCountInBuildSettings;
             }
 
-            _choiceIndex = EditorGUILayout.Popup(_choiceIndex, sceneNames);
+            _choiceIndex = EditorGUILayout.Popup("Scene Path Picker", _choiceIndex, unformattedScenePaths);
             var Level = target as Level;
             if (SceneManager.sceneCountInBuildSettings > 0)
             {
-                Level.SceneName = sceneNames[_choiceIndex];
                 Level.ScenePath = scenePaths[_choiceIndex];
             }
             else
             {
-                Level.SceneName = "NO SCENES IN BUILD SETTINGS, PLEASE ADD TO MAKE LEVEL LOADABLE!";
-                Level.ScenePath = "";
+                Level.ScenePath = "NO SCENES IN BUILD SETTINGS, PLEASE ADD TO MAKE LEVEL LOADABLE!";
             }
             EditorUtility.SetDirty(target);
+            EditorGUILayout.LabelField("Dont see your scene here? Add it to the build settings: File > Build Settings > Add Open Scenes");
         }
     }
 
