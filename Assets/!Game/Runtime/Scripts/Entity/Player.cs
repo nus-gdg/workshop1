@@ -21,7 +21,6 @@ namespace World.Entity
         private void Awake()
         {
             _controls = Game.Instance.Input.Player;
-            Assert.IsNull(Game.Instance.World.Player, "Player.Awake Player registed in world is not null");
             Game.Instance.World.Player = this;
         }
 
