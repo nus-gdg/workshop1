@@ -41,3 +41,12 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Collider
+    uniqueID: 2420329697
+    locked: 0
+  - name: Entity
+    uniqueID: 2119782773
+    locked: 0
+  - name: Ui
+    uniqueID: 4155604405
+    locked: 0
