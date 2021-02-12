@@ -32,16 +32,14 @@ namespace Progression
         public override void OnInspectorGUI()
         {
             Level level = target as Level;
+            string scenePath = AssetDatabase.GetAssetPath(level.EditorOnly_SceneAsset);
 
             EditorGUI.BeginDisabledGroup(true);
             {
                 EditorGUILayout.IntField("Build Index", level.BuildIndex);
 
-                string path = AssetDatabase.GetAssetPath(level.EditorOnly_SceneAsset);
-                EditorGUILayout.LabelField("Scene Path", path);
-
-                Level startLevel = EditorOnly_LevelHelper.GetStartLevel();
-                EditorGUILayout.LabelField("Current Start Level ", startLevel != null ? AssetDatabase.GetAssetPath(startLevel.EditorOnly_SceneAsset) : "NONE");
+                EditorGUILayout.LabelField("Scene Path", scenePath);
+                EditorGUILayout.LabelField("Current Start Level ", SceneUtility.GetScenePathByBuildIndex(0));
             }
             EditorGUI.EndDisabledGroup();
 
@@ -54,10 +52,11 @@ namespace Progression
                 level.EditorOnly_SceneAsset = newScene;
                 EditorUtility.SetDirty(target);
                 EditorOnly_LevelHelper.RefreshBuildSettings();
-                EditorOnly_LevelHelper.RefreshStartLevelFlags();
+                EditorOnly_LevelHelper.RefreshStartLevelFlags(level);
             }
 
-            if (level.EditorOnly_IsStartLevel)
+            string startScenePath = SceneUtility.GetScenePathByBuildIndex(0);
+            if (startScenePath == scenePath)
             {
                 EditorGUI.BeginDisabledGroup(true);
                 GUILayout.Button("Already the Start Level");
@@ -92,13 +91,14 @@ namespace Progression
             return null;
         }
 
-        public static void RefreshStartLevelFlags()
+        public static void RefreshStartLevelFlags(Level level)
         {
-            Level level = GetStartLevel();
-            if (level == null)
+            level.EditorOnly_IsStartLevel = false;
+            Level currentStartLevel = GetStartLevel();
+            if (currentStartLevel == null)
                 return;
 
-            SetStartLevel(level);
+            SetStartLevel(currentStartLevel);
         }
 
         public static void SetStartLevel(Level startLevel)
