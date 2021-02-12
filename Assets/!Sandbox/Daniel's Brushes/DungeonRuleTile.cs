@@ -10,16 +10,17 @@ namespace Data.Tilemap
     {
         public enum DungeonTileType
         {
-            Ground, Water, Wall
+            Ground, Water
         }
 
         public DungeonTileType tileType;
 
         public class Neighbor : RuleTile.TilingRule.Neighbor
         {
-            public const int IsGround = 3;
-            public const int IsWater = 4;
-            public const int IsWall = 5;
+            // Failsafe in case RuleTile.TilingRule.Neighbor changes
+            public const int NotSame = NotThis + 1;
+            public const int IsGround = NotSame + 1; 
+            public const int IsWater = IsGround + 1;
         }
 
         public override bool RuleMatch(int neighbor, TileBase tile)
@@ -30,13 +31,15 @@ namespace Data.Tilemap
                 switch (neighbor)
                 {
                     case Neighbor.IsGround:
-                        return customRule && customRule.tileType == DungeonTileType.Ground;
+                        return customRule.tileType == DungeonTileType.Ground;
                     case Neighbor.IsWater:
-                        return customRule && customRule.tileType == DungeonTileType.Water;
-                    case Neighbor.IsWall:
-                        return customRule && customRule.tileType == DungeonTileType.Wall;
+                        return customRule.tileType == DungeonTileType.Water;
+                    case Neighbor.NotSame:
+                        return customRule.tileType != tileType;
                     case Neighbor.NotThis:
-                        return customRule && customRule.tileType != this.tileType;
+                        return false;
+                    case Neighbor.This:
+                        return true;
                 }
             }
             return base.RuleMatch(neighbor, tile);
