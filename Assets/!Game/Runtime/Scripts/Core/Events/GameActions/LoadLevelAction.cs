@@ -11,7 +11,7 @@ namespace Core.Events
         public Progression.Level Level;
         public override GameAction.Status Evaluate(GameContext context)
         {
-            return Game.Instance.Progression.RequestLoadLevel(Level) ? GameAction.Status.Success : GameAction.Status.Fail;
+            return Game.Instance.Levels.RequestLoadLevel(Level) ? GameAction.Status.Success : GameAction.Status.Fail;
         }
     }
 

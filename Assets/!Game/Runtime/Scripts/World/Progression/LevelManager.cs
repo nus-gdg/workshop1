@@ -11,7 +11,7 @@ using UnityEditor;
 namespace Progression
 {
 
-    public class ProgressionManager : MonoBehaviour
+    public class LevelManager : MonoBehaviour
     {
         private Level CurrentLevel;
         private Level CurrentLoadingLevel;

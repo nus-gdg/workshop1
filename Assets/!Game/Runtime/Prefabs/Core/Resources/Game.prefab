@@ -50,7 +50,7 @@ MonoBehaviour:
   world: {fileID: 3318862232604163074}
   audio: {fileID: 302713819003271535}
   story: {fileID: 0}
-  progression: {fileID: 2717204609805706866}
+  levels: {fileID: 2717204609805706866}
   pool: {fileID: 0}
 --- !u!1 &1308492650005892225
 GameObject:
@@ -106,7 +106,7 @@ GameObject:
   - component: {fileID: 501926411616467196}
   - component: {fileID: 2717204609805706866}
   m_Layer: 0
-  m_Name: ProgressionManager
+  m_Name: LevelManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
