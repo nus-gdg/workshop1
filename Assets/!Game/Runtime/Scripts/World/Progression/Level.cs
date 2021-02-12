@@ -20,6 +20,7 @@ namespace Progression
         public bool EditorOnly_IsStartLevel = false;
         void OnDestroy()
         {
+            EditorOnly_SceneAsset = null;
             EditorOnly_LevelHelper.RefreshBuildSettings();
         }
 #endif
@@ -37,37 +38,39 @@ namespace Progression
             EditorGUI.BeginDisabledGroup(true);
             {
                 EditorGUILayout.IntField("Build Index", level.BuildIndex);
-
                 EditorGUILayout.LabelField("Scene Path", scenePath);
                 EditorGUILayout.LabelField("Current Start Level ", SceneUtility.GetScenePathByBuildIndex(0));
+                EditorGUILayout.LabelField("Debug - Editor Only Start Level ", level.EditorOnly_IsStartLevel ? "Is Start Level" : "Not Start Level");
             }
             EditorGUI.EndDisabledGroup();
 
             EditorGUI.BeginChangeCheck();
             SceneAsset newScene = EditorGUILayout.ObjectField("Scene Asset", level.EditorOnly_SceneAsset, typeof(SceneAsset), false) as SceneAsset;
-
             if (EditorGUI.EndChangeCheck())
             {
                 string newPath = AssetDatabase.GetAssetPath(newScene);
                 level.EditorOnly_SceneAsset = newScene;
                 EditorUtility.SetDirty(target);
+                EditorOnly_LevelHelper.RemoveAsStartLevel(level);
                 EditorOnly_LevelHelper.RefreshBuildSettings();
-                EditorOnly_LevelHelper.RefreshStartLevelFlags(level);
             }
 
             string startScenePath = SceneUtility.GetScenePathByBuildIndex(0);
-            if (startScenePath == scenePath)
+            if (level.EditorOnly_SceneAsset != null)
             {
-                EditorGUI.BeginDisabledGroup(true);
-                GUILayout.Button("Already the Start Level");
-                EditorGUI.EndDisabledGroup();
-            }
-            else
-            {
-                if (GUILayout.Button("Set As Start Level"))
+                if (startScenePath == scenePath)
                 {
-                    EditorOnly_LevelHelper.SetStartLevel(level);
-                    EditorOnly_LevelHelper.RefreshBuildSettings();
+                    EditorGUI.BeginDisabledGroup(true);
+                    GUILayout.Button("Already the Start Level");
+                    EditorGUI.EndDisabledGroup();
+                }
+                else
+                {
+                    if (GUILayout.Button("Set As Start Level"))
+                    {
+                        EditorOnly_LevelHelper.SetStartLevel(level);
+                        EditorOnly_LevelHelper.RefreshBuildSettings();
+                    }
                 }
             }
 
@@ -80,9 +83,22 @@ namespace Progression
 
     public static class EditorOnly_LevelHelper
     {
+        public static List<Level> LoadAllLevels()
+        {
+            List<Level> levels = new List<Level>();
+            string[] assetNames = AssetDatabase.FindAssets("t:Level");
+            foreach (string SOName in assetNames)
+            {
+                string SOpath = AssetDatabase.GUIDToAssetPath(SOName);
+                Level level = AssetDatabase.LoadAssetAtPath<Level>(SOpath);
+                levels.Add(level);
+            }
+            return levels;
+        }
+
         public static Level GetStartLevel()
         {
-            Level[] levels = Resources.FindObjectsOfTypeAll<Level>();
+            List<Level> levels = LoadAllLevels();
             foreach (Level level in levels)
             {
                 if (level.EditorOnly_IsStartLevel)
@@ -91,12 +107,32 @@ namespace Progression
             return null;
         }
 
-        public static void RefreshStartLevelFlags(Level level)
+        public static Level InferStartLevelFromCurrentBuildSettings()
+        {
+            string startScenePath = SceneUtility.GetScenePathByBuildIndex(0);
+            List<Level> levels = LoadAllLevels();
+            foreach (Level level in levels)
+            {
+                string scenePath = AssetDatabase.GetAssetPath(level.EditorOnly_SceneAsset);
+                if (scenePath == startScenePath)
+                    return level;
+            }
+            return null;
+        }
+
+        public static void RemoveAsStartLevel(Level level)
         {
             level.EditorOnly_IsStartLevel = false;
             Level currentStartLevel = GetStartLevel();
+
             if (currentStartLevel == null)
-                return;
+            {
+                currentStartLevel = InferStartLevelFromCurrentBuildSettings();
+                if (currentStartLevel == null) // still null
+                {
+                    return;
+                }
+            }
 
             SetStartLevel(currentStartLevel);
         }
@@ -104,7 +140,7 @@ namespace Progression
         public static void SetStartLevel(Level startLevel)
         {
             string startLevelScenePath = AssetDatabase.GetAssetPath(startLevel.EditorOnly_SceneAsset);
-            Level[] levels = Resources.FindObjectsOfTypeAll<Level>();
+            List<Level> levels = LoadAllLevels();
             foreach (Level level in levels)
             {
                 string scenePath = AssetDatabase.GetAssetPath(level.EditorOnly_SceneAsset);
@@ -114,11 +150,15 @@ namespace Progression
 
         public static void RefreshBuildSettings()
         {
-            Level[] levels = Resources.FindObjectsOfTypeAll<Level>();
-            System.Array.Sort(levels, (level1, level2) =>
+            List<Level> levels = LoadAllLevels();
+            levels.Sort((level1, level2) =>
             {
                 if (level1.EditorOnly_IsStartLevel)
                     return -1;
+
+                if (level2.EditorOnly_IsStartLevel)
+                    return 1;
+
                 string scenePath = AssetDatabase.GetAssetPath(level1.EditorOnly_SceneAsset);
                 string scenePath2 = AssetDatabase.GetAssetPath(level2.EditorOnly_SceneAsset);
 
@@ -132,19 +172,22 @@ namespace Progression
                 if (string.IsNullOrEmpty(scenePath))
                 {
                     level.BuildIndex = -1;
-                    continue;
-                }
-
-                int index = editorBuildSettingsScenes.FindIndex(setting => setting.path == scenePath);
-                if (index == -1)
-                {
-                    level.BuildIndex = editorBuildSettingsScenes.Count;
-                    editorBuildSettingsScenes.Add(new EditorBuildSettingsScene(scenePath, true));
                 }
                 else
                 {
-                    level.BuildIndex = index;
+                    int index = editorBuildSettingsScenes.FindIndex(setting => setting.path == scenePath);
+                    if (index == -1)
+                    {
+                        level.BuildIndex = editorBuildSettingsScenes.Count;
+                        editorBuildSettingsScenes.Add(new EditorBuildSettingsScene(scenePath, true));
+                    }
+                    else
+                    {
+                        level.BuildIndex = index;
+                    }
                 }
+
+                level.EditorOnly_IsStartLevel = level.BuildIndex == 0;
             }
 
 

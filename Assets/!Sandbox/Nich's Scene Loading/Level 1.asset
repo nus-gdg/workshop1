@@ -15,4 +15,4 @@ MonoBehaviour:
   BuildIndex: 0
   EditorOnly_SceneAsset: {fileID: 102900000, guid: faaf6cbffc52c5f429b71369fc277ef3,
     type: 3}
-  EditorOnly_IsStartLevel: 0
+  EditorOnly_IsStartLevel: 1
