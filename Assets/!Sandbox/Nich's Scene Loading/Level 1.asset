@@ -12,5 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1226ae43ac5985c4d9bfe3949851080c, type: 3}
   m_Name: Level 1
   m_EditorClassIdentifier: 
-  BuildIndex: 0
-  SceneAsset: {fileID: 102900000, guid: faaf6cbffc52c5f429b71369fc277ef3, type: 3}
+  BuildIndex: 1
+  EditorOnly_SceneAsset: {fileID: 102900000, guid: faaf6cbffc52c5f429b71369fc277ef3,
+    type: 3}
+  EditorOnly_IsStartLevel: 0
