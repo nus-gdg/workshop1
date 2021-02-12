@@ -4,6 +4,10 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.Assertions;
 
+#if UNITY_EDITOR
+using UnityEditor;
+#endif
+
 namespace Progression
 {
 
@@ -18,7 +22,10 @@ namespace Progression
         {
             Scene scene = SceneManager.GetActiveScene();
             CurrentLevel = ScriptableObject.CreateInstance<Level>();
-            CurrentLevel.ScenePath = scene.path;
+#if UNITY_EDITOR
+            CurrentLevel.EditorOnly_SceneAsset = AssetDatabase.LoadAssetAtPath<SceneAsset>(SceneManager.GetActiveScene().path);
+            EditorOnly_LevelHelper.RefreshBuildSettings();
+#endif
         }
 
         // loads a level and unspawns current level
@@ -48,13 +55,15 @@ namespace Progression
                 Debug.Log("ProgressionManager.RequestLoadLevel tried to load an unloading level. Something went wrong");
                 return false;
             }
-
-            Scene scene = SceneManager.GetSceneByPath(level.ScenePath);
+#if UNITY_EDITOR
+            string scenePath = AssetDatabase.GetAssetPath(level.EditorOnly_SceneAsset);
+            Scene scene = SceneManager.GetSceneByPath(scenePath);
             if (scene.isLoaded)
             {
                 Debug.Log("ProgressionManager.RequestLoadLevel scene is loaded but not recorded as a level. Did you try to load a scene while its already open? Something went wrong");
                 return false;
             }
+#endif
 
             StartCoroutine(LoadLevelAsync(level));
             return true;
@@ -64,7 +73,7 @@ namespace Progression
         {
             Assert.IsNull(CurrentLoadingLevel);
             CurrentLoadingLevel = level;
-            AsyncOperation asyncOp = SceneManager.LoadSceneAsync(level.ScenePath, LoadSceneMode.Additive);
+            AsyncOperation asyncOp = SceneManager.LoadSceneAsync(level.BuildIndex, LoadSceneMode.Additive);
             while (!asyncOp.isDone)
             {
                 yield return null;
@@ -76,7 +85,7 @@ namespace Progression
         IEnumerator UnloadLevelAsync(Level level)
         {
             UnloadingLevels.Add(level);
-            AsyncOperation asyncOp = SceneManager.UnloadSceneAsync(level.ScenePath);
+            AsyncOperation asyncOp = SceneManager.UnloadSceneAsync(level.BuildIndex);
             while (!asyncOp.isDone)
             {
                 yield return null;
