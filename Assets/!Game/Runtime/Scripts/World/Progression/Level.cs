@@ -1,7 +1,11 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+
+#if UNITY_EDITOR
 using UnityEditor;
+#endif
+
 using UnityEngine.SceneManagement;
 
 namespace Progression
@@ -11,59 +15,36 @@ namespace Progression
     public class Level : ScriptableObject
     {
         public string ScenePath;
+#if UNITY_EDITOR
+        public SceneAsset SceneAsset;
+#endif
     }
 
+#if UNITY_EDITOR
     [CustomEditor(typeof(Level))]
     public class LevelEditor : Editor
     {
-        int _choiceIndex = 0;
-        int _prevSceneCount = 0;
-
-        void HandleSceneCountChange(string[] scenePaths)
+        public override void OnInspectorGUI()
         {
             Level level = target as Level;
 
-            int index = System.Array.FindIndex(scenePaths, scene => scene == level.ScenePath);
-            if (index != -1)
-            {
-                _choiceIndex = index;
-            }
-        }
-
-        public override void OnInspectorGUI()
-        {
             EditorGUI.BeginDisabledGroup(true);
-            DrawDefaultInspector();
+            EditorGUILayout.LabelField("Scene Path", level.ScenePath);
             EditorGUI.EndDisabledGroup();
 
-            string[] scenePaths = new string[SceneManager.sceneCountInBuildSettings];
-            string[] unformattedScenePaths = new string[SceneManager.sceneCountInBuildSettings];
+            EditorGUI.BeginChangeCheck();
+            SceneAsset newScene = EditorGUILayout.ObjectField("Scene Asset", level.SceneAsset, typeof(SceneAsset), false) as SceneAsset;
 
-            for (int i = 0; i < SceneManager.sceneCountInBuildSettings; ++i)
+            if (EditorGUI.EndChangeCheck())
             {
-                scenePaths[i] = SceneUtility.GetScenePathByBuildIndex(i);
-                unformattedScenePaths[i] = SceneUtility.GetScenePathByBuildIndex(i).Replace("/", "\\"); // hack to remove path selection dropdown menu...
-            }
 
-            if (_prevSceneCount != SceneManager.sceneCountInBuildSettings)
-            {
-                HandleSceneCountChange(scenePaths);
-                _prevSceneCount = SceneManager.sceneCountInBuildSettings;
+                string newPath = AssetDatabase.GetAssetPath(newScene);
+                level.ScenePath = newPath;
+                level.SceneAsset = newScene;
+                EditorUtility.SetDirty(target);
             }
-
-            _choiceIndex = EditorGUILayout.Popup("Scene Path Picker", _choiceIndex, unformattedScenePaths);
-            var Level = target as Level;
-            if (SceneManager.sceneCountInBuildSettings > 0)
-            {
-                Level.ScenePath = scenePaths[_choiceIndex];
-            }
-            else
-            {
-                Level.ScenePath = "NO SCENES IN BUILD SETTINGS, PLEASE ADD TO MAKE LEVEL LOADABLE!";
-            }
-            EditorUtility.SetDirty(target);
-            EditorGUILayout.LabelField("Dont see your scene here? Add it to the build settings: File > Build Settings > Add Open Scenes");
         }
     }
+#endif
 
 }

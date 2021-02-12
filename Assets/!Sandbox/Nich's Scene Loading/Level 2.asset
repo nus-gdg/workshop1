@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1226ae43ac5985c4d9bfe3949851080c, type: 3}
   m_Name: Level 2
   m_EditorClassIdentifier: 
-  SceneName: Scene 2
   ScenePath: Assets/!Sandbox/Nich's Scene Loading/Scene 2.unity
+  SceneAsset: {fileID: 102900000, guid: e29c62343ddc1324cb21d5b75bc31b6f, type: 3}
