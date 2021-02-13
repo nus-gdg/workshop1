@@ -1,9 +1,11 @@
 using System;
 using System.Collections.Generic;
-using UnityEditor;
-using UnityEditorInternal;
 using UnityEngine;
 using UnityEngine.Tilemaps;
+#if UNITY_EDITOR
+using UnityEditor;
+using UnityEditorInternal;
+#endif
 
 namespace DefaultNamespace
 {
@@ -46,6 +48,7 @@ namespace DefaultNamespace
         }
     }
 
+#if UNITY_EDITOR
     [CustomEditor(typeof(FloorController))]
     public class FloorControllerEditor : Editor
     {
@@ -96,4 +99,5 @@ namespace DefaultNamespace
             serializedObject.ApplyModifiedProperties();
         }
     }
+#endif
 }
