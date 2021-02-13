@@ -12,13 +12,16 @@ namespace Combat
         public int DamageAmount;
     }
 
+    [RequireComponent(typeof(Health))]
     public class DamageReceiver : MonoBehaviour
     {
         private EntityStats entityStats;
+        private Health entityHealth;
 
         void Awake()
         {
             entityStats = GetComponent<EntityStats>();
+            entityHealth = GetComponent<Health>();
         }
 
         public DamageResult ApplyDamage(DamageSource damageSource)
@@ -44,6 +47,7 @@ namespace Combat
             }
 
             Debug.Log(String.Format("DamageReceive.ApplyDamage, Damage Result: {0}", dmgModRuntimeParams.DamageAmount));
+            entityHealth.Damage(dmgModRuntimeParams.DamageAmount);
             return new DamageResult { DamageAmount = dmgModRuntimeParams.DamageAmount };
         }
     }
