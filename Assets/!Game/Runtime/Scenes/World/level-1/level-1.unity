@@ -301,41 +301,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9142341872229639778, guid: 699b119e9cbf2498294159d63736f896,
         type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 9142341872229639778, guid: 699b119e9cbf2498294159d63736f896,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 9142341872229639778, guid: 699b119e9cbf2498294159d63736f896,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -9
-      objectReference: {fileID: 0}
-    - target: {fileID: 9142341872229639778, guid: 699b119e9cbf2498294159d63736f896,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 9142341872229639778, guid: 699b119e9cbf2498294159d63736f896,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 9142341872229639778, guid: 699b119e9cbf2498294159d63736f896,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 9142341872229639778, guid: 699b119e9cbf2498294159d63736f896,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 9142341872229639778, guid: 699b119e9cbf2498294159d63736f896,
-        type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
       value: 0
       objectReference: {fileID: 0}
@@ -353,11 +318,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Cursor
-      objectReference: {fileID: 0}
-    - target: {fileID: 9142341873726861163, guid: 699b119e9cbf2498294159d63736f896,
-        type: 3}
-      propertyPath: m_SortingOrder
-      value: 100
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 699b119e9cbf2498294159d63736f896, type: 3}
