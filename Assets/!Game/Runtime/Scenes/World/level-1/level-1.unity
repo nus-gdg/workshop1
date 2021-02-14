@@ -544,16 +544,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
-    - target: {fileID: 1327841229093448788, guid: fce7ad280a3444b439301d38530e9943,
-        type: 3}
-      propertyPath: m_TagString
-      value: Player
-      objectReference: {fileID: 0}
-    - target: {fileID: 1327841229998269825, guid: fce7ad280a3444b439301d38530e9943,
-        type: 3}
-      propertyPath: m_SortingOrder
-      value: 50
-      objectReference: {fileID: 0}
     - target: {fileID: 5724266976316692860, guid: fce7ad280a3444b439301d38530e9943,
         type: 3}
       propertyPath: m_AnchorMax.x
@@ -1065,7 +1055,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61dddfdc5e0e44ca298d8f46f7f5a915, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  selectedFlowchart: {fileID: 0}
+  selectedFlowchart: {fileID: 1492891469}
 --- !u!4 &663532438
 Transform:
   m_ObjectHideFlags: 1
