@@ -12,31 +12,6 @@ public class Weapon : MonoBehaviour
 
     public float shotInterval = 1;
     public bool canShoot = true;
-    
-    public Vector2 target;
-    public Vector2 lookDir;
-
-
-    public Camera cam;
-
-    
-
-
-
-    // Update is called once per frame
-    void Update()
-    {
-
-        lookDir = target - (Vector2)firePoint.position;
-        Debug.Log(lookDir);
-    }
-
-    void FixedUpdate()
-    {
-        
-
-
-    }
 
     public void Attack ()
     {
@@ -45,7 +20,7 @@ public class Weapon : MonoBehaviour
             
             GameObject bullet = Instantiate(plant.bullet, firePoint.position, firePoint.rotation);
             Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
-            rb.AddForce(lookDir * bulletForce, ForceMode2D.Impulse);
+            rb.AddForce(transform.right * bulletForce, ForceMode2D.Impulse);
             canShoot = false;
             StartCoroutine(ShootDelay());
         }

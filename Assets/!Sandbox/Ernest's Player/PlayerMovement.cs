@@ -11,12 +11,16 @@ namespace Testing
         public Camera cam;
         public Weapon weapon;
 
-
         Vector2 movement;
         Vector2 mousePos;
 
         public Transform playerSkin;
 
+
+        private void Start()
+        {
+            rb = GetComponent<Rigidbody2D>();
+        }
 
         // Update is called once per frame
         void Update()
@@ -24,21 +28,20 @@ namespace Testing
             movement.x = Input.GetAxisRaw("Horizontal");
             movement.y = Input.GetAxisRaw("Vertical");
             mousePos = cam.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, -cam.transform.position.z));
-            weapon.target = mousePos;
-            playerSkin.rotation = Quaternion.LookRotation((Vector3)weapon.lookDir, Vector3.forward);
+            
+            // danielnyan: Move firePoint to player? How should we handle fire point?
+            Vector2 lookDir = mousePos - (Vector2)weapon.firePoint.position;
+            float rotateAngle = Mathf.Atan2(lookDir.y, lookDir.x) * Mathf.Rad2Deg;
+            playerSkin.rotation = Quaternion.AngleAxis(rotateAngle, Vector3.forward);
             if (Input.GetMouseButton(0))
             {
                 weapon.Attack();
             }
-
-
         }
 
         void FixedUpdate()
         {
             rb.MovePosition(rb.position + movement * moveSpeed * Time.fixedDeltaTime);
-
-
         }
     }
 }
