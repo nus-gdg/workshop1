@@ -262,10 +262,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 519420028}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e369d419c1b60fc41927a2f08d0059cb, type: 3}
+  m_Script: {fileID: 11500000, guid: dd10ad54d0e6a4241ae4ecc6af6902c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 10
+  moveSpeed: 5
   rb: {fileID: 519420033}
   cam: {fileID: 278911767}
   weapon: {fileID: 755276741}
@@ -348,15 +348,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 755276739}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5779f9ab206535149837e0c413f31b17, type: 3}
+  m_Script: {fileID: 11500000, guid: fa70a442248b7274fad605f8dca882f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  firePoint: {fileID: 755276740}
+  firePoint: {fileID: 1967458685}
   plant: {fileID: 880432363}
-  bulletForce: 5
-  shotInterval: 0.1
+  bulletForce: 0.2
+  shotInterval: 1
   canShoot: 1
-  target: {x: 1, y: 1}
+  target: {x: 0, y: 0}
   lookDir: {x: 0, y: 0}
   cam: {fileID: 278911767}
 --- !u!1 &818329623
@@ -529,7 +529,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 880432361}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 040a88903359132428437e073f1a86c9, type: 3}
+  m_Script: {fileID: 11500000, guid: a4ba96d867496ca459bec158c4158dc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   damageAmount: 0

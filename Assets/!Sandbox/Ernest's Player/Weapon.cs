@@ -28,7 +28,7 @@ public class Weapon : MonoBehaviour
     {
 
         lookDir = target - (Vector2)firePoint.position;
-
+        Debug.Log(lookDir);
     }
 
     void FixedUpdate()
