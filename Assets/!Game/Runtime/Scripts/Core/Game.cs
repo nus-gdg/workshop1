@@ -21,8 +21,8 @@ namespace Core
         public StoryManager Story => story;
 
         [SerializeField]
-        private Progression.LevelManager levels;
-        public Progression.LevelManager Levels => levels;
+        private LevelManager levels;
+        public LevelManager Levels => levels;
 
         [SerializeField]
         private PoolManager pool;

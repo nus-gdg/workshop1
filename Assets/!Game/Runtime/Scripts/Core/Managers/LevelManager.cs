@@ -1,16 +1,15 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using Progression;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using UnityEngine.Assertions;
-
+using UnityEngine.SceneManagement;
 #if UNITY_EDITOR
 using UnityEditor;
 #endif
 
-namespace Progression
+namespace Core.Managers
 {
-
     public class LevelManager : MonoBehaviour
     {
         private Level CurrentLevel;
@@ -20,7 +19,7 @@ namespace Progression
 
         void Start()
         {
-            Scene scene = SceneManager.GetActiveScene();
+            // Scene scene = SceneManager.GetActiveScene();
             CurrentLevel = ScriptableObject.CreateInstance<Level>();
 #if UNITY_EDITOR
             CurrentLevel.EditorOnly_SceneAsset = AssetDatabase.LoadAssetAtPath<SceneAsset>(SceneManager.GetActiveScene().path);
@@ -33,26 +32,26 @@ namespace Progression
         {
             if (level == null)
             {
-                Debug.LogError("ProgressionManager.RequestLoadLevel tried to load null level. Failing");
+                Debug.LogError("LevelManager.RequestLoadLevel tried to load null level. Failing");
                 return false;
             }
 
             // validation
             if (CurrentLevel == level)
             {
-                Debug.Log("ProgressionManager.RequestLoadLevel tried to load current level. Treating request as success");
+                Debug.Log("LevelManager.RequestLoadLevel tried to load current level. Treating request as success");
                 return true;
             }
 
             if (level == CurrentLoadingLevel)
             {
-                Debug.Log("ProgressionManager.RequestLoadLevel tried to load current level. Treating request as success");
+                Debug.Log("LevelManager.RequestLoadLevel tried to load current level. Treating request as success");
                 return true;
             }
 
             if (UnloadingLevels.Contains(level))
             {
-                Debug.Log("ProgressionManager.RequestLoadLevel tried to load an unloading level. Something went wrong");
+                Debug.Log("LevelManager.RequestLoadLevel tried to load an unloading level. Something went wrong");
                 return false;
             }
 #if UNITY_EDITOR
@@ -60,7 +59,7 @@ namespace Progression
             Scene scene = SceneManager.GetSceneByPath(scenePath);
             if (scene.isLoaded)
             {
-                Debug.Log("ProgressionManager.RequestLoadLevel scene is loaded but not recorded as a level. Did you try to load a scene while its already open? Something went wrong");
+                Debug.Log("LevelManager.RequestLoadLevel scene is loaded but not recorded as a level. Did you try to load a scene while its already open? Something went wrong");
                 return false;
             }
 #endif
