@@ -25,6 +25,13 @@ namespace Combat.Weapons
             }
         }
 
+        public void Aim(Vector2 target)
+        {
+            Vector2 lookDir = target - (Vector2)transform.position;
+            float rotateAngle = Mathf.Atan2(lookDir.x, lookDir.y) * Mathf.Rad2Deg;
+            transform.rotation = Quaternion.Euler(0, 0, -rotateAngle);
+        }
+
         IEnumerator ShootDelay()
         {
             canShoot = false;
