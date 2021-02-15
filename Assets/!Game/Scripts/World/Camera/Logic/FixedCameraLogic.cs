@@ -1,9 +1,9 @@
-﻿#if UNITY_EDITOR
-using UnityEditor;
-#endif
-
+﻿
 using UnityEngine;
 using World.Camera;
+#if UNITY_EDITOR
+using UnityEditor;
+#endif
 
 namespace World.Camera
 {
