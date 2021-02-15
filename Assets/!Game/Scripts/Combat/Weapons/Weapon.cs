@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using Combat.Attacks;
 using UnityEngine;
 
 namespace Combat.Weapons
@@ -6,8 +7,7 @@ namespace Combat.Weapons
     public class Weapon : MonoBehaviour
     {
         public Transform firePoint;
-    
-        public Plant plant;
+        public Bullet bulletPrefab;
 
         public float bulletForce = 20f;
 
@@ -20,7 +20,7 @@ namespace Combat.Weapons
             {
                 StartCoroutine(ShootDelay());
 
-                GameObject bullet = Instantiate(plant.bullet, firePoint.position, firePoint.rotation);
+                Bullet bullet = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
                 Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
                 rb.AddForce(transform.right * bulletForce, ForceMode2D.Impulse);
             }
