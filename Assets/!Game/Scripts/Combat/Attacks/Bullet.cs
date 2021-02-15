@@ -12,7 +12,7 @@ namespace Combat.Attacks
         private HitBox hitBox;
     
         public Collider2D Collider => collider;
-        public Rigidbody2D Rigidbody2D => rigidbody;
+        public Rigidbody2D Rigidbody => rigidbody;
         public HitBox HitBox => hitBox;
     
         private void Start()
