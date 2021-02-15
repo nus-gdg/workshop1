@@ -21,7 +21,7 @@ namespace Combat.Weapons
                 StartCoroutine(ShootDelay());
 
                 Bullet bullet = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
-                bullet.Rigidbody.AddForce(transform.right * bulletForce, ForceMode2D.Impulse);
+                bullet.Rigidbody.AddForce(transform.up * bulletForce, ForceMode2D.Impulse);
             }
         }
 
