@@ -1,5 +1,4 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Weapon : MonoBehaviour
@@ -17,20 +16,18 @@ public class Weapon : MonoBehaviour
     {
         if (canShoot)
         {
-            
+            StartCoroutine(ShootDelay());
+
             GameObject bullet = Instantiate(plant.bullet, firePoint.position, firePoint.rotation);
             Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
             rb.AddForce(transform.right * bulletForce, ForceMode2D.Impulse);
-            canShoot = false;
-            StartCoroutine(ShootDelay());
         }
     }
 
     IEnumerator ShootDelay()
     {
-        if (!canShoot) yield return null;
+        canShoot = false;
         yield return new WaitForSeconds(shotInterval);
         canShoot = true;
     }
-
 }
