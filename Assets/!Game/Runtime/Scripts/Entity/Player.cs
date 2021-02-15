@@ -1,9 +1,8 @@
 using Core;
 using Core.Managers;
 using UnityEngine;
-using UnityEngine.Assertions;
 
-namespace World.Entity
+namespace Entity
 {
     public class Player : MonoBehaviour
     {
