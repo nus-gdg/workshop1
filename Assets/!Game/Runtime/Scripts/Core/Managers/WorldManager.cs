@@ -6,7 +6,7 @@ namespace Core.Managers
     public class WorldManager : MonoBehaviour
     {
         public World.Entity.Player Player { get; set; }
-        public World.Ui.Cursor Cursor { get; set; }
+        public Ui.Cursor Cursor { get; set; }
 
         public CameraController Camera { get; set; }
 

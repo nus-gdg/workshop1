@@ -1,9 +1,8 @@
 using Core;
 using Core.Managers;
 using UnityEngine;
-using UnityEngine.Assertions;
 
-namespace World.Ui
+namespace Ui
 {
     public class Cursor : MonoBehaviour
     {
