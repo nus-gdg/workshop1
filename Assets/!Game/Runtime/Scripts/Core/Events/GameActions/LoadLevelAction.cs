@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using Core.Levels;
 using UnityEngine;
 
 namespace Core.Events
@@ -8,11 +7,10 @@ namespace Core.Events
     [CreateAssetMenu(fileName = "LoadLevelAction", menuName = "ScriptableObjects/GameAction/LoadLevelAction", order = 1)]
     public class LoadLevelAction : GameAction
     {
-        public Progression.Level Level;
+        public Level Level;
         public override GameAction.Status Evaluate(GameContext context)
         {
             return Game.Instance.Levels.RequestLoadLevel(Level) ? GameAction.Status.Success : GameAction.Status.Fail;
         }
     }
-
 }
