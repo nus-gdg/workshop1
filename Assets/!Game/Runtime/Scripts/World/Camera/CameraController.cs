@@ -13,10 +13,13 @@ namespace World.Camera
         public CameraControllerSettings DefaultSettings;
 
         private CameraControllerLogic logic;
+
         private UnityEngine.Camera attachedCamera;
+        public UnityEngine.Camera AttachedCamera => attachedCamera;
+
         private Vector3 velocity = Vector3.zero;
         private float zoomSpeed = 0.0f;
- 
+
         /// <summary>
         /// Pushes a new camera logic
         /// </summary>
@@ -56,7 +59,11 @@ namespace World.Camera
             attachedCamera = GetComponent<UnityEngine.Camera>();
             Assert.IsNotNull(attachedCamera, "CameraController.Awake CameraController expects an attached camera");
 
-            Assert.IsNull(Core.Game.Instance.World.Camera, "CameraController.Awake More than one registered Camera");
+            if (Core.Game.Instance.World.Camera != null)
+            {
+                Core.Game.Instance.World.Camera.gameObject.SetActive(false);
+            }
+
             Core.Game.Instance.World.Camera = this;
 
             logic = new CameraControllerLogic(this);
@@ -86,7 +93,7 @@ namespace World.Camera
             attachedCamera.orthographicSize = Mathf.SmoothDamp(attachedCamera.orthographicSize, CurrentSettings.TargetOrthographicSize, ref zoomSpeed, CurrentSettings.ZoomSmoothTime);
 
             Assert.IsTrue(CurrentSettings.TargetOrthographicSize > 0, "CameraController.FixedUpdate Target Orthographic size is less than or equal to 0 Check default orthographic size settings");
-    
+
         }
 
     }

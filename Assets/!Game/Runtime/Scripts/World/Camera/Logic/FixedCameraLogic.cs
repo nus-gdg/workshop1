@@ -1,4 +1,7 @@
-﻿using UnityEditor;
+﻿#if UNITY_EDITOR
+using UnityEditor;
+#endif
+
 using UnityEngine;
 using World.Camera;
 
@@ -19,6 +22,7 @@ namespace World.Camera
     }
 }
 
+#if UNITY_EDITOR
 [CustomEditor(typeof(FixedCameraLogic))]
 public class FixedCamerLogicEditor : Editor
 {
@@ -34,3 +38,4 @@ public class FixedCamerLogicEditor : Editor
         }
     }
 }
+#endif
