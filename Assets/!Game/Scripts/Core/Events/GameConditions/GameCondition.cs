@@ -1,14 +1,12 @@
-﻿using UnityEngine;
+﻿using Core.Events;
+using System;
+using UnityEngine;
 
-namespace Core.Events
+namespace Experimental
 {
-    public abstract class GameCondition : ScriptableObject
+    [Serializable]
+    public abstract class GameCondition
     {
-        public enum Result
-        {
-            True,
-            False
-        }
-        public abstract Result Evaluate(GameContext context);
+        public abstract bool Evaluate(GameContext context);
     }
 }
