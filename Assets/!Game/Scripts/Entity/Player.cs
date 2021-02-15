@@ -1,3 +1,4 @@
+using Combat.Weapons;
 using Core;
 using Core.Managers;
 using UnityEngine;
@@ -12,6 +13,8 @@ namespace Entity
         // Components
         [SerializeField]
         private new Rigidbody2D rigidbody;
+        [SerializeField]
+        private Weapon weapon;
 
         // Movement variables
         public float speed;
@@ -27,6 +30,13 @@ namespace Entity
         {
             var moveInput = _controls.Move.ReadValue<Vector2>();
             _direction = new Vector2(Mathf.RoundToInt(moveInput.x), Mathf.RoundToInt(moveInput.y));
+
+            weapon.Aim(Game.Instance.World.Cursor.Position);
+
+            if (_controls.Action1.ReadValue<float>() > 0f)
+            {
+                weapon.Attack();
+            }
         }
 
         private void FixedUpdate()
