@@ -1,9 +1,7 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.Tilemaps;
 
-namespace Data.Tilemap
+namespace Tilemaps
 {
     [CreateAssetMenu]
     public class DungeonRuleTile : RuleTile<DungeonRuleTile.Neighbor>
