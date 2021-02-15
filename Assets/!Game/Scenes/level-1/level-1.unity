@@ -427,7 +427,7 @@ MonoBehaviour:
     height: 40
   tint: {r: 1, g: 1, b: 1, a: 1}
   useCustomTint: 0
-  itemId: 2
+  itemId: 11
   blockName: ViewTreasure1
   description: 
   eventHandler: {fileID: 0}
@@ -483,7 +483,7 @@ MonoBehaviour:
     height: 40
   tint: {r: 1, g: 1, b: 1, a: 1}
   useCustomTint: 0
-  itemId: 2
+  itemId: 12
   blockName: ViewEnemies1
   description: 
   eventHandler: {fileID: 0}
@@ -726,7 +726,7 @@ GameObject:
   - component: {fileID: 375779631}
   - component: {fileID: 375779630}
   - component: {fileID: 375779629}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Trigger-Enemy#1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1225,7 +1225,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61dddfdc5e0e44ca298d8f46f7f5a915, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  selectedFlowchart: {fileID: 47859528}
+  selectedFlowchart: {fileID: 1492891469}
 --- !u!4 &663532438
 Transform:
   m_ObjectHideFlags: 1
@@ -10628,7 +10628,7 @@ GameObject:
   - component: {fileID: 1492891467}
   - component: {fileID: 1492891466}
   - component: {fileID: 1492891470}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Trigger
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -22891,7 +22891,7 @@ GameObject:
   - component: {fileID: 1930182550}
   - component: {fileID: 1930182549}
   - component: {fileID: 1930182548}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Trigger-Chest#1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
