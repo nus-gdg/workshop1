@@ -735,6 +735,18 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &496326501 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1647274463678457971, guid: d25843ea27a8642bebfce5810024247e,
+    type: 3}
+  m_PrefabInstance: {fileID: 1108874659}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fa70a442248b7274fad605f8dca882f2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &640898846
 GameObject:
   m_ObjectHideFlags: 0
@@ -10045,6 +10057,86 @@ Transform:
   m_Father: {fileID: 47859526}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &1108874659
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 1366679854}
+    m_Modifications:
+    - target: {fileID: 1627437916069781576, guid: d25843ea27a8642bebfce5810024247e,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1627437916069781576, guid: d25843ea27a8642bebfce5810024247e,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1627437916069781576, guid: d25843ea27a8642bebfce5810024247e,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1627437916069781576, guid: d25843ea27a8642bebfce5810024247e,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1627437916069781576, guid: d25843ea27a8642bebfce5810024247e,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1627437916069781576, guid: d25843ea27a8642bebfce5810024247e,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1627437916069781576, guid: d25843ea27a8642bebfce5810024247e,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1627437916069781576, guid: d25843ea27a8642bebfce5810024247e,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1627437916069781576, guid: d25843ea27a8642bebfce5810024247e,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1627437916069781576, guid: d25843ea27a8642bebfce5810024247e,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1627437916069781576, guid: d25843ea27a8642bebfce5810024247e,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1647274463678457971, guid: d25843ea27a8642bebfce5810024247e,
+        type: 3}
+      propertyPath: bulletPrefab
+      value: 
+      objectReference: {fileID: 1591761032338484887, guid: b01235c02714444f58b49d262b184ba3,
+        type: 3}
+    - target: {fileID: 1647274463678457971, guid: d25843ea27a8642bebfce5810024247e,
+        type: 3}
+      propertyPath: shotInterval
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4474109933427236188, guid: d25843ea27a8642bebfce5810024247e,
+        type: 3}
+      propertyPath: m_Name
+      value: Gun
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: d25843ea27a8642bebfce5810024247e, type: 3}
 --- !u!1001 &1165767525
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -10229,6 +10321,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1327841229093448785, guid: d467ce06521d54428b9538ebc38c440f,
+        type: 3}
+      propertyPath: weapon
+      value: 
+      objectReference: {fileID: 496326501}
     - target: {fileID: 1327841229093448788, guid: d467ce06521d54428b9538ebc38c440f,
         type: 3}
       propertyPath: m_Name
