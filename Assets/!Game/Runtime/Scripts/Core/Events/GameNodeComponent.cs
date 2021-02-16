@@ -12,6 +12,9 @@ namespace Experimental
         public GameNode GameNode;
         public void Evaluate(GameContext context)
         {
+            if (GameNode == null)
+                Debug.LogAssertion($"GameNodeComponent on { gameObject } has null GameNode");
+
             GameNode.Evaluate(context);
         }
     }
