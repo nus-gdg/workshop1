@@ -1,52 +1,36 @@
 ﻿using System;
 using UnityEngine;
-using UnityEngine.Events;
-using UnityEditor;
 using System.Linq;
 using System.Collections.Generic;
+using Core.Events;
+
+#if UNITY_EDITOR
+using UnityEditor;
+#endif
 
 namespace Experimental
 {
-    public class Experimental : MonoBehaviour
-    {
-        [SerializeReference]
-        [SubclassSelectorAttribute(typeof(Node))]
-        public Node Node;
-    }
-
-
     [Serializable]
-    public abstract class Node
+    public abstract class GameNode
     {
         [SerializeField] protected string NodeName = "Node Name";
+        public abstract void Evaluate(GameContext context);
     }
 
-    [Serializable]
-    public class DebugLogNode : Node
+    // example!
+    public class DebugLogNode : GameNode
     {
         public string DebugText;
+
         public DebugLogNode()
         {
             NodeName = "Debug Log Node";
         }
-    }
 
-    [Serializable]
-    public class GroupNode : Node
-    {
-        [SerializeReference]
-        [SubclassSelectorAttribute(typeof(Node))]
-        List<Node> Nodes = new List<Node>();
-        public GroupNode()
+        public override void Evaluate(GameContext context)
         {
-            NodeName = "Group Node";
+            Debug.Log(DebugText);
         }
-    }
-
-    [Serializable]
-    public class EventNode : Node
-    {
-        public UnityEvent eventNode;
     }
 
     [System.AttributeUsage(System.AttributeTargets.Field, AllowMultiple = false)]
@@ -64,6 +48,7 @@ namespace Experimental
         }
     }
 
+#if UNITY_EDITOR
     [CustomPropertyDrawer(typeof(SubclassSelectorAttribute))]
     public class SubclassSelectorDrawer : PropertyDrawer
     {
@@ -146,5 +131,6 @@ namespace Experimental
 
         }
     }
+#endif
 }
 
