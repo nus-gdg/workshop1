@@ -59,9 +59,7 @@ namespace Experimental
         {
             if (property.propertyType != SerializedPropertyType.ManagedReference) return;
 
-            float val = (EditorGUI.indentLevel * 0.2f);
-            val -= (int)val;
-            EditorGUI.DrawRect(position, Color.grey * val);
+            EditorGUI.DrawRect(position, new Color(0.1f, 0.1f, 0.1f, 0.2f));
             position.y += 10;
             position.height += 10;
 
