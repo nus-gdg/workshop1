@@ -3,20 +3,20 @@
 [CreateAssetMenu(filename="State", menuname="State")]
 public class State : ScriptableObject
 {
-    class StateAction {
+    // class StateAction {
 
-    }
+    // }
     
-    class StateDecision {
+    // class StateDecision {
 
-    }
-    
-    void Act()
+    // }
+
+    void Act(Enemy  enemy)
     {
         
     }
 
-    void Decide()
+    State Decide(Enemy enemy)
     {
         
     }

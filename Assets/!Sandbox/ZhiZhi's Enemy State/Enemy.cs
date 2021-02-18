@@ -28,25 +28,7 @@ public class Enemy : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (moving) {
-            timeToMoveCounter -= Time.deltaTime;
-            rigidbody.velocity = moveDirection;
-
-            if (timeToMoveCounter < 0f) {
-                moving = false;
-                timeBetweenMoveCounter = timeBetweenMove;
-            }
-
-        } else {
-            timeBetweenMoveCounter -= Time.deltaTime;
-            rigidbody.velocity = Vector2.zero;
-
-            if (timeBetweenMoveCounter < 0f) {
-                moving = true;
-                timeToMoveCounter = timeToMove;
-
-                moveDirection = new Vector3(Random.Range(-1f, 1f) * moveSpeed, Random.Range(-1f, 1f) * moveSpeed, 0);
-            }
-        }
+        state.Act(this);
+        state = state.Decide(this);
     }
 }
