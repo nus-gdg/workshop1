@@ -410,7 +410,7 @@ MonoBehaviour:
   suppressAllAutoSelections: 0
 --- !u!114 &47859534
 MonoBehaviour:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 2
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
@@ -437,7 +437,7 @@ MonoBehaviour:
   suppressAllAutoSelections: 0
 --- !u!114 &47859535
 MonoBehaviour:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 2
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
@@ -466,7 +466,7 @@ MonoBehaviour:
     booleanVal: 1
 --- !u!114 &47859536
 MonoBehaviour:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 2
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
@@ -493,7 +493,7 @@ MonoBehaviour:
   suppressAllAutoSelections: 0
 --- !u!114 &47859537
 MonoBehaviour:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 2
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
@@ -10573,6 +10573,11 @@ PrefabInstance:
       propertyPath: target
       value: 
       objectReference: {fileID: 1366679854}
+    - target: {fileID: 4832998536948050018, guid: 4915fc12f75c14b7089fa496a457b18e,
+        type: 3}
+      propertyPath: m_Layer
+      value: 12
+      objectReference: {fileID: 0}
     - target: {fileID: 5713122333456365127, guid: 4915fc12f75c14b7089fa496a457b18e,
         type: 3}
       propertyPath: m_AnchorMax.x
@@ -11271,8 +11276,7 @@ MonoBehaviour:
     height: 0
   selectedBlocks:
   - {fileID: 1492891468}
-  selectedCommands:
-  - {fileID: 1492891470}
+  selectedCommands: []
   variables: []
   description: 
   stepPause: 0
