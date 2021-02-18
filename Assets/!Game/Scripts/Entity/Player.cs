@@ -23,7 +23,7 @@ namespace Entity
         private void Awake()
         {
             _controls = Game.Instance.Input.Player;
-            Game.Instance.World.Player = this;
+            Game.Instance.World.RegisterPlayer(this);
         }
 
         private void Update()
