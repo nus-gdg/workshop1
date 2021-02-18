@@ -1,47 +1,58 @@
+using System;
 using Combat.Weapons;
 using Core;
 using Core.Managers;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace Entity
 {
-    public class Player : MonoBehaviour
+    [Serializable]
+    public class PlayerEvent : UnityEvent<Player> { }
+
+    public class Player : MonoBehaviour, IAttacker
     {
         // Dependencies
-        private InputManager.PlayerActions _controls;
+        public InputManager.PlayerActions Controls { get; private set; }
 
         // Components
         [SerializeField]
         private new Rigidbody2D rigidbody;
-        [SerializeField]
-        private Weapon weapon;
 
         // Movement variables
-        public float speed;
-        private Vector2 _direction;
+        public float Speed { get; set; }
+        public Vector2 Direction { get; set; }
+        
+        // Attacker
+        [SerializeField]
+        private Weapon weapon;
+        public Weapon Weapon
+        {
+            get => weapon;
+            set => weapon = value;
+        }
+        
+        public Transform Transform { get; private set; }
+
+        [SerializeField]
+        private PlayerState state;
 
         private void Awake()
         {
-            _controls = Game.Instance.Input.Player;
+            Controls = Game.Instance.Input.Player;
+            Transform = transform;
             Game.Instance.World.Player = this;
         }
-
-        private void Update()
+        
+        public void Update()
         {
-            var moveInput = _controls.Move.ReadValue<Vector2>();
-            _direction = new Vector2(Mathf.RoundToInt(moveInput.x), Mathf.RoundToInt(moveInput.y));
-
-            weapon.Aim(Game.Instance.World.Cursor.Position);
-
-            if (_controls.Action1.ReadValue<float>() > 0f)
-            {
-                weapon.Attack();
-            }
+            if (state == null) return;
+            state = state.Execute(this);
         }
 
         private void FixedUpdate()
         {
-            rigidbody.MovePosition(rigidbody.position + speed * Time.deltaTime * _direction);
+            rigidbody.MovePosition(rigidbody.position + Speed * Time.deltaTime * Direction);
         }
     }
 }
