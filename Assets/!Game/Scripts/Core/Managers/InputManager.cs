@@ -1,4 +1,4 @@
-// GENERATED AUTOMATICALLY FROM 'Assets/!Game/Runtime/Prefabs/Core/Resources/InputManager.inputactions'
+// GENERATED AUTOMATICALLY FROM 'Assets/!Game/Prefabs/Core/Resources/InputManager.inputactions'
 
 using System;
 using System.Collections;

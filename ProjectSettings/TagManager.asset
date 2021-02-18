@@ -3,7 +3,9 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Laser
+  - Enemy
   layers:
   - Default
   - TransparentFX
@@ -16,9 +18,9 @@ TagManager:
   - Obstacles
   - Zones
   - Attacks
-  - Health
+  - Player
   - Enemy
-  - 
+  - Friendly
   - 
   - 
   - 
