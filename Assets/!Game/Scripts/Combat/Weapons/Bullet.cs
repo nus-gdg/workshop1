@@ -43,6 +43,12 @@ namespace Combat.Weapons
                 }
             }
         }
+        
+        public void Shoot(int damage, float force)
+        {
+            HitBox.DamageSource.DamageAmount = damage;
+            Rigidbody.AddForce(transform.up * force, ForceMode2D.Impulse);
+        }
     
         void OnTriggerEnter2D(Collider2D collision)
         {
