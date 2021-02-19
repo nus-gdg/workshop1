@@ -29,7 +29,7 @@ namespace Testing
             mousePos = cam.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, -cam.transform.position.z));
             
             // danielnyan: Move firePoint to player? How should we handle fire point?
-            Vector2 lookDir = mousePos - (Vector2)weapon.firePoint.position;
+            Vector2 lookDir = mousePos - (Vector2)weapon.FirePoint.position;
             float rotateAngle = Mathf.Atan2(lookDir.y, lookDir.x) * Mathf.Rad2Deg;
             playerSkin.rotation = Quaternion.AngleAxis(rotateAngle, Vector3.forward);
             if (Input.GetMouseButton(0))
