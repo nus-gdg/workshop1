@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace Combat.Weapons
 {
@@ -52,6 +52,7 @@ namespace Combat.Weapons
     
         void OnTriggerEnter2D(Collider2D collision)
         {
+            // TODO: On Destroy: Create explosions?
             Destroy(gameObject);
         }
     }
