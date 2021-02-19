@@ -1,6 +1,7 @@
-using System;
+﻿using System;
 using System.Collections;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace Combat.Weapons
 {
@@ -15,26 +16,24 @@ namespace Combat.Weapons
             get => firePoint;
             set => firePoint = value;
         }
-        
-        public Bullet bulletPrefab;
-        public float bulletForce = 20f;
+
         public float shotInterval = 1;
 
         public bool canShoot = true;
+        
+        [SerializeField]
+        private WeaponEvent onAttack;
 
         public void Awake()
         {
             Transform = transform;
         }
 
-        public void Attack ()
+        public void Attack()
         {
             if (canShoot)
             {
-                StartCoroutine(ShootDelay());
-
-                Bullet bullet = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
-                bullet.Rigidbody.AddForce(transform.up * bulletForce, ForceMode2D.Impulse);
+                onAttack?.Invoke(this);
             }
         }
 
@@ -51,5 +50,8 @@ namespace Combat.Weapons
             yield return new WaitForSeconds(shotInterval);
             canShoot = true;
         }
+
+        [Serializable]
+        protected class WeaponEvent : UnityEvent<Weapon> { }
     }
 }
