@@ -1,5 +1,4 @@
 ﻿using System.Collections;
-using Combat.Attacks;
 using UnityEngine;
 
 namespace Combat.Weapons

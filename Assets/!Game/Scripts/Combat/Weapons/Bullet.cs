@@ -1,18 +1,19 @@
-﻿using UnityEngine;
+using UnityEngine;
 
-namespace Combat.Attacks
+namespace Combat.Weapons
 {
     public class Bullet : MonoBehaviour
     {
         [SerializeField]
         private new Collider2D collider;
+        public Collider2D Collider => collider;
+
         [SerializeField]
         private new Rigidbody2D rigidbody;
+        public Rigidbody2D Rigidbody => rigidbody;
+
         [SerializeField]
         private HitBox hitBox;
-    
-        public Collider2D Collider => collider;
-        public Rigidbody2D Rigidbody => rigidbody;
         public HitBox HitBox => hitBox;
     
         private void Start()
