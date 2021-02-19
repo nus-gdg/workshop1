@@ -17,10 +17,9 @@ namespace Combat.Weapons
             set => firePoint = value;
         }
 
-        public float shotInterval = 1;
-
         public bool canShoot = true;
-        
+        private Coroutine _cooldown;
+
         [SerializeField]
         private WeaponEvent onAttack;
 
@@ -44,10 +43,19 @@ namespace Combat.Weapons
             Transform.rotation = Quaternion.Euler(0, 0, -rotateAngle);
         }
 
-        IEnumerator ShootDelay()
+        public void Cooldown(float time)
+        {
+            if (!canShoot)
+            {
+                StopCoroutine(_cooldown);
+            }
+            _cooldown = StartCoroutine(ShootDelay(time));
+        }
+
+        private IEnumerator ShootDelay(float time)
         {
             canShoot = false;
-            yield return new WaitForSeconds(shotInterval);
+            yield return new WaitForSeconds(time);
             canShoot = true;
         }
 
