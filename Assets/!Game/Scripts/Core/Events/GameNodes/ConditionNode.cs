@@ -49,7 +49,7 @@ namespace Experimental
                     result = EvaluateAnd(context);
                     break;
                 case ConditionEvaluation.OR:
-                    result = EvaluateAnd(context);
+                    result = EvaluateOR(context);
                     break;
             }
 
