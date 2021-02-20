@@ -10,10 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6a8c63e9c1c64d72b4b99a46dfc89c70, type: 3}
-  m_Name: Fire Projectile Ring
+  m_Name: Fire Ring Projectile
   m_EditorClassIdentifier: 
-  cooldown: 0
-  bulletPrefab: {fileID: 0}
+  cooldown: 0.2
+  bulletPrefab: {fileID: 1591761032338484887, guid: b01235c02714444f58b49d262b184ba3,
+    type: 3}
   damage: 10
   force: 20
   size: 8

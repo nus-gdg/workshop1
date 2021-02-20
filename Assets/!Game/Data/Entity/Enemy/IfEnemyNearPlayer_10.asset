@@ -9,11 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 01e43c3592214250aaba97b91971d8e1, type: 3}
-  m_Name: Fire Gun Projectile
+  m_Script: {fileID: 11500000, guid: 5a0534a05e7e4bb9bb63d3ba6b81fa1e, type: 3}
+  m_Name: IfEnemyNearPlayer_10
   m_EditorClassIdentifier: 
-  cooldown: 0.2
-  bulletPrefab: {fileID: 1591761032338484887, guid: b01235c02714444f58b49d262b184ba3,
-    type: 3}
-  damage: 10
-  force: 20
+  distance: 10
