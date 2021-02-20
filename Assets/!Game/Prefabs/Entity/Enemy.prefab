@@ -90,6 +90,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2270640241123925323}
+  - component: {fileID: 2870104638891182973}
   - component: {fileID: 2270640241123925313}
   - component: {fileID: 2270640241123925312}
   - component: {fileID: 2270640241123925326}
@@ -119,6 +120,21 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2870104638891182973
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2270640241123925322}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5dff1adc9a2049ee9ac4182258538e98, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentState: {fileID: 11400000, guid: b4accd2c8b60b49e392c131363b346d1, type: 2}
+  remainState: {fileID: 11400000, guid: 739dc32d231714771b9e52d594f78c0f, type: 2}
+  weapon: {fileID: 0}
 --- !u!50 &2270640241123925313
 Rigidbody2D:
   serializedVersion: 4
@@ -173,7 +189,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2270640241123925322}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c9679e68a0f1144e79c664d9a11ca121, type: 3}
   m_Name: 
