@@ -54,6 +54,8 @@ namespace Entity
         {
             Transform = transform;
             Controls = Game.Instance.Input.Player;
+            
+            Game.Instance.World.Player = this;
         }
 
         // Always update state in the Update loop.
