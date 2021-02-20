@@ -13,7 +13,8 @@ namespace Entity
      */
     public class Player : StateMachine<Player, PlayerState>,
         IAttacker,
-        IInputPlayerMoveListener
+        IInputPlayerMoveListener,
+        IInputPlayerAttackListener
     {
         // --- Components ---
 
