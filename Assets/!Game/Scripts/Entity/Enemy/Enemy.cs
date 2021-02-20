@@ -1,5 +1,6 @@
 using Combat.Weapons;
 using Common.Logic.States;
+using Pathfinding;
 using UnityEngine;
 
 namespace Entity
@@ -10,7 +11,8 @@ namespace Entity
      *     EnemyState = The state class, which is a State{Enemy}
      */
     public class Enemy : StateMachine<Enemy, EnemyState>,
-        IAttacker
+        IAttacker,
+        IPathfinder
     {
         // --- Components ---
 
@@ -23,12 +25,21 @@ namespace Entity
             get => weapon;
             set => weapon = value;
         }
-        
+
+        [SerializeField]
+        private IAstarAI ai;
+        public IAstarAI Ai
+        {
+            get => ai;
+            set => ai = value;
+        }
+
         // --- Functions ---
 
         private void Awake()
         {
             Transform = transform;
+            Ai = GetComponent<IAstarAI>();
         }
 
         // Always update state in the Update loop.
