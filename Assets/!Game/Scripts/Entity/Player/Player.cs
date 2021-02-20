@@ -1,5 +1,7 @@
 using Combat.Weapons;
 using Common.Logic.States;
+using Core;
+using Core.Managers;
 using UnityEngine;
 
 namespace Entity
@@ -10,11 +12,22 @@ namespace Entity
      *     PlayerState = The state class, which is a State{Player}
      */
     public class Player : StateMachine<Player, PlayerState>,
-        IAttacker
+        IAttacker,
+        IInputPlayerMoveListener
     {
         // --- Components ---
 
         public Transform Transform { get; private set; }
+
+        [SerializeField]
+        private float speed;
+        public float Speed
+        {
+            get => speed;
+            set => speed = value;
+        }
+
+        public Vector2 Direction { get; set; }
 
         [SerializeField]
         private Weapon weapon;
@@ -24,11 +37,14 @@ namespace Entity
             set => weapon = value;
         }
         
+        public InputManager.PlayerActions Controls { get; private set; }
+        
         // --- Functions ---
 
         private void Awake()
         {
             Transform = transform;
+            Controls = Game.Instance.Input.Player;
         }
 
         // Always update state in the Update loop.
