@@ -96,11 +96,6 @@ namespace Experimental
 
         }
 
-        public void DrawUILine(Rect position, Color color, int thickness = 2, int padding = 10)
-        {
-
-        }
-
         public override float GetPropertyHeight(SerializedProperty property, GUIContent label)
         {
             return EditorGUI.GetPropertyHeight(property, true) + 20;
