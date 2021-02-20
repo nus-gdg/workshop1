@@ -19,6 +19,14 @@ namespace Entity
         // --- Components ---
 
         public Transform Transform { get; private set; }
+        
+        [SerializeField]
+        private new Rigidbody2D rigidbody;
+        public Rigidbody2D Rigidbody
+        {
+            get => rigidbody;
+            set => rigidbody = value;
+        }
 
         [SerializeField]
         private float speed;
@@ -53,6 +61,11 @@ namespace Entity
         private void Update()
         {
             UpdateState(this);
+        }
+        
+        private void FixedUpdate()
+        {
+            rigidbody.MovePosition(rigidbody.position + Speed * Time.deltaTime * Direction);
         }
     }
 }
