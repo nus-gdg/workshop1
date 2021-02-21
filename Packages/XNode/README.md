@@ -84,3 +84,10 @@ public class MathNode : Node {
 
 Join the [Discord](https://discord.gg/qgPrHv4 "Join Discord server") server to leave feedback or get support.
 Feel free to also leave suggestions/requests in the [issues](https://github.com/Siccity/xNode/issues "Go to Issues") page.
+
+# xNodeGroups
+A small addon for xNode that lets you add groups to your graphs
+
+![2020-04-18_02-48-15](https://user-images.githubusercontent.com/6402525/79623974-269cc900-811f-11ea-9c3f-1f83105379ac.gif)
+
+Requires [xNode](https://github.com/Siccity/xNode)
