@@ -8,12 +8,12 @@ using XNodeEditor;
 
 namespace Common.Logic
 {
-    [CreateAssetMenu(fileName = "Behavior Tree", menuName = "Behavior Tree")]
-    public class BehaviorTree : NodeGraph
+    [CreateAssetMenu(fileName = "Behaviour Tree", menuName = "Behaviour Tree")]
+    public class BehaviourTree : NodeGraph
     {
         public CompositeNode root;
 
-        public BehaviorTreeNode.Status Evaluate(BehaviorTreeController controller)
+        public BehaviourTreeNode.Status Evaluate(BehaviourTreeController controller)
         {
             var result = root.Evaluate(controller);
             controller.RegisterNodeStatus(root, result);
@@ -22,12 +22,12 @@ namespace Common.Logic
     }
 
     #if UNITY_EDITOR
-    [CustomNodeGraphEditor(typeof(BehaviorTree))]
-    public class BehaviorTreeEditor : NodeGraphEditor
+    [CustomNodeGraphEditor(typeof(BehaviourTree))]
+    public class BehaviourTreeEditor : NodeGraphEditor
     {
         public override string GetNodeMenuName(Type type)
         {
-            if (!typeof(BehaviorTreeNode).IsAssignableFrom(type)
+            if (!typeof(BehaviourTreeNode).IsAssignableFrom(type)
                 && !typeof(NodeGroup).IsAssignableFrom(type))
             {
                 return null;

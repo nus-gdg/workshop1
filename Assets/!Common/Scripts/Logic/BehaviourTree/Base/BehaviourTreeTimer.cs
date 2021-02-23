@@ -2,11 +2,11 @@ using UnityEngine;
 
 namespace Common.Logic
 {
-    public class BehaviorTreeTimer
+    public class BehaviourTreeTimer
     {
         private float _time;
 
-        public BehaviorTreeTimer(float time)
+        public BehaviourTreeTimer(float time)
         {
             _time = time;
         }

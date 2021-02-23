@@ -11,7 +11,7 @@ namespace Entity.Tasks
         public BlackboardKey ai;
         public BlackboardKey destination;
 
-        public override Status Evaluate(BehaviorTreeController controller)
+        public override Status Evaluate(BehaviourTreeController controller)
         {
             if (!controller.TryGetValue(ai, out AIDestinationSetter aiValue)
             || !controller.TryGetValue(destination, out Transform destinationValue))

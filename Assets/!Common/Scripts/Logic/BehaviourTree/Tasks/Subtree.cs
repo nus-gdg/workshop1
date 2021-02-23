@@ -3,9 +3,9 @@ namespace Common.Logic
     [CreateNodeMenu("Tasks/Subtree", -80)]
     public class Subtree : TaskNode
     {
-        public BehaviorTree tree;
+        public BehaviourTree tree;
 
-        public override Status Evaluate(BehaviorTreeController controller)
+        public override Status Evaluate(BehaviourTreeController controller)
         {
             return tree.root.Evaluate(controller);
         }

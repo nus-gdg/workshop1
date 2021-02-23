@@ -4,10 +4,10 @@ using XNode;
 
 namespace Common.Logic
 {
-    public class BehaviorTreeController : MonoBehaviour
+    public class BehaviourTreeController : MonoBehaviour
     {
         [SerializeField]
-        private BehaviorTree behaviorTree;
+        private BehaviourTree behaviorTree;
         
         [SerializeField]
         private Blackboard blackboard;
@@ -22,7 +22,7 @@ namespace Common.Logic
         private void Update()
         {
             var result = behaviorTree.Evaluate(this);
-            if (result == BehaviorTreeNode.Status.Completed)
+            if (result == BehaviourTreeNode.Status.Completed)
             {
                 _runningNodes.Clear();
             }
@@ -49,14 +49,14 @@ namespace Common.Logic
             blackboard.Remove(key);
         }
 
-        public bool IsRunningNode(BehaviorTreeNode node)
+        public bool IsRunningNode(BehaviourTreeNode node)
         {
             return _runningNodes.Contains(node);
         }
 
-        public void RegisterNodeStatus(BehaviorTreeNode node, BehaviorTreeNode.Status status)
+        public void RegisterNodeStatus(BehaviourTreeNode node, BehaviourTreeNode.Status status)
         {
-            if (status == BehaviorTreeNode.Status.Running)
+            if (status == BehaviourTreeNode.Status.Running)
             {
                 _runningNodes.Add(node);
 

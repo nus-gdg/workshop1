@@ -3,7 +3,7 @@ namespace Common.Logic
     [CreateNodeMenu("Composite/Selector", -100)]
     public class Selector : CompositeNode
     {
-        public override Status Evaluate(BehaviorTreeController controller)
+        public override Status Evaluate(BehaviourTreeController controller)
         {
             for (int i = 0; i < children.Count; i++)
             {

@@ -11,15 +11,15 @@ namespace Common.Logic
         [Header("Input")]
         public BlackboardKey timer;
 
-        public override Status Evaluate(BehaviorTreeController controller)
+        public override Status Evaluate(BehaviourTreeController controller)
         {
             if (!controller.IsRunningNode(this))
             {
-                controller[timer] = new BehaviorTreeTimer(time);
+                controller[timer] = new BehaviourTreeTimer(time);
                 return Status.Running;
             }
 
-            if (!controller.TryGetValue(timer, out BehaviorTreeTimer timerValue))
+            if (!controller.TryGetValue(timer, out BehaviourTreeTimer timerValue))
             {
                 throw new InvalidOperationException("Controller should have a timer at this point.");
             }

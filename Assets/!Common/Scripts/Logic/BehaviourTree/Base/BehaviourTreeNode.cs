@@ -6,15 +6,15 @@ using UnityEngine;
 
 namespace Common.Logic
 {
-    public abstract class BehaviorTreeNode : Node
+    public abstract class BehaviourTreeNode : Node
     {
         public enum Status
         {
             Ready, Completed, Running, Failed, 
         }
 
-        public BehaviorTree Graph => graph as BehaviorTree;
-        public abstract Status Evaluate(BehaviorTreeController controller);
+        public BehaviourTree Graph => graph as BehaviourTree;
+        public abstract Status Evaluate(BehaviourTreeController controller);
 
         public override object GetValue(NodePort nodePort)
         {
@@ -23,8 +23,8 @@ namespace Common.Logic
     }
 
     #if UNITY_EDITOR
-    [CustomPropertyDrawer(typeof(BehaviorTreeNode))]
-    public class BehaviorTreeNodeDrawer : PropertyDrawer
+    [CustomPropertyDrawer(typeof(BehaviourTreeNode))]
+    public class BehaviourTreeNodeDrawer : PropertyDrawer
     {
         public override void OnGUI(Rect position, SerializedProperty property, GUIContent label)
         {

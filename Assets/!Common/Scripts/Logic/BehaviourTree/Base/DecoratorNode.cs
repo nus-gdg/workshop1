@@ -3,15 +3,15 @@ using XNode;
 
 namespace Common.Logic
 {
-    public abstract class DecoratorNode : BehaviorTreeNode
+    public abstract class DecoratorNode : BehaviourTreeNode
     {
         [Input(connectionType = ConnectionType.Override, backingValue = ShowBackingValue.Never)]
         [SerializeField]
-        protected BehaviorTreeNode parent;
+        protected BehaviourTreeNode parent;
 
         [Output(connectionType = ConnectionType.Override)]
         [SerializeField]
-        protected BehaviorTreeNode child;
+        protected BehaviourTreeNode child;
 
         protected override void Init()
         {
@@ -36,7 +36,7 @@ namespace Common.Logic
                 child = null;
                 return;
             }
-            var node = outputPort.GetConnection(0).node as BehaviorTreeNode;
+            var node = outputPort.GetConnection(0).node as BehaviourTreeNode;
             if (node == null)
             {
                 child = null;

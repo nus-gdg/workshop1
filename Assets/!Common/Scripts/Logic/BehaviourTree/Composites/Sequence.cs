@@ -5,7 +5,7 @@ namespace Common.Logic
     [CreateNodeMenu("Composite/Sequence", -100)]
     public class Sequence : CompositeNode
     {
-        public override Status Evaluate(BehaviorTreeController controller)
+        public override Status Evaluate(BehaviourTreeController controller)
         {
             for (int i = GetStartingNodeIndex(controller); i < children.Count; i++)
             {
@@ -26,7 +26,7 @@ namespace Common.Logic
             return Status.Completed;
         }
         
-        private int GetStartingNodeIndex(BehaviorTreeController controller)
+        private int GetStartingNodeIndex(BehaviourTreeController controller)
         {
             if (!controller.IsRunningNode(this))
             {

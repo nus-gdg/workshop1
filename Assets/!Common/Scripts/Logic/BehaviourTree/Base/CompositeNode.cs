@@ -5,15 +5,15 @@ using XNode;
 
 namespace Common.Logic
 {
-    public abstract class CompositeNode : BehaviorTreeNode
+    public abstract class CompositeNode : BehaviourTreeNode
     {
         [Input(connectionType = ConnectionType.Override, backingValue = ShowBackingValue.Never)]
         [SerializeField]
-        protected BehaviorTreeNode parent;
+        protected BehaviourTreeNode parent;
 
         [Output(connectionType = ConnectionType.Override, dynamicPortList = true)]
         [SerializeField]
-        protected List<BehaviorTreeNode> children;
+        protected List<BehaviourTreeNode> children;
 
         [ContextMenu("Set Root")]
         public void SetRoot()
@@ -47,7 +47,7 @@ namespace Common.Logic
                     children[i] = null;
                     continue;
                 }
-                var node = outputPort.GetConnection(0).node as BehaviorTreeNode;
+                var node = outputPort.GetConnection(0).node as BehaviourTreeNode;
                 if (node == null)
                 {
                     children[i] = null;

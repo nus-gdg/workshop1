@@ -23,7 +23,7 @@ namespace Entity.Tasks
         [Header("Output")]
         public BlackboardKey destination;
 
-        public override Status Evaluate(BehaviorTreeController controller)
+        public override Status Evaluate(BehaviourTreeController controller)
         {
             switch (mask)
             {
@@ -34,7 +34,7 @@ namespace Entity.Tasks
             }
         }
 
-        public Status FindPlayer(BehaviorTreeController controller)
+        public Status FindPlayer(BehaviourTreeController controller)
         {
             if (!controller.TryGetValue(transform, out Transform transformValue))
             {

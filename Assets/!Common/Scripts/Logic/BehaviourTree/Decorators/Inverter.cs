@@ -5,7 +5,7 @@ namespace Common.Logic
     [CreateNodeMenu("Decorator/Inverter", -90)]
     public class Inverter : DecoratorNode
     {
-        public override Status Evaluate(BehaviorTreeController controller)
+        public override Status Evaluate(BehaviourTreeController controller)
         {
             var result = child.Evaluate(controller);
             controller.RegisterNodeStatus(child, result);

@@ -2,10 +2,10 @@ using UnityEngine;
 
 namespace Common.Logic
 {
-    public abstract class TaskNode : BehaviorTreeNode
+    public abstract class TaskNode : BehaviourTreeNode
     {
         [Input(connectionType = ConnectionType.Override, backingValue = ShowBackingValue.Never)]
         [SerializeField]
-        protected BehaviorTreeNode parent;
+        protected BehaviourTreeNode parent;
     }
 }

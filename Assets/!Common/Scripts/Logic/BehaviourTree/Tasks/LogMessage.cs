@@ -7,7 +7,7 @@ namespace Common.Logic
     {
         public string message;
 
-        public override Status Evaluate(BehaviorTreeController controller)
+        public override Status Evaluate(BehaviourTreeController controller)
         {
             Debug.Log(message);
             return Status.Completed;

@@ -7,7 +7,7 @@ namespace Common.Logic
     {
         public BlackboardKey key;
 
-        public override Status Evaluate(BehaviorTreeController controller)
+        public override Status Evaluate(BehaviourTreeController controller)
         {
             if (!controller.TryGetValue(key, out object value))
             {

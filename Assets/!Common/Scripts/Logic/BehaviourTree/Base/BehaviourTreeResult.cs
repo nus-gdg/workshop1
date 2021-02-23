@@ -1,6 +1,6 @@
 namespace Common.Logic
 {
-    public enum BehaviorTreeNodeStatus
+    public enum BehaviourTreeNodeStatus
     {
         Running, Failed, Complete,
     }
