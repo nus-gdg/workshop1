@@ -726,7 +726,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d0907cbacfe428484d6e15e422fb6c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  behaviorTree: {fileID: 0}
+  behaviorTree: {fileID: 11400000, guid: 822d92d8ab1a04887b71f2ef71bd2e0d, type: 2}
   blackboard:
     variables:
     - key: {fileID: 11400000, guid: 0e7412cf4e9de4f2588777aed84b5e1f, type: 2}
