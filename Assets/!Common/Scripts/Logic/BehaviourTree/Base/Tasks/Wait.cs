@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Common.Logic
 {
-    [CreateNodeMenu("Tasks/Wait", -80)]
+    [CreateNodeMenu("Behaviour Tree/Tasks/Wait", -100)]
     public class Wait : TaskNode
     {
         public float time;

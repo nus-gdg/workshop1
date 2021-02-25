@@ -1,7 +1,7 @@
 namespace Common.Logic
 {
-    [CreateNodeMenu("Tasks/Subtree", -80)]
-    public class Subtree : TaskNode
+    [CreateNodeMenu("Behaviour Tree/Tasks/Subtree/Task", -100)]
+    public class SubtreeTask : TaskNode
     {
         public BehaviourTree tree;
 
