@@ -34,6 +34,17 @@ namespace Common.Logic
             }
             return base.GetNodeMenuName(type);
         }
+
+        public override void OnOpen()
+        {
+            var graph = target as BehaviourTree;
+            if (graph == null || graph.root == null)
+            {
+                return;
+            }
+            NodeEditorWindow.current.SelectNode(graph.root, false);
+            NodeEditorWindow.current.Home();
+        }
     }
     #endif
 }
