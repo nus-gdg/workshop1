@@ -34,12 +34,6 @@ namespace Common.Logic
             }
             return base.GetNodeMenuName(type);
         }
-        
-        public override void OnWindowFocusLost()
-        {
-            base.OnWindowFocusLost();
-            target.FixMissingScripts();
-        }
     }
     #endif
 }
