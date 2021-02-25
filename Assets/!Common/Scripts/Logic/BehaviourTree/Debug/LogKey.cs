@@ -2,8 +2,8 @@ using UnityEngine;
 
 namespace Common.Logic
 {
-    [CreateNodeMenu("Tasks/Log Variable", -80)]
-    public class LogVariable : TaskNode
+    [CreateNodeMenu("Debug/Log/Key", -100)]
+    public class LogKey : TaskNode
     {
         public BlackboardKey key;
 
