@@ -2,7 +2,7 @@ using System;
 
 namespace Common.Logic
 {
-    [CreateNodeMenu("Composite/Sequence", -100)]
+    [CreateNodeMenu("Behaviour Tree/Composite/Sequence", -100)]
     public class Sequence : CompositeNode
     {
         public override Status Evaluate(BehaviourTreeController controller)

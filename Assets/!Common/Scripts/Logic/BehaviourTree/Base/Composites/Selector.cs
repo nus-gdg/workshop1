@@ -1,6 +1,6 @@
 namespace Common.Logic
 {
-    [CreateNodeMenu("Composite/Selector", -100)]
+    [CreateNodeMenu("Behaviour Tree/Composite/Selector", -100)]
     public class Selector : CompositeNode
     {
         public override Status Evaluate(BehaviourTreeController controller)
