@@ -1,6 +1,6 @@
 namespace Common.Logic
 {
-    [CreateNodeMenu("Decorator/Succeeder", -90)]
+    [CreateNodeMenu("Behaviour Tree/Decorator/Succeeder", -100)]
     public class Succeeder : DecoratorNode
     {
         public override Status Evaluate(BehaviourTreeController controller)

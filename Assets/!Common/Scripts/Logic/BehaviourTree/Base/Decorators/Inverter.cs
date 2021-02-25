@@ -2,7 +2,7 @@ using System;
 
 namespace Common.Logic
 {
-    [CreateNodeMenu("Decorator/Inverter", -90)]
+    [CreateNodeMenu("Behaviour Tree/Decorator/Inverter", -100)]
     public class Inverter : DecoratorNode
     {
         public override Status Evaluate(BehaviourTreeController controller)
