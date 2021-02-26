@@ -31,6 +31,7 @@ MonoBehaviour:
       _typeConstraint: 0
       _dynamic: 0
   parent: {fileID: 0}
+  type: 3
   message: Idle
 --- !u!114 &-6858823246060205293
 MonoBehaviour:
@@ -63,6 +64,7 @@ MonoBehaviour:
       _typeConstraint: 0
       _dynamic: 0
   parent: {fileID: 0}
+  type: 3
   message: Rice
 --- !u!114 &-6739070656183200350
 MonoBehaviour:
@@ -425,6 +427,7 @@ MonoBehaviour:
       _typeConstraint: 0
       _dynamic: 0
   parent: {fileID: 0}
+  type: 3
   message: Chicken
 --- !u!114 &8828946728437699853
 MonoBehaviour:
