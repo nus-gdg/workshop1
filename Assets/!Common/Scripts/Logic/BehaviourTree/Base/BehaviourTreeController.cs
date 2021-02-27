@@ -48,6 +48,20 @@ namespace Common.Logic
         {
             blackboard.Remove(key);
         }
+        
+        public bool ContainsKey(BlackboardKey key)
+        {
+            return blackboard.ContainsKey(key);
+        }
+
+        public bool CompareValue(BlackboardKey key, object value)
+        {
+            if (!blackboard.TryGetValue(key, out object internalValue))
+            {
+                return false;
+            }
+            return value.Equals(internalValue);
+        }
 
         public bool IsRunningNode(BehaviourTreeNode node)
         {

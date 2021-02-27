@@ -1,3 +1,4 @@
+using Common.Logic;
 using Core;
 using Core.Managers;
 using UnityEngine;
@@ -21,6 +22,9 @@ namespace Ui
             private set => _transform.position = value;
         }
 
+        [SerializeField]
+        private Vector2Variable worldPosition;
+
         private void Awake()
         {
             _controls = Game.Instance.Input.Player;
@@ -33,6 +37,10 @@ namespace Ui
         {
             var aimInput = _controls.Aim.ReadValue<Vector2>();
             Position = Game.Instance.World.Camera.AttachedCamera.ScreenToWorldPoint(aimInput);
+            if (worldPosition != null)
+            {
+                worldPosition.Value = Position;
+            }
         }
     }
 }

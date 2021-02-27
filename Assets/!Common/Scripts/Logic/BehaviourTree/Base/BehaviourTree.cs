@@ -34,11 +34,16 @@ namespace Common.Logic
             }
             return base.GetNodeMenuName(type);
         }
-        
-        public override void OnWindowFocusLost()
+
+        public override void OnOpen()
         {
-            base.OnWindowFocusLost();
-            target.FixMissingScripts();
+            var graph = target as BehaviourTree;
+            if (graph == null || graph.root == null)
+            {
+                return;
+            }
+            NodeEditorWindow.current.SelectNode(graph.root, false);
+            NodeEditorWindow.current.Home();
         }
     }
     #endif
