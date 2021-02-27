@@ -3,6 +3,7 @@ using UnityEngine;
 using XNode;
 using XNode.NodeGroups;
 #if UNITY_EDITOR
+using UnityEditor;
 using XNodeEditor;
 #endif
 
@@ -25,6 +26,12 @@ namespace Common.Logic
     [CustomNodeGraphEditor(typeof(BehaviourTree))]
     public class BehaviourTreeEditor : NodeGraphEditor
     {
+        [MenuItem("CONTEXT/BehaviourTree/Fix")]
+        public static void FixMissingScripts(MenuCommand command)
+        {
+            ((BehaviourTree)command.context).FixMissingScripts();
+        }
+
         public override string GetNodeMenuName(Type type)
         {
             if (!typeof(BehaviourTreeNode).IsAssignableFrom(type)
