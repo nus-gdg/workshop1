@@ -12,14 +12,14 @@ namespace Entity.Tasks
         {
             None, Player,
         }
-        
+
         [NodeEnum]
         public SearchType mask;
         public int distance;
-        
+
         [Header("Input")]
         public BlackboardKey transform;
-        
+
         [Header("Output")]
         public BlackboardKey destination;
 
