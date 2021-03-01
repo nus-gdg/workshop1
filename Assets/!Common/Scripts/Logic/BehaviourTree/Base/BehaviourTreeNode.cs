@@ -4,6 +4,7 @@ using XNode;
 #if UNITY_EDITOR
 using System.Linq;
 using UnityEditor;
+using UnityEngine;
 using XNodeEditor;
 #endif
 
@@ -101,6 +102,13 @@ namespace Common.Logic
     [CustomNodeEditor(typeof(BehaviourTreeNode))]
     public class BehaviourTreeNodeEditor : NodeEditor
     {
+        private BehaviourTreeNode _targetNode;
+
+        public override void OnCreate()
+        {
+            _targetNode = target as BehaviourTreeNode;
+        }
+        
         /// <summary> Draws standard field editors for all public fields </summary>
         public override void OnBodyGUI()
         {
@@ -126,6 +134,30 @@ namespace Common.Logic
                     continue;
                 }
                 NodeEditorGUILayout.PropertyField(iterator, true);
+            }
+        }
+        
+        public override Color GetTint()
+        {
+            var controller = _targetNode.Graph.SelectedController;
+            if (controller == null)
+            {
+                return _targetNode.Graph.nodeDefault;
+            }
+            switch (_targetNode.GetStatus(controller))
+            {
+                case BehaviourTreeNode.Status.Completed:
+                    return _targetNode.Graph.nodeCompleted;
+                case BehaviourTreeNode.Status.Running:
+                    return _targetNode.Graph.nodeRunning;
+                case BehaviourTreeNode.Status.Failed:
+                    return _targetNode.Graph.nodeFailed;
+                case BehaviourTreeNode.Status.Invalid:
+                    return _targetNode.Graph.nodeInvalid;
+                case BehaviourTreeNode.Status.Ready:
+                    return _targetNode.Graph.nodeReady;
+                default:
+                    return _targetNode.Graph.nodeDefault;
             }
         }
     }

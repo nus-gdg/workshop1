@@ -14,6 +14,16 @@ namespace Common.Logic
     public class BehaviourTree : NodeGraph
     {
         public RootNode root;
+        
+        public Color nodeCompleted = new Color32(45, 76, 37, 255);
+        public Color nodeRunning = new Color32(76, 66, 33, 255);
+        public Color nodeFailed = new Color32(76, 39, 28, 255);
+        public Color nodeInvalid = new Color32(45, 53, 76, 255);
+        public Color nodeReady = new Color32(76, 41, 72, 255);
+        public Color nodeDefault = new Color32(90, 97, 105, 255);
+
+        [NonSerialized]
+        public BehaviourTreeController SelectedController;
 
         public virtual void Load(BehaviourTreeController controller)
         {
@@ -76,6 +86,28 @@ namespace Common.Logic
             }
             NodeEditorWindow.current.SelectNode(_behaviourTree.root, false);
             NodeEditorWindow.current.Home();
+        }
+        
+        public override void OnGUI()
+        {
+            if (!EditorApplication.isPlaying)
+            {
+                return;
+            }
+
+            NodeEditorWindow.current.Repaint();
+
+            var transform = Selection.activeTransform;
+            if (transform == null)
+            {
+                return;
+            }
+            var controller = transform.GetComponent<BehaviourTreeController>();
+            if (controller == null)
+            {
+                return;
+            }
+            _behaviourTree.SelectedController = controller;
         }
     }
     #endif
