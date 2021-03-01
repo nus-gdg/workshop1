@@ -1,5 +1,3 @@
-using System;
-
 namespace Common.Logic
 {
     [CreateNodeMenu("Behaviour Tree/Composite/Sequence", -100)]
@@ -7,7 +5,7 @@ namespace Common.Logic
     {
         public override Status Evaluate(BehaviourTreeController controller)
         {
-            for (int i = GetStartingNodeIndex(controller); i < children.Count; i++)
+            for (int i = 0; i < children.Count; i++)
             {
                 var child = children[i];
                 if (child == null)
@@ -15,8 +13,12 @@ namespace Common.Logic
                     continue;
                 }
 
-                var result = child.Evaluate(controller);
-                controller.RegisterNodeStatus(child, result);
+                if (child.IsStatus(controller, Status.Completed))
+                {
+                    continue;
+                }
+
+                var result = child.Tick(controller);
 
                 if (result != Status.Completed)
                 {
@@ -24,22 +26,6 @@ namespace Common.Logic
                 }
             }
             return Status.Completed;
-        }
-        
-        private int GetStartingNodeIndex(BehaviourTreeController controller)
-        {
-            if (!controller.IsRunningNode(this))
-            {
-                return 0;
-            }
-            for (int i = 0; i < children.Count; i++)
-            {
-                if (controller.IsRunningNode(children[i]))
-                {
-                    return i;
-                }
-            }
-            throw new InvalidOperationException("Running node should have a running child");
         }
     }
 }
