@@ -10,15 +10,34 @@ using XNodeEditor;
 namespace Common.Logic
 {
     [CreateAssetMenu(fileName = "Behaviour Tree", menuName = "Behaviour Tree")]
+    [RequireNode(typeof(RootNode))]
     public class BehaviourTree : NodeGraph
     {
-        public CompositeNode root;
+        public RootNode root;
+
+        public virtual void Load(BehaviourTreeController controller)
+        {
+            root.Load(controller);
+        }
+        
+        public virtual void Unload(BehaviourTreeController controller)
+        {
+            root.Unload(controller);
+        }
 
         public BehaviourTreeNode.Status Evaluate(BehaviourTreeController controller)
         {
-            var result = root.Evaluate(controller);
-            controller.RegisterNodeStatus(root, result);
-            return result;
+            return root.Evaluate(controller);
+        }
+
+        public override Node AddNode(Type type)
+        {
+            var node = base.AddNode(type);
+            if (type == typeof(RootNode))
+            {
+                root = node as RootNode;
+            }
+            return node;
         }
     }
 
@@ -26,6 +45,13 @@ namespace Common.Logic
     [CustomNodeGraphEditor(typeof(BehaviourTree))]
     public class BehaviourTreeEditor : NodeGraphEditor
     {
+        private BehaviourTree _behaviourTree;
+
+        public override void OnCreate()
+        {
+            _behaviourTree = target as BehaviourTree;
+        }
+
         [MenuItem("CONTEXT/BehaviourTree/Fix")]
         public static void FixMissingScripts(MenuCommand command)
         {
@@ -44,12 +70,11 @@ namespace Common.Logic
 
         public override void OnOpen()
         {
-            var graph = target as BehaviourTree;
-            if (graph == null || graph.root == null)
+            if (_behaviourTree == null || _behaviourTree.root == null)
             {
                 return;
             }
-            NodeEditorWindow.current.SelectNode(graph.root, false);
+            NodeEditorWindow.current.SelectNode(_behaviourTree.root, false);
             NodeEditorWindow.current.Home();
         }
     }
