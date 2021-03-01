@@ -4,8 +4,8 @@ using System.Collections;
 
 namespace Combat.Abilities
 {
-    [CreateAssetMenu(fileName = "KrakenSpiralShot", menuName = "Weapon/Projectile/KrakenSpiralShot", order = 0)]
-    public class KrakenSpiralShot : Ability
+    [CreateAssetMenu(fileName = "SpiralShot", menuName = "Weapon/Projectile/SpiralShot", order = 0)]
+    public class SpiralShot : Ability
     {
         public Bullet bulletPrefab;
         public int bullets = 30;
@@ -16,11 +16,11 @@ namespace Combat.Abilities
 
         public override void Execute(Weapon weapon)
         {
-            weapon.StartCoroutine(SpiralShot(weapon));
+            weapon.StartCoroutine(SpiralShotEnumerator(weapon));
             weapon.Cooldown(cooldown);
         }
 
-        IEnumerator SpiralShot(Weapon weapon)
+        IEnumerator SpiralShotEnumerator(Weapon weapon)
         {
             var totalangle = spirals * 360f;
             var angleInterval = totalangle / bullets;
