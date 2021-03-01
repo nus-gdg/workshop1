@@ -12,22 +12,11 @@ namespace Combat
         void Awake()
         {
             damageReceiver = GetComponent<DamageReceiver>();
-            Collider2D col = GetComponent<Collider2D>();
-            Assert.IsTrue(col.isTrigger, "HurtBox expects a trigger collider");
         }
 
-        void OnTriggerEnter2D(Collider2D other)
+        public void ApplyDamage(DamageSource damageSource)
         {
-            HitBox hitbox = other.GetComponent<HitBox>();
-            if (hitbox != null)
-            {
-                DamageSource damageSource = hitbox.DamageSource;
-                if (damageSource.SourceEntity == null)
-                {
-                    damageSource.SourceEntity = other.gameObject;
-                }
-                damageReceiver.ApplyDamage(damageSource);
-            }
+            damageReceiver.ApplyDamage(damageSource);
         }
     }
 
