@@ -9,14 +9,41 @@ namespace Common.Logic
     public abstract class DecoratorNode : BehaviourTreeNode
     {
         [Input(connectionType = ConnectionType.Override, backingValue = ShowBackingValue.Never)]
-        [HideInInspector]
         [SerializeField]
         protected BehaviourTreeNode parent;
 
         [Output(connectionType = ConnectionType.Override)]
-        [HideInInspector]
         [SerializeField]
         protected BehaviourTreeNode child;
+
+        public override void Load(BehaviourTreeController controller)
+        {
+            base.Load(controller);
+            if (child == null)
+            {
+                return;
+            }
+            child.Load(controller);
+        }
+
+        public override void Unload(BehaviourTreeController controller)
+        {
+            base.Unload(controller);
+            if (child == null)
+            {
+                return;
+            }
+            child.Unload(controller);
+        }
+        
+        public override void Enter(BehaviourTreeController controller)
+        {
+            if (child == null)
+            {
+                return;
+            }
+            child.SetStatus(controller, Status.Ready);
+        }
 
         protected override void Init()
         {
@@ -36,28 +63,21 @@ namespace Common.Logic
         private void OnValidate()
         {
             var outputPort = GetOutputPort("child");
-            if (!outputPort.IsConnected)
-            {
-                child = null;
-                return;
-            }
-            var node = outputPort.GetConnection(0).node as BehaviourTreeNode;
-            if (node == null)
-            {
-                child = null;
-                return;
-            }
-            child = node;
+            child = GetConnectedNode(outputPort);
         }
-        
+
         #if UNITY_EDITOR
         [CustomNodeEditor(typeof(DecoratorNode))]
-        public class DecoratorNodeEditor : NodeEditor
+        public class DecoratorNodeEditor : BehaviourTreeNodeEditor
         {
+            /// <summary> Draws standard field editors for all public fields </summary>
             public override void OnBodyGUI()
             {
-                NodeEditorGUILayout.PortPair(target.GetPort("parent"), target.GetPort("child"));
-                base.OnBodyGUI();
+                serializedObject.Update();
+                var node = (DecoratorNode)serializedObject.targetObject;
+                NodeEditorGUILayout.PortPair(node.GetPort("parent"), node.GetPort("child"));
+                DrawProperties();
+                serializedObject.ApplyModifiedProperties();
             }
         }
         #endif
