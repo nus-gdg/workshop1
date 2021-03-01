@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 using XNode;
 using XNode.NodeGroups;
@@ -15,6 +16,9 @@ namespace Common.Logic
     {
         public RootNode root;
         
+        public Dictionary<BehaviourTreeController, HashSet<Monitor>> monitorsByController =
+            new Dictionary<BehaviourTreeController, HashSet<Monitor>>();
+        
         public Color nodeCompleted = new Color32(45, 76, 37, 255);
         public Color nodeRunning = new Color32(76, 66, 33, 255);
         public Color nodeFailed = new Color32(76, 39, 28, 255);
@@ -28,16 +32,41 @@ namespace Common.Logic
         public virtual void Load(BehaviourTreeController controller)
         {
             root.Load(controller);
+            monitorsByController[controller] = new HashSet<Monitor>();
         }
         
         public virtual void Unload(BehaviourTreeController controller)
         {
             root.Unload(controller);
+            monitorsByController.Remove(controller);
         }
 
         public BehaviourTreeNode.Status Tick(BehaviourTreeController controller)
         {
+            TickMonitors(controller);
             return root.Tick(controller);
+        }
+
+        public void TickMonitors(BehaviourTreeController controller)
+        {
+            foreach (var monitor in monitorsByController[controller])
+            {
+                var result = monitor.TickCondition(controller);
+                if (result == BehaviourTreeNode.Status.Completed)
+                {
+                    Load(controller);
+                }
+            }
+        }
+
+        public void AddMonitor(BehaviourTreeController controller, Monitor monitor)
+        {
+            monitorsByController[controller].Add(monitor);
+        }
+        
+        public void RemoveMonitor(BehaviourTreeController controller, Monitor monitor)
+        {
+            monitorsByController.Remove(controller);
         }
 
         public override Node AddNode(Type type)

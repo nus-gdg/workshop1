@@ -121,7 +121,7 @@ namespace Common.Logic
         protected void DrawProperties()
         {
             // Exclude properties with these names
-            string[] excludes = {"m_Script", "graph", "position", "ports", "parent", "child", "children"};
+            string[] excludes = {"m_Script", "graph", "position", "ports", "parent", "child", "children", "condition"};
 
             // Iterate through serialized properties and draw them like the Inspector (But with ports)
             SerializedProperty iterator = serializedObject.GetIterator();
