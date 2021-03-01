@@ -16,15 +16,25 @@ namespace Common.Logic
         private void OnEnable()
         {
             blackboard.Refresh();
-            _runningNodes = new HashSet<Node>();
+            behaviourTree.Load(this);
+        }
+
+        private void OnDisable()
+        {
+            behaviourTree.Unload(this);
         }
 
         private void Update()
         {
-            var result = behaviourTree.Tick(this);
-            if (result == BehaviourTreeNode.Status.Completed)
+            behaviourTree.Tick(this);
+        }
+
+        private void OnValidate()
+        {
+            blackboard.Refresh();
+            if (Application.isPlaying)
             {
-                _runningNodes.Clear();
+                behaviourTree.Load(this);
             }
         }
 
