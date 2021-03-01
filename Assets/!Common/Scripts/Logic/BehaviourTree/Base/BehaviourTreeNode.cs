@@ -11,7 +11,7 @@ namespace Common.Logic
     {
         public enum Status
         {
-            Ready, Completed, Running, Failed, 
+            Completed, Running, Failed, Ready, Invalid, 
         }
 
         public BehaviourTree Graph => graph as BehaviourTree;
