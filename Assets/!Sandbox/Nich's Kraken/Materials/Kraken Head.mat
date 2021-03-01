@@ -7,8 +7,8 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Kraken Spiral
-  m_Shader: {fileID: -6465566751694194690, guid: 89571ebcd4f29d748b2ab35402ca9a66,
+  m_Name: Kraken Head
+  m_Shader: {fileID: -6465566751694194690, guid: 441a49ee64c0f7440858074cd748221c,
     type: 3}
   m_ShaderKeywords: ETC1_EXTERNAL_ALPHA
   m_LightmapFlags: 4
@@ -25,5 +25,6 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
-    - Vector1_75519363: 2
+    - Vector1_2AB285C2: 0
+    - Y_Edge: 0
     m_Colors: []
