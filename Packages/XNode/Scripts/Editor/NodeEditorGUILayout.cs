@@ -311,7 +311,7 @@ namespace XNodeEditor {
             List<XNode.NodePort> dynamicPorts = indexedPorts.OrderBy(x => x.index).Select(x => x.port).ToList();
 
             node.UpdatePorts();
-            
+
             ReorderableList list = null;
             Dictionary<string, ReorderableList> rlc;
             if (reorderableListCache.TryGetValue(serializedObject.targetObject, out rlc)) {
@@ -326,7 +326,7 @@ namespace XNodeEditor {
             }
             list.list = dynamicPorts;
             list.DoLayoutList();
-            
+
         }
 
         private static ReorderableList CreateReorderableList(string fieldName, List<XNode.NodePort> dynamicPorts, SerializedProperty arrayData, Type type, SerializedObject serializedObject, XNode.NodePort.IO io, XNode.Node.ConnectionType connectionType, XNode.Node.TypeConstraint typeConstraint, Action<ReorderableList> onCreation) {
@@ -344,7 +344,7 @@ namespace XNodeEditor {
                             return;
                         }
                         SerializedProperty itemData = arrayData.GetArrayElementAtIndex(index);
-                        EditorGUI.PropertyField(rect, itemData, true);
+                        EditorGUI.PropertyField(rect, itemData, GUIContent.none, true);
                     } else EditorGUI.LabelField(rect, port != null ? port.fieldName : "");
                     if (port != null) {
                         Vector2 pos = rect.position + (port.IsOutput?new Vector2(rect.width + 6, 0) : new Vector2(-36, 0));
