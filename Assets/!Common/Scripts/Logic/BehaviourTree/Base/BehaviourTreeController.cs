@@ -6,9 +6,11 @@ namespace Common.Logic
     {
         [SerializeField]
         private BehaviourTree behaviourTree;
-        
+        public BehaviourTree BehaviourTree => behaviourTree;
+
         [SerializeField]
         private Blackboard blackboard;
+        public Blackboard Blackboard => blackboard;
 
         private void OnEnable()
         {
