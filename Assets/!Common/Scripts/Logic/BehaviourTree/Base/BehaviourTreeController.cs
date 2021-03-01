@@ -1,6 +1,4 @@
-using System.Collections.Generic;
 using UnityEngine;
-using XNode;
 
 namespace Common.Logic
 {
@@ -11,7 +9,6 @@ namespace Common.Logic
         
         [SerializeField]
         private Blackboard blackboard;
-        private HashSet<Node> _runningNodes;
 
         private void OnEnable()
         {
@@ -71,24 +68,6 @@ namespace Common.Logic
                 return false;
             }
             return value.Equals(internalValue);
-        }
-
-        public bool IsRunningNode(BehaviourTreeNode node)
-        {
-            return _runningNodes.Contains(node);
-        }
-
-        public void RegisterNodeStatus(BehaviourTreeNode node, BehaviourTreeNode.Status status)
-        {
-            if (status == BehaviourTreeNode.Status.Running)
-            {
-                _runningNodes.Add(node);
-
-            }
-            else
-            {
-                _runningNodes.Remove(node);
-            }
         }
     }
 }
