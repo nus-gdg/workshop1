@@ -25,9 +25,9 @@ namespace Common.Logic
             root.Unload(controller);
         }
 
-        public BehaviourTreeNode.Status Evaluate(BehaviourTreeController controller)
+        public BehaviourTreeNode.Status Tick(BehaviourTreeController controller)
         {
-            return root.Evaluate(controller);
+            return root.Tick(controller);
         }
 
         public override Node AddNode(Type type)

@@ -7,7 +7,7 @@ namespace Common.Logic
     public class BehaviourTreeController : MonoBehaviour
     {
         [SerializeField]
-        private BehaviourTree behaviorTree;
+        private BehaviourTree behaviourTree;
         
         [SerializeField]
         private Blackboard blackboard;
@@ -21,7 +21,7 @@ namespace Common.Logic
 
         private void Update()
         {
-            var result = behaviorTree.Evaluate(this);
+            var result = behaviourTree.Tick(this);
             if (result == BehaviourTreeNode.Status.Completed)
             {
                 _runningNodes.Clear();

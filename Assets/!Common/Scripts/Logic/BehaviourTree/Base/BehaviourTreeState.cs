@@ -24,7 +24,7 @@ public class BehaviourTreeState : StateMachineBehaviour
         {
             return;
         }
-        enter.Evaluate(_controller);
+        enter.Tick(_controller);
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
@@ -38,7 +38,7 @@ public class BehaviourTreeState : StateMachineBehaviour
         {
             return;
         }
-        update.Evaluate(_controller);
+        update.Tick(_controller);
     }
 
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
@@ -52,6 +52,6 @@ public class BehaviourTreeState : StateMachineBehaviour
         {
             return;
         }
-        exit.Evaluate(_controller);
+        exit.Tick(_controller);
     }
 }
