@@ -1,7 +1,7 @@
 namespace Common.Logic
 {
-    [CreateNodeMenu("Behaviour Tree/Composite/Sequence", -100)]
-    public class Sequence : CompositeNode
+    [CreateNodeMenu("Behaviour Tree/Composite/Active Selector", -100)]
+    public class ActiveSelector : CompositeNode
     {
         public override Status Evaluate(BehaviourTreeController controller)
         {
@@ -13,19 +13,14 @@ namespace Common.Logic
                     continue;
                 }
 
-                if (child.IsStatus(controller, Status.Completed))
-                {
-                    continue;
-                }
-
                 var result = child.Tick(controller);
 
-                if (result != Status.Completed)
+                if (result != Status.Failed)
                 {
                     return result;
                 }
             }
-            return Status.Completed;
+            return Status.Failed;
         }
     }
 }

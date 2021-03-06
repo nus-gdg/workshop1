@@ -1,13 +1,13 @@
 namespace Common.Logic
 {
-    [CreateNodeMenu("Behaviour Tree/Tasks/Subtree/Condition", -100)]
-    public class SubtreeCondition : ConditionNode
+    [CreateNodeMenu("Behaviour Tree/Decorator/Subtree", -100)]
+    public class Subtree : ConditionNode
     {
         public BehaviourTree tree;
 
         public override Status EvaluateCondition(BehaviourTreeController controller)
         {
-            return tree.root.Evaluate(controller);
+            return tree.Tick(controller);
         }
     }
 }

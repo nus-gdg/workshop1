@@ -4,19 +4,17 @@ namespace Common.Logic
     {
         public override Status Evaluate(BehaviourTreeController controller)
         {
-            var condition = EvaluateCondition(controller);
-            if (condition != Status.Completed)
+            var result = EvaluateCondition(controller);
+            if (result != Status.Completed)
             {
-                return condition;
+                return result;
             }
             if (child == null)
             {
-                return Status.Failed;
+                return result;
             }
 
-            var result = child.Evaluate(controller);
-            controller.RegisterNodeStatus(child, result);
-            return result;
+            return child.Tick(controller);
         }
 
         public abstract Status EvaluateCondition(BehaviourTreeController controller);

@@ -1,4 +1,4 @@
-using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace Common.Logic
@@ -7,30 +7,22 @@ namespace Common.Logic
     public class Wait : TaskNode
     {
         public float time;
+        
+        private Dictionary<BehaviourTreeController, float> _timersOfControllers =
+            new Dictionary<BehaviourTreeController, float>();
 
-        [Header("Input")]
-        public BlackboardKey timer;
+        public override void Enter(BehaviourTreeController controller)
+        {
+            _timersOfControllers[controller] = Time.time + time;
+        }
 
         public override Status Evaluate(BehaviourTreeController controller)
         {
-            if (!controller.IsRunningNode(this))
+            if (_timersOfControllers[controller] > Time.time)
             {
-                controller[timer] = new BehaviourTreeTimer(time);
                 return Status.Running;
             }
-
-            if (!controller.TryGetValue(timer, out BehaviourTreeTimer timerValue))
-            {
-                throw new InvalidOperationException("Controller should have a timer at this point.");
-            }
-
-            timerValue.Tick();
-            if (timerValue.IsCompleted())
-            {
-                controller.RemoveValue(timer);
-                return Status.Completed;
-            }
-            return Status.Running;
+            return Status.Completed;
         }
     }
 }

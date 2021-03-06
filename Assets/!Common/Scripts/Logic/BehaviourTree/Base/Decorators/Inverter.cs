@@ -7,8 +7,7 @@ namespace Common.Logic
     {
         public override Status Evaluate(BehaviourTreeController controller)
         {
-            var result = child.Evaluate(controller);
-            controller.RegisterNodeStatus(child, result);
+            var result = child.Tick(controller);
 
             switch (result)
             {
@@ -22,7 +21,7 @@ namespace Common.Logic
                     return Status.Completed;
 
                 default:
-                    throw new InvalidOperationException("Current node received unknown status");
+                    throw new InvalidOperationException("Inverter received invalid child status");
             }
         }
     }

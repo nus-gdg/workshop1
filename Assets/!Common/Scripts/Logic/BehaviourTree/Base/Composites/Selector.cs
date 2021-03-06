@@ -13,8 +13,12 @@ namespace Common.Logic
                     continue;
                 }
 
-                var result = child.Evaluate(controller);
-                controller.RegisterNodeStatus(child, result);
+                if (child.IsStatus(controller, Status.Failed))
+                {
+                    continue;
+                }
+
+                var result = child.Tick(controller);
 
                 if (result != Status.Failed)
                 {

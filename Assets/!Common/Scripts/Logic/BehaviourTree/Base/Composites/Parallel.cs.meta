@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 fileFormatVersion: 2
 guid: 8e772177ec228b14f9902c9587fabdd4
 MonoImporter:
@@ -9,3 +10,8 @@ MonoImporter:
   userData: 
   assetBundleName: 
   assetBundleVariant: 
+=======
+﻿fileFormatVersion: 2
+guid: 16083a7b624d4089bdfca4c0f00b76af
+timeCreated: 1614578269
+>>>>>>> 952cc456ab5c0a284d915f1b19926ba86f488d25

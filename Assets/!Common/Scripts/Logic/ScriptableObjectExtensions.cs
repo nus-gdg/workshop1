@@ -9,13 +9,6 @@ namespace Common.Logic
     public static class ScriptableObjectExtensions
     {
 #if UNITY_EDITOR
-
-        [MenuItem("CONTEXT/ScriptableObject/Fix")]
-        public static void FixMissingScripts(MenuCommand command)
-        {
-            ((ScriptableObject)command.context).FixMissingScripts();
-        }
-
         public static bool HasMissingScripts<T>(this T instance) where T : ScriptableObject
         {
             //Check for missing scripts
@@ -119,7 +112,6 @@ namespace Common.Logic
 
             AssetDatabase.Refresh();
         }
-
 #endif
     }
 }

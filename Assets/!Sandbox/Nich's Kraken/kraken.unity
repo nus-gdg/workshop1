@@ -8896,6 +8896,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e9f40a6679fbe524bb458164df6fe1dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1640621523 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1873210941778159572, guid: 7cc23ca0e270d0843a302132ac10f65f,
+    type: 3}
+  m_PrefabInstance: {fileID: 8798068746300641018}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f6eb1402c17e84a9282a7f0f62eb584f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1691404967
 GameObject:
   m_ObjectHideFlags: 0
@@ -9554,9 +9566,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1873210941778159568, guid: 7cc23ca0e270d0843a302132ac10f65f,
         type: 3}
+      propertyPath: behaviourTree
+      value: 
+      objectReference: {fileID: 11400000, guid: a67aad25eb04b714cbe549926d3572d2,
+        type: 2}
+    - target: {fileID: 1873210941778159568, guid: 7cc23ca0e270d0843a302132ac10f65f,
+        type: 3}
       propertyPath: blackboard.variables.Array.data[1].value
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1640621523}
     - target: {fileID: 1873210941778159568, guid: 7cc23ca0e270d0843a302132ac10f65f,
         type: 3}
       propertyPath: blackboard.variables.Array.data[3].value
