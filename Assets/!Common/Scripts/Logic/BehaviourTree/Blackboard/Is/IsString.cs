@@ -3,7 +3,7 @@ using UnityEngine;
 namespace Common.Logic
 {
     [CreateNodeMenu("Blackboard/Is/string", -100)]
-    public class CompareString : ConditionNode, IIsNode
+    public class IsString : ConditionNode, IIsNode
     {
         public BlackboardKey key;
         

@@ -1,15 +1,13 @@
-﻿using Common.Logic;
+﻿using System;
+using Common.Logic;
 using UnityEngine;
 
 public class BehaviourTreeState : StateMachineBehaviour
 {
     [SerializeField]
-    private BehaviourTree enter;
-    [SerializeField]
-    private BehaviourTree update;
-    [SerializeField]
-    private BehaviourTree exit;
+    private BehaviourTree tree;
     
+    [NonSerialized]
     private BehaviourTreeController _controller;
 
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
@@ -20,11 +18,11 @@ public class BehaviourTreeState : StateMachineBehaviour
         {
             return;
         }
-        if (enter == null)
+        if (tree == null)
         {
             return;
         }
-        enter.Evaluate(_controller);
+        tree.root.Enter(_controller);
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
@@ -34,11 +32,11 @@ public class BehaviourTreeState : StateMachineBehaviour
         {
             return;
         }
-        if (update == null)
+        if (tree == null)
         {
             return;
         }
-        update.Evaluate(_controller);
+        tree.root.Evaluate(_controller);
     }
 
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
@@ -48,10 +46,10 @@ public class BehaviourTreeState : StateMachineBehaviour
         {
             return;
         }
-        if (exit == null)
+        if (tree == null)
         {
             return;
         }
-        exit.Evaluate(_controller);
+        tree.root.Exit(_controller);
     }
 }

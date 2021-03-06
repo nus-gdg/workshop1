@@ -1,30 +1,39 @@
-using System.Collections.Generic;
 using UnityEngine;
-using XNode;
 
 namespace Common.Logic
 {
     public class BehaviourTreeController : MonoBehaviour
     {
         [SerializeField]
-        private BehaviourTree behaviorTree;
-        
+        private BehaviourTree behaviourTree;
+        public BehaviourTree BehaviourTree => behaviourTree;
+
         [SerializeField]
         private Blackboard blackboard;
-        private HashSet<Node> _runningNodes;
+        public Blackboard Blackboard => blackboard;
 
         private void OnEnable()
         {
             blackboard.Refresh();
-            _runningNodes = new HashSet<Node>();
+            behaviourTree.Load(this);
+        }
+
+        private void OnDisable()
+        {
+            behaviourTree.Unload(this);
         }
 
         private void Update()
         {
-            var result = behaviorTree.Evaluate(this);
-            if (result == BehaviourTreeNode.Status.Completed)
+            behaviourTree.Tick(this);
+        }
+
+        private void OnValidate()
+        {
+            blackboard.Refresh();
+            if (Application.isPlaying)
             {
-                _runningNodes.Clear();
+                behaviourTree.Load(this);
             }
         }
 
@@ -61,24 +70,6 @@ namespace Common.Logic
                 return false;
             }
             return value.Equals(internalValue);
-        }
-
-        public bool IsRunningNode(BehaviourTreeNode node)
-        {
-            return _runningNodes.Contains(node);
-        }
-
-        public void RegisterNodeStatus(BehaviourTreeNode node, BehaviourTreeNode.Status status)
-        {
-            if (status == BehaviourTreeNode.Status.Running)
-            {
-                _runningNodes.Add(node);
-
-            }
-            else
-            {
-                _runningNodes.Remove(node);
-            }
         }
     }
 }

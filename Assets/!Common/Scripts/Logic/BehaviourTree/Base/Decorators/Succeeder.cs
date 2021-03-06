@@ -5,9 +5,7 @@ namespace Common.Logic
     {
         public override Status Evaluate(BehaviourTreeController controller)
         {
-            var result = child.Evaluate(controller);
-            controller.RegisterNodeStatus(child, result);
-
+            var result = child.Tick(controller);
             if (result == Status.Running)
             {
                 return Status.Running;

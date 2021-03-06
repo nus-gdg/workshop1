@@ -2,6 +2,9 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using XNode;
+#if UNITY_EDITOR
+using XNodeEditor;
+#endif
 
 namespace Common.Logic
 {
@@ -15,10 +18,47 @@ namespace Common.Logic
         [SerializeField]
         protected List<BehaviourTreeNode> children;
 
-        [ContextMenu("Set Root")]
-        public void SetRoot()
+        public override void Load(BehaviourTreeController controller)
         {
-            Graph.root = this;
+            base.Load(controller);
+            for (int i = 0; i < children.Count; i++)
+            {
+                var child = children[i];
+                if (child == null)
+                {
+                    continue;
+                }
+
+                child.Load(controller);
+            }
+        }
+
+        public override void Unload(BehaviourTreeController controller)
+        {
+            base.Unload(controller);
+            for (int i = 0; i < children.Count; i++)
+            {
+                var child = children[i];
+                if (child == null)
+                {
+                    continue;
+                }
+
+                child.Unload(controller);
+            }
+        }
+
+        public override void Enter(BehaviourTreeController controller)
+        {
+            for (int i = 0; i < children.Count; i++)
+            {
+                var child = children[i];
+                if (child == null)
+                {
+                    continue;
+                }
+                child.SetStatus(controller, Status.Ready);
+            }
         }
 
         protected override void Init()
@@ -42,20 +82,24 @@ namespace Common.Logic
             for (int i = 0; i < outputPorts.Length; i++)
             {
                 var outputPort = outputPorts[i];
-                if (!outputPort.IsConnected)
-                {
-                    children[i] = null;
-                    continue;
-                }
-                var node = outputPort.GetConnection(0).node as BehaviourTreeNode;
-                if (node == null)
-                {
-                    children[i] = null;
-                    continue;
-                }
-
-                children[i] = node;
+                children[i] = GetConnectedNode(outputPort);
             }
         }
     }
+
+    #if UNITY_EDITOR
+    [CustomNodeEditor(typeof(CompositeNode))]
+    public class CompositeNodeEditor : BehaviourTreeNodeEditor
+    {
+        /// <summary> Draws standard field editors for all public fields </summary>
+        public override void OnBodyGUI()
+        {
+            serializedObject.Update();
+            NodeEditorGUILayout.PropertyField(serializedObject.FindProperty("parent"));
+            DrawProperties();
+            NodeEditorGUILayout.PropertyField(serializedObject.FindProperty("children"));
+            serializedObject.ApplyModifiedProperties();
+        }
+    }
+    #endif
 }

@@ -6,15 +6,12 @@ using XNodeEditor;
 
 namespace Common.Logic
 {
-    public abstract class DecoratorNode : BehaviourTreeNode
+    [DisallowMultipleNodes]
+    public class RootNode : BehaviourTreeNode
     {
-        [Input(connectionType = ConnectionType.Override, backingValue = ShowBackingValue.Never)]
-        [SerializeField]
-        protected BehaviourTreeNode parent;
-
         [Output(connectionType = ConnectionType.Override)]
         [SerializeField]
-        protected BehaviourTreeNode child;
+        private BehaviourTreeNode child;
 
         public override void Load(BehaviourTreeController controller)
         {
@@ -25,7 +22,7 @@ namespace Common.Logic
             }
             child.Load(controller);
         }
-
+        
         public override void Unload(BehaviourTreeController controller)
         {
             base.Unload(controller);
@@ -35,14 +32,18 @@ namespace Common.Logic
             }
             child.Unload(controller);
         }
-        
-        public override void Enter(BehaviourTreeController controller)
+
+        public override Status Evaluate(BehaviourTreeController controller)
         {
             if (child == null)
             {
-                return;
+                return Status.Completed;
             }
-            child.SetStatus(controller, Status.Ready);
+            if (!child.IsStatus(controller, Status.Running))
+            {
+                child.SetStatus(controller, Status.Ready);
+            }
+            return child.Tick(controller);
         }
 
         protected override void Init()
@@ -65,21 +66,20 @@ namespace Common.Logic
             var outputPort = GetOutputPort("child");
             child = GetConnectedNode(outputPort);
         }
-
-        #if UNITY_EDITOR
-        [CustomNodeEditor(typeof(DecoratorNode))]
-        public class DecoratorNodeEditor : BehaviourTreeNodeEditor
-        {
-            /// <summary> Draws standard field editors for all public fields </summary>
-            public override void OnBodyGUI()
-            {
-                serializedObject.Update();
-                var node = (DecoratorNode)serializedObject.targetObject;
-                NodeEditorGUILayout.PortPair(node.GetPort("parent"), node.GetPort("child"));
-                DrawProperties();
-                serializedObject.ApplyModifiedProperties();
-            }
-        }
-        #endif
     }
+
+    #if UNITY_EDITOR
+    [CustomNodeEditor(typeof(RootNode))]
+    public class RootNodeEditor : BehaviourTreeNodeEditor
+    {
+        /// <summary> Draws standard field editors for all public fields </summary>
+        public override void OnBodyGUI()
+        {
+            serializedObject.Update();
+            NodeEditorGUILayout.PropertyField(serializedObject.FindProperty("child"));
+            DrawProperties();
+            serializedObject.ApplyModifiedProperties();
+        }
+    }
+    #endif
 }
