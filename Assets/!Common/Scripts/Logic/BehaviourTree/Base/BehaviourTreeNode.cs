@@ -34,22 +34,21 @@ namespace Common.Logic
 
         public Status GetStatus(BehaviourTreeController controller)
         {
-            if (!_statusOfControllers.TryGetValue(controller, out Status status))
+            try
             {
-                return Status.Ready;
+                return _statusOfControllers[controller];
             }
-            return status;
+            catch (Exception e)
+            {
+                throw new KeyNotFoundException($"{name} has not been loaded into the Behaviour Tree '{graph.name}'", e);
+            }
         }
-        
+
         public bool IsStatus(BehaviourTreeController controller, Status status)
         {
-            if (!_statusOfControllers.TryGetValue(controller, out Status internalStatus))
-            {
-                return false;
-            }
-            return status == internalStatus;
+            return GetStatus(controller) == status;
         }
-        
+
         public void SetStatus(BehaviourTreeController controller, Status status)
         {
             _statusOfControllers[controller] = status;
@@ -82,15 +81,21 @@ namespace Common.Logic
 
         protected BehaviourTreeNode GetConnectedNode(NodePort port)
         {
-            if (!port.IsConnected)
+            var connections = port.GetConnections();
+
+            // Sometimes there is an issue accessing the connected node.
+            // There should only be one connection, so this returns null if the current state is invalid.
+            if (connections.Count != 1)
             {
                 return null;
             }
-            return port.GetConnection(0).node as BehaviourTreeNode;
+
+            return connections[0].node as BehaviourTreeNode;
         }
 
         public override object GetValue(NodePort nodePort)
         {
+            // Return a dummy value since this method is not being used.
             return this;
         }
     }
