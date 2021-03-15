@@ -22,8 +22,8 @@ namespace Common.Logic
         /// <summary>
         /// The list of monitored nodes for each controller using this behaviour tree.
         /// </summary>
-        public Dictionary<BehaviourTreeController, HashSet<Monitor>> monitorsByController =
-            new Dictionary<BehaviourTreeController, HashSet<Monitor>>();
+        public Dictionary<BehaviourTreeController, List<Monitor>> monitorsByController =
+            new Dictionary<BehaviourTreeController, List<Monitor>>();
 
 #if UNITY_EDITOR
 
@@ -48,7 +48,7 @@ namespace Common.Logic
         public virtual void LoadController(BehaviourTreeController controller)
         {
             root.LoadController(controller);
-            monitorsByController[controller] = new HashSet<Monitor>();
+            monitorsByController[controller] = new List<Monitor>();
         }
 
         /// <summary>
@@ -66,20 +66,17 @@ namespace Common.Logic
         /// </summary>
         public BehaviourTreeNode.Status Tick(BehaviourTreeController controller)
         {
-            TickMonitors(controller);
-            return root.Tick(controller);
-        }
-
-        private void TickMonitors(BehaviourTreeController controller)
-        {
-            foreach (var monitor in monitorsByController[controller])
+            var monitors = monitorsByController[controller];
+            for (int i = 0; i < monitors.Count; i++)
             {
-                var result = monitor.TickCondition(controller);
-                if (result == BehaviourTreeNode.Status.Completed)
+                // Reset when a monitored node is triggered.
+                if (monitors[i].TickCondition(controller) == BehaviourTreeNode.Status.Completed)
                 {
                     LoadController(controller);
+                    break;
                 }
             }
+            return root.Tick(controller);
         }
 
         /// <summary>
