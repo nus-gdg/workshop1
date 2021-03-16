@@ -29,13 +29,13 @@ namespace Common.Logic
         [NonSerialized]
         public BehaviourTreeController SelectedController;
 
-        public virtual void Load(BehaviourTreeController controller)
+        public virtual void LoadController(BehaviourTreeController controller)
         {
             root.Load(controller);
             monitorsByController[controller] = new HashSet<Monitor>();
         }
         
-        public virtual void Unload(BehaviourTreeController controller)
+        public virtual void ClearController(BehaviourTreeController controller)
         {
             root.Unload(controller);
             monitorsByController.Remove(controller);
@@ -54,7 +54,7 @@ namespace Common.Logic
                 var result = monitor.TickCondition(controller);
                 if (result == BehaviourTreeNode.Status.Completed)
                 {
-                    Load(controller);
+                    LoadController(controller);
                 }
             }
         }
