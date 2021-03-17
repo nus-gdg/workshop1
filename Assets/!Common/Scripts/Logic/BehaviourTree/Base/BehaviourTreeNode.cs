@@ -184,13 +184,26 @@ namespace Common.Logic
             }
         }
         
+        /// <summary>
+        /// Returns the colour of the node.
+        /// <para/>
+        /// If a controller is selected when the application is playing,
+        /// returns the colour for the controller's current node status.
+        /// <para/>
+        /// Else returns the default node colour.
+        /// </summary>
         public override Color GetTint()
         {
+            // Get the selected controller
             var controller = _targetNode.Graph.SelectedController;
+            
+            // Return the default node colour if no controller has been selected.
             if (controller == null)
             {
                 return _targetNode.Graph.nodeDefault;
             }
+            
+            // Return the node status colour for the controller.
             switch (_targetNode.GetStatus(controller))
             {
                 case BehaviourTreeNode.Status.Completed:
