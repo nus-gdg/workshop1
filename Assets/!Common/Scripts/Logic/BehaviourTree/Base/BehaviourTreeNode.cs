@@ -75,10 +75,7 @@ namespace Common.Logic
             return result;
         }
 
-        public virtual Status Evaluate(BehaviourTreeController controller)
-        {
-            throw new NotImplementedException($"{name} is missing an evaluate function.");
-        }
+        public abstract Status Evaluate(BehaviourTreeController controller);
 
         public virtual void Enter(BehaviourTreeController controller) { }
         public virtual void Exit(BehaviourTreeController controller) { }
