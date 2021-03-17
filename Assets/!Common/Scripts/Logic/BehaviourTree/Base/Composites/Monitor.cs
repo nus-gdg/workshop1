@@ -27,29 +27,29 @@ namespace Common.Logic
         private Dictionary<BehaviourTreeController, float> _timersOfControllers =
             new Dictionary<BehaviourTreeController, float>();
 
-        public override void Load(BehaviourTreeController controller)
+        public override void LoadController(BehaviourTreeController controller)
         {
-            base.Load(controller);
+            base.LoadController(controller);
             if (condition != null)
             {
-                condition.Load(controller);
+                condition.LoadController(controller);
             }
             if (child != null)
             {
-                child.Load(controller);
+                child.LoadController(controller);
             }
         }
 
-        public override void Unload(BehaviourTreeController controller)
+        public override void ClearController(BehaviourTreeController controller)
         {
-            base.Unload(controller);
+            base.ClearController(controller);
             if (condition != null)
             {
-                condition.Unload(controller);
+                condition.ClearController(controller);
             }
             if (child != null)
             {
-                child.Unload(controller);
+                child.ClearController(controller);
             }
         }
 

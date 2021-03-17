@@ -22,12 +22,12 @@ namespace Common.Logic
         private Dictionary<BehaviourTreeController, Status> _statusOfControllers =
             new Dictionary<BehaviourTreeController, Status>();
 
-        public virtual void Load(BehaviourTreeController controller)
+        public virtual void LoadController(BehaviourTreeController controller)
         {
             _statusOfControllers[controller] = Status.Ready;
         }
         
-        public virtual void Unload(BehaviourTreeController controller)
+        public virtual void ClearController(BehaviourTreeController controller)
         {
             _statusOfControllers.Remove(controller);
         }

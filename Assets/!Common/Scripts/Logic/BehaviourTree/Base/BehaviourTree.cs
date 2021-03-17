@@ -31,13 +31,13 @@ namespace Common.Logic
 
         public virtual void LoadController(BehaviourTreeController controller)
         {
-            root.Load(controller);
+            root.LoadController(controller);
             monitorsByController[controller] = new HashSet<Monitor>();
         }
         
         public virtual void ClearController(BehaviourTreeController controller)
         {
-            root.Unload(controller);
+            root.ClearController(controller);
             monitorsByController.Remove(controller);
         }
 
