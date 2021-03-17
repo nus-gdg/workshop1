@@ -125,14 +125,21 @@ namespace Common.Logic
             _behaviourTree = target as BehaviourTree;
         }
 
+        /// <summary>
+        /// Creates an inspector menu option to remove nodes with missing scripts in the behaviour tree asset.
+        /// </summary>
         [MenuItem("CONTEXT/BehaviourTree/Fix")]
         public static void FixMissingScripts(MenuCommand command)
         {
             ((BehaviourTree)command.context).FixMissingScripts();
         }
 
+        /// <summary>
+        /// Filters nodes that are allowed in the node menu.
+        /// </summary>
         public override string GetNodeMenuName(Type type)
         {
+            // Skip any nodes that do not derive from BehaviourTreeNode or NodeGroup
             if (!typeof(BehaviourTreeNode).IsAssignableFrom(type)
                 && !typeof(NodeGroup).IsAssignableFrom(type))
             {
@@ -141,25 +148,37 @@ namespace Common.Logic
             return base.GetNodeMenuName(type);
         }
 
+        /// <summary>
+        /// Initializes the behaviour tree graph when it is opened.
+        /// </summary>
         public override void OnOpen()
         {
+            // Do nothing if a tree is not open or does not have a root node (due to legacy behaviour trees) 
             if (_behaviourTree == null || _behaviourTree.root == null)
             {
                 return;
             }
+            // Centre the graph on the root node
             NodeEditorWindow.current.SelectNode(_behaviourTree.root, false);
             NodeEditorWindow.current.Home();
         }
         
+        /// <summary>
+        /// Updates the behaviour tree graph.
+        /// </summary>
         public override void OnGUI()
         {
+            // Do nothing if the application is not playing
             if (!EditorApplication.isPlaying)
             {
                 return;
             }
 
+            // Updates the appearance of the nodes in the graph.
+            // If a controller is selected, update the node colours.
             NodeEditorWindow.current.Repaint();
 
+            // If a controller is selected, store its reference temporarily.
             var transform = Selection.activeTransform;
             if (transform == null)
             {
