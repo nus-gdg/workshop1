@@ -17,21 +17,36 @@ namespace Common.Logic
             Completed, Running, Failed, Ready, Invalid, 
         }
 
+        /// <summary>
+        /// Returns the behaviour tree containing this node.
+        /// </summary>
         public BehaviourTree Graph => graph as BehaviourTree;
 
+        /// <summary>
+        /// Maps the node status for each running controller.
+        /// </summary>
         private Dictionary<BehaviourTreeController, Status> _statusOfControllers =
             new Dictionary<BehaviourTreeController, Status>();
 
+        /// <summary>
+        /// Resets the node status for the given controller.
+        /// </summary>
         public virtual void LoadController(BehaviourTreeController controller)
         {
             _statusOfControllers[controller] = Status.Ready;
         }
         
+        /// <summary>
+        /// Clears the node status for the given controller.
+        /// </summary>
         public virtual void ClearController(BehaviourTreeController controller)
         {
             _statusOfControllers.Remove(controller);
         }
 
+        /// <summary>
+        /// Returns the node status for the given controller.
+        /// </summary>
         public Status GetStatus(BehaviourTreeController controller)
         {
             try
@@ -44,41 +59,71 @@ namespace Common.Logic
             }
         }
 
+        /// <summary>
+        /// Returns true if the node status for the given controller equals the given <paramref name="status"/>.
+        /// </summary>
         public bool IsStatus(BehaviourTreeController controller, Status status)
         {
             return GetStatus(controller) == status;
         }
 
+        /// <summary>
+        /// Sets the node status for the given controller.
+        /// </summary>
         public void SetStatus(BehaviourTreeController controller, Status status)
         {
             _statusOfControllers[controller] = status;
         }
 
+        /// <summary>
+        /// Updates the node status for the given controller.
+        /// <para/>
+        /// The following shows the sequence of events during a tick:
+        /// <br/>
+        /// Enter (first tick) -> Evaluate (every tick) -> Exit (last tick)
+        /// </summary>
         public Status Tick(BehaviourTreeController controller)
         {
             var result = Status.Completed;
 
+            // During the first tick, setup node settings
             if (!IsStatus(controller, Status.Running))
             {
                 Enter(controller);
             }
 
+            // Every tick, get the updated status for the controller
             result = Evaluate(controller);
 
+            // During the last tick, teardown node settings
             if (result != Status.Running)
             {
                 Exit(controller);
             }
 
+            // Save the update status for the controller
             SetStatus(controller, result);
             return result;
         }
 
+        /// <summary>
+        /// Runs an update for the controller and returns the on-going status.
+        /// </summary>
         public abstract Status Evaluate(BehaviourTreeController controller);
 
+        /// <summary>
+        /// Runs a setup for the controller before evaluating it.
+        /// </summary>
         public virtual void Enter(BehaviourTreeController controller) { }
+        
+        /// <summary>
+        /// Runs a teardown for the controller after evaluating it.
+        /// </summary>
         public virtual void Exit(BehaviourTreeController controller) { }
 
+        /// <summary>
+        /// Serializes the references to connected nodes in the editor.
+        /// </summary>
         protected BehaviourTreeNode GetConnectedNode(NodePort port)
         {
             var connections = port.GetConnections();
