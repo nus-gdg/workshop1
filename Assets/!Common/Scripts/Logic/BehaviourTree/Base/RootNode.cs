@@ -12,16 +12,26 @@ namespace Common.Logic
         [SerializeField]
         private BehaviourTreeNode child;
 
+        /// <summary>
+        /// Starts the evaluation of the behaviour tree for the given controller.
+        /// <br/>
+        /// If the root node completed or failed in the previous tick,
+        /// resets the node status of the controller before ticking.
+        /// </summary>
         public override Status Evaluate(BehaviourTreeController controller)
         {
+            // Return completed when there is no child.
             if (child == null)
             {
                 return Status.Completed;
             }
+            
+            // Reset if the last tick completed or failed.
             if (!child.IsStatus(controller, Status.Running))
             {
                 child.ResetController(controller);
             }
+
             return child.Tick(controller);
         }
 
