@@ -12,6 +12,19 @@ namespace Common.Logic
         [SerializeField]
         private BehaviourTreeNode child;
 
+        public override Status Evaluate(BehaviourTreeController controller)
+        {
+            if (child == null)
+            {
+                return Status.Completed;
+            }
+            if (!child.IsStatus(controller, Status.Running))
+            {
+                child.SetStatus(controller, Status.Ready);
+            }
+            return child.Tick(controller);
+        }
+
         public override void ResetController(BehaviourTreeController controller)
         {
             base.ResetController(controller);
@@ -30,19 +43,6 @@ namespace Common.Logic
                 return;
             }
             child.RemoveController(controller);
-        }
-
-        public override Status Evaluate(BehaviourTreeController controller)
-        {
-            if (child == null)
-            {
-                return Status.Completed;
-            }
-            if (!child.IsStatus(controller, Status.Running))
-            {
-                child.SetStatus(controller, Status.Ready);
-            }
-            return child.Tick(controller);
         }
 
         protected override void Serialize()
