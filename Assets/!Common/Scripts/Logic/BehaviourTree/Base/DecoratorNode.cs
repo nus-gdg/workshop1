@@ -34,15 +34,6 @@ namespace Common.Logic
             }
             child.RemoveController(controller);
         }
-        
-        public override void Enter(BehaviourTreeController controller)
-        {
-            if (child == null)
-            {
-                return;
-            }
-            child.SetStatus(controller, Status.Ready);
-        }
 
         protected override void Serialize()
         {
