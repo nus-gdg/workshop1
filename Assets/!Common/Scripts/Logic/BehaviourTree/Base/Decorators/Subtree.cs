@@ -7,7 +7,7 @@ namespace Common.Logic
 
         public override Status EvaluateCondition(BehaviourTreeController controller)
         {
-            return tree.Tick(controller);
+            return tree.root.Tick(controller);
         }
     }
 }

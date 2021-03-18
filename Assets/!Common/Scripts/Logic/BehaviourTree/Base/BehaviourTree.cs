@@ -44,21 +44,34 @@ namespace Common.Logic
 
         /// <summary>
         /// Ticks the behaviour tree.
-        /// Monitored nodes are ticked before other nodes.
+        /// <para/>
+        /// The following is the sequence of events that occur every tick:
+        /// Monitors -> Services -> Nodes.
         /// </summary>
-        public BehaviourTreeNode.Status Tick(BehaviourTreeController controller)
+        public void Tick(BehaviourTreeController controller)
+        {
+            TickMonitors(controller);
+            TickNodes(controller);
+        }
+
+        private void TickMonitors(BehaviourTreeController controller)
         {
             var monitors = monitorsByController[controller];
             for (int i = 0; i < monitors.Count; i++)
             {
-                // Reset when a monitored node is triggered.
-                if (monitors[i].TickCondition(controller) == BehaviourTreeNode.Status.Completed)
+                // Reset when a monitor returns a completed status.
+                var result = monitors[i].TickCondition(controller);
+                if (result == BehaviourTreeNode.Status.Completed)
                 {
                     ResetController(controller);
                     break;
                 }
             }
-            return root.Tick(controller);
+        }
+
+        private void TickNodes(BehaviourTreeController controller)
+        {
+            root.Tick(controller);
         }
 
         /// <summary>
