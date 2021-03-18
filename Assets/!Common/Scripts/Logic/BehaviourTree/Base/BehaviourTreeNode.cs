@@ -29,53 +29,6 @@ namespace Common.Logic
             new Dictionary<BehaviourTreeController, Status>();
 
         /// <summary>
-        /// Resets the node status for the given controller.
-        /// </summary>
-        public virtual void ResetController(BehaviourTreeController controller)
-        {
-            _statusOfControllers[controller] = Status.Ready;
-        }
-        
-        /// <summary>
-        /// Clears the node status for the given controller.
-        /// </summary>
-        public virtual void RemoveController(BehaviourTreeController controller)
-        {
-            _statusOfControllers.Remove(controller);
-        }
-
-        /// <summary>
-        /// Returns the node status for the given controller.
-        /// </summary>
-        public Status GetStatus(BehaviourTreeController controller)
-        {
-            try
-            {
-                return _statusOfControllers[controller];
-            }
-            catch (Exception e)
-            {
-                throw new KeyNotFoundException($"{name} has not been loaded into the Behaviour Tree '{graph.name}'", e);
-            }
-        }
-
-        /// <summary>
-        /// Returns true if the node status for the given controller equals the given <paramref name="status"/>.
-        /// </summary>
-        public bool IsStatus(BehaviourTreeController controller, Status status)
-        {
-            return GetStatus(controller) == status;
-        }
-
-        /// <summary>
-        /// Sets the node status for the given controller.
-        /// </summary>
-        public void SetStatus(BehaviourTreeController controller, Status status)
-        {
-            _statusOfControllers[controller] = status;
-        }
-
-        /// <summary>
         /// Updates the node status for the given controller.
         /// <para/>
         /// The following shows the sequence of events during a tick:
@@ -107,19 +60,66 @@ namespace Common.Logic
         }
 
         /// <summary>
-        /// Runs an update for the controller and returns the on-going status.
-        /// </summary>
-        public abstract Status Evaluate(BehaviourTreeController controller);
-
-        /// <summary>
         /// Runs a setup for the controller before evaluating it.
         /// </summary>
         public virtual void Enter(BehaviourTreeController controller) { }
         
         /// <summary>
+        /// Runs an update for the controller and returns the on-going status.
+        /// </summary>
+        public abstract Status Evaluate(BehaviourTreeController controller);
+        
+        /// <summary>
         /// Runs a teardown for the controller after evaluating it.
         /// </summary>
         public virtual void Exit(BehaviourTreeController controller) { }
+
+        /// <summary>
+        /// Returns the node status for the given controller.
+        /// </summary>
+        public Status GetStatus(BehaviourTreeController controller)
+        {
+            try
+            {
+                return _statusOfControllers[controller];
+            }
+            catch (Exception e)
+            {
+                throw new KeyNotFoundException($"{name} has not been loaded into the Behaviour Tree '{graph.name}'", e);
+            }
+        }
+
+        /// <summary>
+        /// Returns true if the node status for the given controller equals the given <paramref name="status"/>.
+        /// </summary>
+        public bool IsStatus(BehaviourTreeController controller, Status status)
+        {
+            return GetStatus(controller) == status;
+        }
+
+        /// <summary>
+        /// Sets the node status for the given controller.
+        /// </summary>
+        public void SetStatus(BehaviourTreeController controller, Status status)
+        {
+            _statusOfControllers[controller] = status;
+        }
+        
+        /// <summary>
+        /// Resets the node status for the given controller.
+        /// </summary>
+        public virtual void ResetController(BehaviourTreeController controller)
+        {
+            _statusOfControllers[controller] = Status.Ready;
+        }
+        
+        /// <summary>
+        /// Clears the node status for the given controller.
+        /// </summary>
+        public virtual void RemoveController(BehaviourTreeController controller)
+        {
+            _statusOfControllers.Remove(controller);
+        }
 
         /// <summary>
         /// Serializes the references to connected nodes in the editor.
