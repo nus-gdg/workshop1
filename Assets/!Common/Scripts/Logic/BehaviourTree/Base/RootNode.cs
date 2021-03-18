@@ -20,7 +20,7 @@ namespace Common.Logic
             }
             if (!child.IsStatus(controller, Status.Running))
             {
-                child.SetStatus(controller, Status.Ready);
+                child.ResetController(controller);
             }
             return child.Tick(controller);
         }
