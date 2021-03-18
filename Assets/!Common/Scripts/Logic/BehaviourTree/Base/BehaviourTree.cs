@@ -43,15 +43,6 @@ namespace Common.Logic
 #endif
 
         /// <summary>
-        /// Removes the controller from the behaviour tree.
-        /// </summary>
-        public virtual void ClearController(BehaviourTreeController controller)
-        {
-            root.RemoveController(controller);
-            monitorsByController.Remove(controller);
-        }
-
-        /// <summary>
         /// Ticks the behaviour tree.
         /// Monitored nodes are ticked before other nodes.
         /// </summary>
@@ -108,6 +99,15 @@ namespace Common.Logic
         {
             root.ResetController(controller);
             monitorsByController[controller] = new List<Monitor>();
+        }
+
+        /// <summary>
+        /// Removes the node status for the given behaviour tree controller.
+        /// </summary>
+        public virtual void RemoveController(BehaviourTreeController controller)
+        {
+            root.RemoveController(controller);
+            monitorsByController.Remove(controller);
         }
     }
 

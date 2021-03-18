@@ -20,7 +20,7 @@ namespace Common.Logic
 
         private void OnDisable()
         {
-            behaviourTree.ClearController(this);
+            behaviourTree.RemoveController(this);
         }
 
         private void Update()
