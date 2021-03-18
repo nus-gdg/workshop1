@@ -1,7 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
-using XNode;
 #if UNITY_EDITOR
 using XNodeEditor;
 #endif
@@ -61,23 +60,9 @@ namespace Common.Logic
             }
         }
 
-        protected override void Init()
+        protected override void Serialize()
         {
-            OnValidate();
-        }
-
-        public override void OnCreateConnection(NodePort from, NodePort to)
-        {
-            OnValidate();
-        }
-
-        public override void OnRemoveConnection(NodePort port)
-        {
-            OnValidate();
-        }
-
-        private void OnValidate()
-        {
+            // Serialize all child ports
             var outputPorts = DynamicOutputs.ToArray();
             for (int i = 0; i < outputPorts.Length; i++)
             {
