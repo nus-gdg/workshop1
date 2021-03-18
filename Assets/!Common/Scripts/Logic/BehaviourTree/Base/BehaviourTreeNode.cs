@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using XNode;
 #if UNITY_EDITOR
@@ -79,14 +78,11 @@ namespace Common.Logic
         /// </summary>
         public Status GetStatus(BehaviourTreeController controller)
         {
-            try
+            if (!_statusOfControllers.TryGetValue(controller, out Status status))
             {
-                return _statusOfControllers[controller];
+                return Status.Ready;
             }
-            catch (Exception e)
-            {
-                throw new KeyNotFoundException($"{name} has not been loaded into the Behaviour Tree '{graph.name}'", e);
-            }
+            return status;
         }
 
         /// <summary>
