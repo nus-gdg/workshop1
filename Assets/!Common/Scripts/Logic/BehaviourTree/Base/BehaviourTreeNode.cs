@@ -114,6 +114,14 @@ namespace Common.Logic
         }
         
         /// <summary>
+        /// Resets the node status for all controllers running this node.
+        /// </summary>
+        public virtual void ResetControllers()
+        {
+            _statusOfControllers.Clear();
+        }
+        
+        /// <summary>
         /// Clears the node status for the given controller.
         /// </summary>
         public virtual void RemoveController(BehaviourTreeController controller)
