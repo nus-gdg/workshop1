@@ -47,19 +47,6 @@ namespace Common.Logic
             }
         }
 
-        public override void Enter(BehaviourTreeController controller)
-        {
-            for (int i = 0; i < children.Count; i++)
-            {
-                var child = children[i];
-                if (child == null)
-                {
-                    continue;
-                }
-                child.SetStatus(controller, Status.Ready);
-            }
-        }
-
         protected override void Serialize()
         {
             // Serialize all child ports
