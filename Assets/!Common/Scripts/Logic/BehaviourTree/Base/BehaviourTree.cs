@@ -47,7 +47,7 @@ namespace Common.Logic
         /// </summary>
         public virtual void LoadController(BehaviourTreeController controller)
         {
-            root.LoadController(controller);
+            root.ResetController(controller);
             monitorsByController[controller] = new List<Monitor>();
         }
 

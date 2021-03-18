@@ -16,14 +16,14 @@ namespace Common.Logic
         [SerializeField]
         protected BehaviourTreeNode child;
 
-        public override void LoadController(BehaviourTreeController controller)
+        public override void ResetController(BehaviourTreeController controller)
         {
-            base.LoadController(controller);
+            base.ResetController(controller);
             if (child == null)
             {
                 return;
             }
-            child.LoadController(controller);
+            child.ResetController(controller);
         }
 
         public override void ClearController(BehaviourTreeController controller)

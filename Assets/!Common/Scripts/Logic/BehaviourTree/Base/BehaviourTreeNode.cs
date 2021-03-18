@@ -31,7 +31,7 @@ namespace Common.Logic
         /// <summary>
         /// Resets the node status for the given controller.
         /// </summary>
-        public virtual void LoadController(BehaviourTreeController controller)
+        public virtual void ResetController(BehaviourTreeController controller)
         {
             _statusOfControllers[controller] = Status.Ready;
         }
