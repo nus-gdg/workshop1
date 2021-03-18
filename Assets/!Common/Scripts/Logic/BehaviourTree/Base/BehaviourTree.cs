@@ -60,7 +60,7 @@ namespace Common.Logic
             for (int i = 0; i < monitors.Count; i++)
             {
                 // Reset when a monitor returns a completed status.
-                var result = monitors[i].TickCondition(controller);
+                var result = monitors[i].Refresh(controller);
                 if (result == BehaviourTreeNode.Status.Completed)
                 {
                     ResetController(controller);
