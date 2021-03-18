@@ -121,6 +121,14 @@ namespace Common.Logic
             root.RemoveController(controller);
             monitorsByController.Remove(controller);
         }
+
+        /// <summary>
+        /// Refreshes the graph editor after making changes.
+        /// </summary>
+        private void OnValidate()
+        {
+            ResetControllers();
+        }
     }
 
     #if UNITY_EDITOR
