@@ -102,6 +102,18 @@ namespace Common.Logic
         }
 
         /// <summary>
+        /// Resets the node status for all controllers running this behaviour tree.
+        /// </summary>
+        public virtual void ResetControllers()
+        {
+            root.ResetControllers();
+            foreach (var controller in monitorsByController.Keys)
+            {
+                monitorsByController[controller] = new List<Monitor>();
+            }
+        }
+
+        /// <summary>
         /// Removes the node status for the given behaviour tree controller.
         /// </summary>
         public virtual void RemoveController(BehaviourTreeController controller)
