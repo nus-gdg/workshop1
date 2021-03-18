@@ -1,5 +1,4 @@
 using UnityEngine;
-using XNode;
 #if UNITY_EDITOR
 using XNodeEditor;
 #endif
@@ -45,23 +44,9 @@ namespace Common.Logic
             child.SetStatus(controller, Status.Ready);
         }
 
-        protected override void Init()
+        protected override void Serialize()
         {
-            OnValidate();
-        }
-
-        public override void OnCreateConnection(NodePort from, NodePort to)
-        {
-            OnValidate();
-        }
-
-        public override void OnRemoveConnection(NodePort port)
-        {
-            OnValidate();
-        }
-
-        private void OnValidate()
-        {
+            // Serialize child port
             var outputPort = GetOutputPort("child");
             child = GetConnectedNode(outputPort);
         }
