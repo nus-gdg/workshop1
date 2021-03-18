@@ -143,6 +143,31 @@ namespace Common.Logic
             // Return a dummy value since this method is not being used.
             return this;
         }
+        
+        protected override void Init()
+        {
+            OnValidate();
+        }
+        
+        public override void OnCreateConnection(NodePort from, NodePort to)
+        {
+            OnValidate();
+        }
+        
+        public override void OnRemoveConnection(NodePort port)
+        {
+            OnValidate();
+        }
+
+        private void OnValidate()
+        {
+            Serialize();
+        }
+
+        /// <summary>
+        /// Serializes custom node properties.
+        /// </summary>
+        protected virtual void Serialize() { }
     }
 
     #if UNITY_EDITOR
