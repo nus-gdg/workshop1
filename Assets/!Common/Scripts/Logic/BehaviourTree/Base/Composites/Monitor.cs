@@ -40,16 +40,16 @@ namespace Common.Logic
             }
         }
 
-        public override void ClearController(BehaviourTreeController controller)
+        public override void RemoveController(BehaviourTreeController controller)
         {
-            base.ClearController(controller);
+            base.RemoveController(controller);
             if (condition != null)
             {
-                condition.ClearController(controller);
+                condition.RemoveController(controller);
             }
             if (child != null)
             {
-                child.ClearController(controller);
+                child.RemoveController(controller);
             }
         }
 

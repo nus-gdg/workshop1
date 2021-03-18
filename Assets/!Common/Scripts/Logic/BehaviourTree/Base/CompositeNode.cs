@@ -33,9 +33,9 @@ namespace Common.Logic
             }
         }
 
-        public override void ClearController(BehaviourTreeController controller)
+        public override void RemoveController(BehaviourTreeController controller)
         {
-            base.ClearController(controller);
+            base.RemoveController(controller);
             for (int i = 0; i < children.Count; i++)
             {
                 var child = children[i];
@@ -44,7 +44,7 @@ namespace Common.Logic
                     continue;
                 }
 
-                child.ClearController(controller);
+                child.RemoveController(controller);
             }
         }
 

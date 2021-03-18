@@ -39,7 +39,7 @@ namespace Common.Logic
         /// <summary>
         /// Clears the node status for the given controller.
         /// </summary>
-        public virtual void ClearController(BehaviourTreeController controller)
+        public virtual void RemoveController(BehaviourTreeController controller)
         {
             _statusOfControllers.Remove(controller);
         }

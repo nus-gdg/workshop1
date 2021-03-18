@@ -56,7 +56,7 @@ namespace Common.Logic
         /// </summary>
         public virtual void ClearController(BehaviourTreeController controller)
         {
-            root.ClearController(controller);
+            root.RemoveController(controller);
             monitorsByController.Remove(controller);
         }
 

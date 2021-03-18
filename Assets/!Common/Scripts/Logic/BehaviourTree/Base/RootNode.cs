@@ -23,14 +23,14 @@ namespace Common.Logic
             child.ResetController(controller);
         }
         
-        public override void ClearController(BehaviourTreeController controller)
+        public override void RemoveController(BehaviourTreeController controller)
         {
-            base.ClearController(controller);
+            base.RemoveController(controller);
             if (child == null)
             {
                 return;
             }
-            child.ClearController(controller);
+            child.RemoveController(controller);
         }
 
         public override Status Evaluate(BehaviourTreeController controller)
