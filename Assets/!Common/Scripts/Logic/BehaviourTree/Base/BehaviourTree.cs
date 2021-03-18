@@ -43,15 +43,6 @@ namespace Common.Logic
 #endif
 
         /// <summary>
-        /// Adds the controller to the behaviour tree.
-        /// </summary>
-        public virtual void LoadController(BehaviourTreeController controller)
-        {
-            root.ResetController(controller);
-            monitorsByController[controller] = new List<Monitor>();
-        }
-
-        /// <summary>
         /// Removes the controller from the behaviour tree.
         /// </summary>
         public virtual void ClearController(BehaviourTreeController controller)
@@ -72,7 +63,7 @@ namespace Common.Logic
                 // Reset when a monitored node is triggered.
                 if (monitors[i].TickCondition(controller) == BehaviourTreeNode.Status.Completed)
                 {
-                    LoadController(controller);
+                    ResetController(controller);
                     break;
                 }
             }
@@ -108,6 +99,15 @@ namespace Common.Logic
                 root = node as RootNode;
             }
             return node;
+        }
+
+        /// <summary>
+        /// Resets the node status for the given behaviour tree controller.
+        /// </summary>
+        public virtual void ResetController(BehaviourTreeController controller)
+        {
+            root.ResetController(controller);
+            monitorsByController[controller] = new List<Monitor>();
         }
     }
 

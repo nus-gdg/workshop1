@@ -15,7 +15,7 @@ namespace Common.Logic
         private void OnEnable()
         {
             blackboard.Refresh();
-            behaviourTree.LoadController(this);
+            behaviourTree.ResetController(this);
         }
 
         private void OnDisable()
@@ -33,7 +33,7 @@ namespace Common.Logic
             blackboard.Refresh();
             if (Application.isPlaying)
             {
-                behaviourTree.LoadController(this);
+                behaviourTree.ResetController(this);
             }
         }
 
