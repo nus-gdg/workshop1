@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Kraken
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 392, y: 1304}
+  position: {x: 136, y: 1208}
   ports:
     keys:
     - parent
@@ -46,7 +46,7 @@ MonoBehaviour:
   m_Name: Move To Destination
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 424, y: 72}
+  position: {x: 376, y: 152}
   ports:
     keys:
     - parent
@@ -56,7 +56,7 @@ MonoBehaviour:
       _typeQualifiedName: Common.Logic.BehaviourTreeNode, Assembly-CSharp, Version=0.0.0.0,
         Culture=neutral, PublicKeyToken=null
       connections:
-      - fieldName: children 6
+      - fieldName: children 5
         node: {fileID: 5621059386819808380}
         reroutePoints: []
       _direction: 0
@@ -79,7 +79,7 @@ MonoBehaviour:
   m_Name: Wait
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 440, y: -328}
+  position: {x: 376, y: -312}
   ports:
     keys:
     - parent
@@ -89,7 +89,7 @@ MonoBehaviour:
       _typeQualifiedName: Common.Logic.BehaviourTreeNode, Assembly-CSharp, Version=0.0.0.0,
         Culture=neutral, PublicKeyToken=null
       connections:
-      - fieldName: children 3
+      - fieldName: children 2
         node: {fileID: 5621059386819808380}
         reroutePoints: []
       _direction: 0
@@ -111,7 +111,7 @@ MonoBehaviour:
   m_Name: Sequence
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: -648, y: 56}
+  position: {x: -632, y: 24}
   ports:
     keys:
     - parent
@@ -119,6 +119,7 @@ MonoBehaviour:
     - children 0
     - children 1
     - children 2
+    - children 3
     values:
     - _fieldName: parent
       _node: {fileID: -6459993180740922666}
@@ -162,7 +163,7 @@ MonoBehaviour:
         mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
       connections:
       - fieldName: parent
-        node: {fileID: -1149866924915716057}
+        node: {fileID: 5621059386819808380}
         reroutePoints: []
       _direction: 1
       _connectionType: 1
@@ -175,7 +176,20 @@ MonoBehaviour:
         mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
       connections:
       - fieldName: parent
-        node: {fileID: 5621059386819808380}
+        node: {fileID: 3845309701580279998}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 1
+      _typeConstraint: 0
+      _dynamic: 1
+    - _fieldName: children 3
+      _node: {fileID: -6459993180740922666}
+      _typeQualifiedName: System.Collections.Generic.List`1[[Common.Logic.BehaviourTreeNode,
+        Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]],
+        mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: parent
+        node: {fileID: -1149866924915716057}
         reroutePoints: []
       _direction: 1
       _connectionType: 1
@@ -184,8 +198,9 @@ MonoBehaviour:
   parent: {fileID: 0}
   children:
   - {fileID: 7753592935338993899}
-  - {fileID: -1149866924915716057}
   - {fileID: 5621059386819808380}
+  - {fileID: 3845309701580279998}
+  - {fileID: -1149866924915716057}
 --- !u!114 &-6222775601332516583
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -199,7 +214,7 @@ MonoBehaviour:
   m_Name: Search
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 440, y: -232}
+  position: {x: 376, y: -216}
   ports:
     keys:
     - parent
@@ -209,43 +224,8 @@ MonoBehaviour:
       _typeQualifiedName: Common.Logic.BehaviourTreeNode, Assembly-CSharp, Version=0.0.0.0,
         Culture=neutral, PublicKeyToken=null
       connections:
-      - fieldName: children 4
-        node: {fileID: 5621059386819808380}
-        reroutePoints: []
-      _direction: 0
-      _connectionType: 1
-      _typeConstraint: 0
-      _dynamic: 0
-  parent: {fileID: 0}
-  mask: 1
-  distance: 10
-  transform: {fileID: 11400000, guid: 0e7412cf4e9de4f2588777aed84b5e1f, type: 2}
-  destination: {fileID: 11400000, guid: ff8675780943646ac9c41455e4fe6cd5, type: 2}
---- !u!114 &-5194077886527299052
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 75964a9da5c34f4886877a07ed960479, type: 3}
-  m_Name: Search
-  m_EditorClassIdentifier: 
-  graph: {fileID: 11400000}
-  position: {x: 408, y: 1576}
-  ports:
-    keys:
-    - parent
-    values:
-    - _fieldName: parent
-      _node: {fileID: -5194077886527299052}
-      _typeQualifiedName: Common.Logic.BehaviourTreeNode, Assembly-CSharp, Version=0.0.0.0,
-        Culture=neutral, PublicKeyToken=null
-      connections:
       - fieldName: children 3
-        node: {fileID: -1149866924915716057}
+        node: {fileID: 5621059386819808380}
         reroutePoints: []
       _direction: 0
       _connectionType: 1
@@ -269,7 +249,7 @@ MonoBehaviour:
   m_Name: Parallel
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 408, y: 1784}
+  position: {x: 136, y: 1544}
   ports:
     keys:
     - parent
@@ -282,7 +262,7 @@ MonoBehaviour:
       _typeQualifiedName: Common.Logic.BehaviourTreeNode, Assembly-CSharp, Version=0.0.0.0,
         Culture=neutral, PublicKeyToken=null
       connections:
-      - fieldName: children 4
+      - fieldName: children 2
         node: {fileID: -1149866924915716057}
         reroutePoints: []
       _direction: 0
@@ -331,39 +311,6 @@ MonoBehaviour:
   - {fileID: 2558310587789770617}
   complete: 0
   fail: 0
---- !u!114 &-4769959503339918437
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 02e2f7886b39e564a956715b2dff066c, type: 3}
-  m_Name: Kraken
-  m_EditorClassIdentifier: 
-  graph: {fileID: 11400000}
-  position: {x: 392, y: 1432}
-  ports:
-    keys:
-    - parent
-    values:
-    - _fieldName: parent
-      _node: {fileID: -4769959503339918437}
-      _typeQualifiedName: Common.Logic.BehaviourTreeNode, Assembly-CSharp, Version=0.0.0.0,
-        Culture=neutral, PublicKeyToken=null
-      connections:
-      - fieldName: children 1
-        node: {fileID: -1149866924915716057}
-        reroutePoints: []
-      _direction: 0
-      _connectionType: 1
-      _typeConstraint: 0
-      _dynamic: 0
-  parent: {fileID: 0}
-  Kraken: {fileID: 11400000, guid: 367f109d2d5f6d4438fef1709a289026, type: 2}
-  KrakenCommand: 2
 --- !u!114 &-3628735228314503667
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -377,7 +324,7 @@ MonoBehaviour:
   m_Name: Log Message
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 440, y: -744}
+  position: {x: 376, y: -600}
   ports:
     keys:
     - parent
@@ -410,7 +357,7 @@ MonoBehaviour:
   m_Name: Parallel
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 776, y: -24}
+  position: {x: 584, y: -24}
   ports:
     keys:
     - parent
@@ -423,7 +370,7 @@ MonoBehaviour:
       _typeQualifiedName: Common.Logic.BehaviourTreeNode, Assembly-CSharp, Version=0.0.0.0,
         Culture=neutral, PublicKeyToken=null
       connections:
-      - fieldName: children 5
+      - fieldName: children 4
         node: {fileID: 5621059386819808380}
         reroutePoints: []
       _direction: 0
@@ -485,7 +432,7 @@ MonoBehaviour:
   m_Name: Sequence
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: -312, y: 456}
+  position: {x: -248, y: 1352}
   ports:
     keys:
     - parent
@@ -495,16 +442,13 @@ MonoBehaviour:
     - children 2
     - children 3
     - children 4
-    - children 5
-    - children 6
-    - children 7
     values:
     - _fieldName: parent
       _node: {fileID: -1149866924915716057}
       _typeQualifiedName: Common.Logic.BehaviourTreeNode, Assembly-CSharp, Version=0.0.0.0,
         Culture=neutral, PublicKeyToken=null
       connections:
-      - fieldName: children 1
+      - fieldName: children 3
         node: {fileID: -6459993180740922666}
         reroutePoints: []
       _direction: 0
@@ -541,7 +485,7 @@ MonoBehaviour:
         mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
       connections:
       - fieldName: parent
-        node: {fileID: -4769959503339918437}
+        node: {fileID: 6109269472136077785}
         reroutePoints: []
       _direction: 1
       _connectionType: 1
@@ -554,7 +498,7 @@ MonoBehaviour:
         mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
       connections:
       - fieldName: parent
-        node: {fileID: 6109269472136077785}
+        node: {fileID: -5021986838496054992}
         reroutePoints: []
       _direction: 1
       _connectionType: 1
@@ -567,52 +511,13 @@ MonoBehaviour:
         mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
       connections:
       - fieldName: parent
-        node: {fileID: -5194077886527299052}
-        reroutePoints: []
-      _direction: 1
-      _connectionType: 1
-      _typeConstraint: 0
-      _dynamic: 1
-    - _fieldName: children 4
-      _node: {fileID: -1149866924915716057}
-      _typeQualifiedName: System.Collections.Generic.List`1[[Common.Logic.BehaviourTreeNode,
-        Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]],
-        mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
-      connections:
-      - fieldName: parent
-        node: {fileID: -5021986838496054992}
-        reroutePoints: []
-      _direction: 1
-      _connectionType: 1
-      _typeConstraint: 0
-      _dynamic: 1
-    - _fieldName: children 5
-      _node: {fileID: -1149866924915716057}
-      _typeQualifiedName: System.Collections.Generic.List`1[[Common.Logic.BehaviourTreeNode,
-        Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]],
-        mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
-      connections:
-      - fieldName: parent
-        node: {fileID: -686579901766410368}
-        reroutePoints: []
-      _direction: 1
-      _connectionType: 1
-      _typeConstraint: 0
-      _dynamic: 1
-    - _fieldName: children 6
-      _node: {fileID: -1149866924915716057}
-      _typeQualifiedName: System.Collections.Generic.List`1[[Common.Logic.BehaviourTreeNode,
-        Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]],
-        mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
-      connections:
-      - fieldName: parent
         node: {fileID: 4536120819032894614}
         reroutePoints: []
       _direction: 1
       _connectionType: 1
       _typeConstraint: 0
       _dynamic: 1
-    - _fieldName: children 7
+    - _fieldName: children 4
       _node: {fileID: -1149866924915716057}
       _typeQualifiedName: System.Collections.Generic.List`1[[Common.Logic.BehaviourTreeNode,
         Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]],
@@ -628,77 +533,10 @@ MonoBehaviour:
   parent: {fileID: 0}
   children:
   - {fileID: -7524413958182811893}
-  - {fileID: -4769959503339918437}
   - {fileID: 6109269472136077785}
-  - {fileID: -5194077886527299052}
   - {fileID: -5021986838496054992}
-  - {fileID: -686579901766410368}
   - {fileID: 4536120819032894614}
   - {fileID: 3190148183648106043}
---- !u!114 &-1030022816041908168
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dac63727317847c2b64bf5521283d239, type: 3}
-  m_Name: Wait
-  m_EditorClassIdentifier: 
-  graph: {fileID: 11400000}
-  position: {x: 1160, y: 1112}
-  ports:
-    keys:
-    - parent
-    values:
-    - _fieldName: parent
-      _node: {fileID: -1030022816041908168}
-      _typeQualifiedName: Common.Logic.BehaviourTreeNode, Assembly-CSharp, Version=0.0.0.0,
-        Culture=neutral, PublicKeyToken=null
-      connections:
-      - fieldName: children 1
-        node: {fileID: 5501381187654434184}
-        reroutePoints: []
-      _direction: 0
-      _connectionType: 1
-      _typeConstraint: 0
-      _dynamic: 0
-  parent: {fileID: 0}
-  time: 10
---- !u!114 &-686579901766410368
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dac63727317847c2b64bf5521283d239, type: 3}
-  m_Name: Wait
-  m_EditorClassIdentifier: 
-  graph: {fileID: 11400000}
-  position: {x: 408, y: 1976}
-  ports:
-    keys:
-    - parent
-    values:
-    - _fieldName: parent
-      _node: {fileID: -686579901766410368}
-      _typeQualifiedName: Common.Logic.BehaviourTreeNode, Assembly-CSharp, Version=0.0.0.0,
-        Culture=neutral, PublicKeyToken=null
-      connections:
-      - fieldName: children 5
-        node: {fileID: -1149866924915716057}
-        reroutePoints: []
-      _direction: 0
-      _connectionType: 1
-      _typeConstraint: 0
-      _dynamic: 0
-  parent: {fileID: 0}
-  time: 0.5
 --- !u!114 &-250490206605863383
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -712,7 +550,7 @@ MonoBehaviour:
   m_Name: Root
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: -888, y: 72}
+  position: {x: -1016, y: 24}
   ports:
     keys:
     - child
@@ -752,34 +590,26 @@ MonoBehaviour:
   - {fileID: -6459993180740922666}
   - {fileID: 3845309701580279998}
   - {fileID: 7324530942068276831}
-  - {fileID: -1030022816041908168}
   - {fileID: 2402323902805104434}
   - {fileID: 8799063125209274855}
   - {fileID: 1091203634582383230}
   - {fileID: -7231223076133873212}
-  - {fileID: -2334686401019308472}
   - {fileID: -7116514453330158898}
   - {fileID: 7753592935338993899}
   - {fileID: -1149866924915716057}
   - {fileID: -7524413958182811893}
   - {fileID: 1644727097198127803}
   - {fileID: 4536120819032894614}
-  - {fileID: 4890049006033648475}
-  - {fileID: 1260997442532073479}
-  - {fileID: 9204343542754230761}
-  - {fileID: 4176269582927728448}
   - {fileID: 6109269472136077785}
-  - {fileID: -4769959503339918437}
-  - {fileID: -250490206605863383}
-  - {fileID: 5501381187654434184}
-  - {fileID: 8147873033698190386}
-  - {fileID: -5194077886527299052}
-  - {fileID: 1972225067647206687}
   - {fileID: 2558310587789770617}
   - {fileID: -5021986838496054992}
+  - {fileID: -2334686401019308472}
   - {fileID: 3190148183648106043}
+  - {fileID: -250490206605863383}
   - {fileID: 3273657838416102425}
-  - {fileID: -686579901766410368}
+  - {fileID: 8147873033698190386}
+  - {fileID: 1972225067647206687}
+  - {fileID: 4607523872186621489}
   root: {fileID: -250490206605863383}
   nodeCompleted: {r: 0.1764706, g: 0.29803923, b: 0.14509805, a: 1}
   nodeRunning: {r: 0.29803923, g: 0.25882354, b: 0.12941177, a: 1}
@@ -800,7 +630,7 @@ MonoBehaviour:
   m_Name: Move To Destination
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 1096, y: 120}
+  position: {x: 808, y: 88}
   ports:
     keys:
     - parent
@@ -820,39 +650,6 @@ MonoBehaviour:
   parent: {fileID: 0}
   ai: {fileID: 11400000, guid: f6302b75c95afde489c12105c0a53257, type: 2}
   destination: {fileID: 11400000, guid: ff8675780943646ac9c41455e4fe6cd5, type: 2}
---- !u!114 &1260997442532073479
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 02e2f7886b39e564a956715b2dff066c, type: 3}
-  m_Name: Kraken
-  m_EditorClassIdentifier: 
-  graph: {fileID: 11400000}
-  position: {x: 440, y: 344}
-  ports:
-    keys:
-    - parent
-    values:
-    - _fieldName: parent
-      _node: {fileID: 1260997442532073479}
-      _typeQualifiedName: Common.Logic.BehaviourTreeNode, Assembly-CSharp, Version=0.0.0.0,
-        Culture=neutral, PublicKeyToken=null
-      connections:
-      - fieldName: children 8
-        node: {fileID: 5621059386819808380}
-        reroutePoints: []
-      _direction: 0
-      _connectionType: 1
-      _typeConstraint: 0
-      _dynamic: 0
-  parent: {fileID: 0}
-  Kraken: {fileID: 11400000, guid: 367f109d2d5f6d4438fef1709a289026, type: 2}
-  KrakenCommand: 3
 --- !u!114 &1644727097198127803
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -866,7 +663,7 @@ MonoBehaviour:
   m_Name: Wait
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 1048, y: 2200}
+  position: {x: 568, y: 1896}
   ports:
     keys:
     - parent
@@ -898,7 +695,7 @@ MonoBehaviour:
   m_Name: Wait
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 760, y: 1784}
+  position: {x: 792, y: 1672}
   ports:
     keys:
     - parent
@@ -930,7 +727,7 @@ MonoBehaviour:
   m_Name: Log Message
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 920, y: 472}
+  position: {x: 392, y: 632}
   ports:
     keys:
     - parent
@@ -963,7 +760,7 @@ MonoBehaviour:
   m_Name: Move To Destination
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 728, y: 1928}
+  position: {x: 792, y: 1768}
   ports:
     keys:
     - parent
@@ -996,7 +793,7 @@ MonoBehaviour:
   m_Name: Kraken
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 424, y: 216}
+  position: {x: 376, y: 296}
   ports:
     keys:
     - parent
@@ -1006,7 +803,7 @@ MonoBehaviour:
       _typeQualifiedName: Common.Logic.BehaviourTreeNode, Assembly-CSharp, Version=0.0.0.0,
         Culture=neutral, PublicKeyToken=null
       connections:
-      - fieldName: children 7
+      - fieldName: children 6
         node: {fileID: 5621059386819808380}
         reroutePoints: []
       _direction: 0
@@ -1029,7 +826,7 @@ MonoBehaviour:
   m_Name: Kraken
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 440, y: -600}
+  position: {x: 376, y: -456}
   ports:
     keys:
     - parent
@@ -1062,7 +859,7 @@ MonoBehaviour:
   m_Name: Repeater
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 392, y: 2264}
+  position: {x: 120, y: 1896}
   ports:
     keys:
     - parent
@@ -1073,7 +870,7 @@ MonoBehaviour:
       _typeQualifiedName: Common.Logic.BehaviourTreeNode, Assembly-CSharp, Version=0.0.0.0,
         Culture=neutral, PublicKeyToken=null
       connections:
-      - fieldName: children 7
+      - fieldName: children 4
         node: {fileID: -1149866924915716057}
         reroutePoints: []
       _direction: 0
@@ -1108,7 +905,7 @@ MonoBehaviour:
   m_Name: Sequence
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 760, y: 2184}
+  position: {x: 344, y: 1896}
   ports:
     keys:
     - parent
@@ -1181,7 +978,7 @@ MonoBehaviour:
   m_Name: Sequence
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 408, y: 600}
+  position: {x: -24, y: 680}
   ports:
     keys:
     - parent
@@ -1189,15 +986,14 @@ MonoBehaviour:
     - children 0
     - children 1
     - children 2
-    - children 3
     values:
     - _fieldName: parent
       _node: {fileID: 3845309701580279998}
       _typeQualifiedName: Common.Logic.BehaviourTreeNode, Assembly-CSharp, Version=0.0.0.0,
         Culture=neutral, PublicKeyToken=null
       connections:
-      - fieldName: children 10
-        node: {fileID: 5621059386819808380}
+      - fieldName: children 2
+        node: {fileID: -6459993180740922666}
         reroutePoints: []
       _direction: 0
       _connectionType: 1
@@ -1246,20 +1042,7 @@ MonoBehaviour:
         mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
       connections:
       - fieldName: parent
-        node: {fileID: 9204343542754230761}
-        reroutePoints: []
-      _direction: 1
-      _connectionType: 1
-      _typeConstraint: 0
-      _dynamic: 1
-    - _fieldName: children 3
-      _node: {fileID: 3845309701580279998}
-      _typeQualifiedName: System.Collections.Generic.List`1[[Common.Logic.BehaviourTreeNode,
-        Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]],
-        mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
-      connections:
-      - fieldName: parent
-        node: {fileID: 5501381187654434184}
+        node: {fileID: 4607523872186621489}
         reroutePoints: []
       _direction: 1
       _connectionType: 1
@@ -1269,41 +1052,7 @@ MonoBehaviour:
   children:
   - {fileID: 2402323902805104434}
   - {fileID: 7324530942068276831}
-  - {fileID: 9204343542754230761}
-  - {fileID: 5501381187654434184}
---- !u!114 &4176269582927728448
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 02e2f7886b39e564a956715b2dff066c, type: 3}
-  m_Name: Kraken
-  m_EditorClassIdentifier: 
-  graph: {fileID: 11400000}
-  position: {x: 1176, y: 936}
-  ports:
-    keys:
-    - parent
-    values:
-    - _fieldName: parent
-      _node: {fileID: 4176269582927728448}
-      _typeQualifiedName: Common.Logic.BehaviourTreeNode, Assembly-CSharp, Version=0.0.0.0,
-        Culture=neutral, PublicKeyToken=null
-      connections:
-      - fieldName: children 0
-        node: {fileID: 5501381187654434184}
-        reroutePoints: []
-      _direction: 0
-      _connectionType: 1
-      _typeConstraint: 0
-      _dynamic: 0
-  parent: {fileID: 0}
-  Kraken: {fileID: 11400000, guid: 367f109d2d5f6d4438fef1709a289026, type: 2}
-  KrakenCommand: 4
+  - {fileID: 4607523872186621489}
 --- !u!114 &4536120819032894614
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1317,7 +1066,7 @@ MonoBehaviour:
   m_Name: Kraken
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 392, y: 2104}
+  position: {x: 136, y: 1752}
   ports:
     keys:
     - parent
@@ -1327,7 +1076,7 @@ MonoBehaviour:
       _typeQualifiedName: Common.Logic.BehaviourTreeNode, Assembly-CSharp, Version=0.0.0.0,
         Culture=neutral, PublicKeyToken=null
       connections:
-      - fieldName: children 6
+      - fieldName: children 3
         node: {fileID: -1149866924915716057}
         reroutePoints: []
       _direction: 0
@@ -1337,7 +1086,7 @@ MonoBehaviour:
   parent: {fileID: 0}
   Kraken: {fileID: 11400000, guid: 367f109d2d5f6d4438fef1709a289026, type: 2}
   KrakenCommand: 1
---- !u!114 &4890049006033648475
+--- !u!114 &4607523872186621489
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1346,105 +1095,29 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 02e2f7886b39e564a956715b2dff066c, type: 3}
-  m_Name: Kraken
+  m_Script: {fileID: 11500000, guid: dac63727317847c2b64bf5521283d239, type: 3}
+  m_Name: Wait
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 440, y: -472}
+  position: {x: 392, y: 968}
   ports:
     keys:
     - parent
     values:
     - _fieldName: parent
-      _node: {fileID: 4890049006033648475}
+      _node: {fileID: 4607523872186621489}
       _typeQualifiedName: Common.Logic.BehaviourTreeNode, Assembly-CSharp, Version=0.0.0.0,
         Culture=neutral, PublicKeyToken=null
       connections:
       - fieldName: children 2
-        node: {fileID: 5621059386819808380}
-        reroutePoints: []
-      _direction: 0
-      _connectionType: 1
-      _typeConstraint: 0
-      _dynamic: 0
-  parent: {fileID: 0}
-  Kraken: {fileID: 11400000, guid: 367f109d2d5f6d4438fef1709a289026, type: 2}
-  KrakenCommand: 2
---- !u!114 &5501381187654434184
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8e772177ec228b14f9902c9587fabdd4, type: 3}
-  m_Name: Parallel
-  m_EditorClassIdentifier: 
-  graph: {fileID: 11400000}
-  position: {x: 888, y: 904}
-  ports:
-    keys:
-    - parent
-    - children
-    - children 0
-    - children 1
-    values:
-    - _fieldName: parent
-      _node: {fileID: 5501381187654434184}
-      _typeQualifiedName: Common.Logic.BehaviourTreeNode, Assembly-CSharp, Version=0.0.0.0,
-        Culture=neutral, PublicKeyToken=null
-      connections:
-      - fieldName: children 3
         node: {fileID: 3845309701580279998}
         reroutePoints: []
       _direction: 0
       _connectionType: 1
       _typeConstraint: 0
       _dynamic: 0
-    - _fieldName: children
-      _node: {fileID: 5501381187654434184}
-      _typeQualifiedName: System.Collections.Generic.List`1[[Common.Logic.BehaviourTreeNode,
-        Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]],
-        mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
-      connections: []
-      _direction: 1
-      _connectionType: 1
-      _typeConstraint: 0
-      _dynamic: 0
-    - _fieldName: children 0
-      _node: {fileID: 5501381187654434184}
-      _typeQualifiedName: System.Collections.Generic.List`1[[Common.Logic.BehaviourTreeNode,
-        Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]],
-        mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
-      connections:
-      - fieldName: parent
-        node: {fileID: 4176269582927728448}
-        reroutePoints: []
-      _direction: 1
-      _connectionType: 1
-      _typeConstraint: 0
-      _dynamic: 1
-    - _fieldName: children 1
-      _node: {fileID: 5501381187654434184}
-      _typeQualifiedName: System.Collections.Generic.List`1[[Common.Logic.BehaviourTreeNode,
-        Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]],
-        mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
-      connections:
-      - fieldName: parent
-        node: {fileID: -1030022816041908168}
-        reroutePoints: []
-      _direction: 1
-      _connectionType: 1
-      _typeConstraint: 0
-      _dynamic: 1
   parent: {fileID: 0}
-  children:
-  - {fileID: 4176269582927728448}
-  - {fileID: -1030022816041908168}
-  complete: 1
-  fail: 0
+  time: 7
 --- !u!114 &5621059386819808380
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1458,7 +1131,7 @@ MonoBehaviour:
   m_Name: Sequence
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: -248, y: -104}
+  position: {x: -280, y: -72}
   ports:
     keys:
     - parent
@@ -1471,16 +1144,13 @@ MonoBehaviour:
     - children 5
     - children 6
     - children 7
-    - children 8
-    - children 9
-    - children 10
     values:
     - _fieldName: parent
       _node: {fileID: 5621059386819808380}
       _typeQualifiedName: Common.Logic.BehaviourTreeNode, Assembly-CSharp, Version=0.0.0.0,
         Culture=neutral, PublicKeyToken=null
       connections:
-      - fieldName: children 2
+      - fieldName: children 1
         node: {fileID: -6459993180740922666}
         reroutePoints: []
       _direction: 0
@@ -1530,7 +1200,7 @@ MonoBehaviour:
         mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
       connections:
       - fieldName: parent
-        node: {fileID: 4890049006033648475}
+        node: {fileID: -7116514453330158898}
         reroutePoints: []
       _direction: 1
       _connectionType: 1
@@ -1543,7 +1213,7 @@ MonoBehaviour:
         mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
       connections:
       - fieldName: parent
-        node: {fileID: -7116514453330158898}
+        node: {fileID: -6222775601332516583}
         reroutePoints: []
       _direction: 1
       _connectionType: 1
@@ -1556,7 +1226,7 @@ MonoBehaviour:
         mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
       connections:
       - fieldName: parent
-        node: {fileID: -6222775601332516583}
+        node: {fileID: -2334686401019308472}
         reroutePoints: []
       _direction: 1
       _connectionType: 1
@@ -1569,7 +1239,7 @@ MonoBehaviour:
         mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
       connections:
       - fieldName: parent
-        node: {fileID: -2334686401019308472}
+        node: {fileID: -7231223076133873212}
         reroutePoints: []
       _direction: 1
       _connectionType: 1
@@ -1582,7 +1252,7 @@ MonoBehaviour:
         mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
       connections:
       - fieldName: parent
-        node: {fileID: -7231223076133873212}
+        node: {fileID: 2636576481410109076}
         reroutePoints: []
       _direction: 1
       _connectionType: 1
@@ -1595,46 +1265,7 @@ MonoBehaviour:
         mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
       connections:
       - fieldName: parent
-        node: {fileID: 2636576481410109076}
-        reroutePoints: []
-      _direction: 1
-      _connectionType: 1
-      _typeConstraint: 0
-      _dynamic: 1
-    - _fieldName: children 8
-      _node: {fileID: 5621059386819808380}
-      _typeQualifiedName: System.Collections.Generic.List`1[[Common.Logic.BehaviourTreeNode,
-        Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]],
-        mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
-      connections:
-      - fieldName: parent
-        node: {fileID: 1260997442532073479}
-        reroutePoints: []
-      _direction: 1
-      _connectionType: 1
-      _typeConstraint: 0
-      _dynamic: 1
-    - _fieldName: children 9
-      _node: {fileID: 5621059386819808380}
-      _typeQualifiedName: System.Collections.Generic.List`1[[Common.Logic.BehaviourTreeNode,
-        Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]],
-        mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
-      connections:
-      - fieldName: parent
         node: {fileID: 6802363886668319652}
-        reroutePoints: []
-      _direction: 1
-      _connectionType: 1
-      _typeConstraint: 0
-      _dynamic: 1
-    - _fieldName: children 10
-      _node: {fileID: 5621059386819808380}
-      _typeQualifiedName: System.Collections.Generic.List`1[[Common.Logic.BehaviourTreeNode,
-        Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]],
-        mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
-      connections:
-      - fieldName: parent
-        node: {fileID: 3845309701580279998}
         reroutePoints: []
       _direction: 1
       _connectionType: 1
@@ -1644,15 +1275,12 @@ MonoBehaviour:
   children:
   - {fileID: -3628735228314503667}
   - {fileID: 2698705812210701865}
-  - {fileID: 4890049006033648475}
   - {fileID: -7116514453330158898}
   - {fileID: -6222775601332516583}
   - {fileID: -2334686401019308472}
   - {fileID: -7231223076133873212}
   - {fileID: 2636576481410109076}
-  - {fileID: 1260997442532073479}
   - {fileID: 6802363886668319652}
-  - {fileID: 3845309701580279998}
 --- !u!114 &6109269472136077785
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1666,7 +1294,7 @@ MonoBehaviour:
   m_Name: Kraken
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 616, y: 1432}
+  position: {x: 136, y: 1400}
   ports:
     keys:
     - parent
@@ -1676,7 +1304,7 @@ MonoBehaviour:
       _typeQualifiedName: Common.Logic.BehaviourTreeNode, Assembly-CSharp, Version=0.0.0.0,
         Culture=neutral, PublicKeyToken=null
       connections:
-      - fieldName: children 2
+      - fieldName: children 1
         node: {fileID: -1149866924915716057}
         reroutePoints: []
       _direction: 0
@@ -1699,7 +1327,7 @@ MonoBehaviour:
   m_Name: Wait
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 408, y: 504}
+  position: {x: 376, y: 424}
   ports:
     keys:
     - parent
@@ -1709,7 +1337,7 @@ MonoBehaviour:
       _typeQualifiedName: Common.Logic.BehaviourTreeNode, Assembly-CSharp, Version=0.0.0.0,
         Culture=neutral, PublicKeyToken=null
       connections:
-      - fieldName: children 9
+      - fieldName: children 7
         node: {fileID: 5621059386819808380}
         reroutePoints: []
       _direction: 0
@@ -1731,7 +1359,7 @@ MonoBehaviour:
   m_Name: Use Weapon
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 904, y: 616}
+  position: {x: 376, y: 792}
   ports:
     keys:
     - parent
@@ -1795,7 +1423,7 @@ MonoBehaviour:
   m_Name: Use Weapon
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 1048, y: 2296}
+  position: {x: 568, y: 2008}
   ports:
     keys:
     - parent
@@ -1827,7 +1455,7 @@ MonoBehaviour:
   m_Name: Wait
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 1128, y: -24}
+  position: {x: 808, y: -24}
   ports:
     keys:
     - parent
@@ -1846,36 +1474,3 @@ MonoBehaviour:
       _dynamic: 0
   parent: {fileID: 0}
   time: 5
---- !u!114 &9204343542754230761
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 02e2f7886b39e564a956715b2dff066c, type: 3}
-  m_Name: Kraken
-  m_EditorClassIdentifier: 
-  graph: {fileID: 11400000}
-  position: {x: 904, y: 744}
-  ports:
-    keys:
-    - parent
-    values:
-    - _fieldName: parent
-      _node: {fileID: 9204343542754230761}
-      _typeQualifiedName: Common.Logic.BehaviourTreeNode, Assembly-CSharp, Version=0.0.0.0,
-        Culture=neutral, PublicKeyToken=null
-      connections:
-      - fieldName: children 2
-        node: {fileID: 3845309701580279998}
-        reroutePoints: []
-      _direction: 0
-      _connectionType: 1
-      _typeConstraint: 0
-      _dynamic: 0
-  parent: {fileID: 0}
-  Kraken: {fileID: 11400000, guid: 367f109d2d5f6d4438fef1709a289026, type: 2}
-  KrakenCommand: 2
