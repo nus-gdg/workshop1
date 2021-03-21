@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Kraken Spiral
+  m_Name: Kraken Projectiles
   m_Shader: {fileID: -6465566751694194690, guid: 89571ebcd4f29d748b2ab35402ca9a66,
     type: 3}
   m_ShaderKeywords: ETC1_EXTERNAL_ALPHA
@@ -25,5 +25,5 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
-    - Vector1_75519363: 2
+    - Vector1_75519363: 10
     m_Colors: []

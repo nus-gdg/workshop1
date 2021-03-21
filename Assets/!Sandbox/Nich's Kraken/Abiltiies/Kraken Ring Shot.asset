@@ -9,6 +9,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 84d44e4b5f8840439f096e3734126ab1, type: 3}
-  m_Name: KrakenWeapon
+  m_Script: {fileID: 11500000, guid: 6a8c63e9c1c64d72b4b99a46dfc89c70, type: 3}
+  m_Name: Kraken Ring Shot
   m_EditorClassIdentifier: 
+  cooldown: 0
+  bulletPrefab: {fileID: 1591761032338484887, guid: b8f01b3680ff0fe459641375c7771407,
+    type: 3}
+  damage: 10
+  force: 4
+  size: 20
