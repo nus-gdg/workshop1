@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
+using Unity.Collections;
 
 namespace Combat
 {
@@ -9,20 +10,17 @@ namespace Combat
         // Make certain fields readonly? Add event system for death. 
 
         public int maxHealth = 100;
-        public int currentHealth;
         public int dieValue = 0;
         public Slider healthSlider;
-        public int fortesting = 0;
+        //need custom code to make it readonly?
+        public int currentHealth;
 
         // Start is called before the first frame update
         void Start()
         {
-            /*
             ResetHealth();
-            */
         }
 
-        // Update is called once per frame
         /*
         void Update()
         {
@@ -35,23 +33,35 @@ namespace Combat
 
         //do damage
         public void Damage(int amt) {
-            currentHealth -= amt;
-            if (currentHealth < dieValue) {
+            SetHealth(currentHealth - amt);
+            if (currentHealth <= dieValue) {
                 Die();
             }
 
             healthSlider.value = (float) currentHealth/maxHealth;
         }
 
+        void ResetHealth() {
+            SetHealth(maxHealth);
+        }
+
+        void SetHealth(int newHealth) {
+            currentHealth = newHealth;
+            healthSlider.value = (float) currentHealth/maxHealth;
+        }
+
+        public delegate void Death();
+        public event Death OnDeath;
         void Die() {
             //what to do when dead
             Debug.Log("deadlol");
+            if (OnDeath != null) {
+                OnDeath();
+                Debug.Log("calling ondeath");
+            }
             // ResetHealth();
-        }
-
-        void ResetHealth() {
-            currentHealth = maxHealth;
-            healthSlider.value = 1;
+            //destroy the whole thing
+            Destroy(transform.parent.gameObject);
         }
     }
 }

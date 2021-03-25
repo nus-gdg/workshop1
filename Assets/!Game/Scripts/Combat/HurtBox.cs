@@ -25,6 +25,7 @@ namespace Combat
                 if (damageSource.SourceEntity == null)
                 {
                     damageSource.SourceEntity = other.gameObject;
+                    Debug.Log("hit by: " + other.gameObject.name);
                 }
                 damageReceiver.ApplyDamage(damageSource);
             }
