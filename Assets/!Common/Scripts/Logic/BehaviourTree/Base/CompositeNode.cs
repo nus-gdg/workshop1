@@ -18,9 +18,9 @@ namespace Common.Logic
         [SerializeField]
         protected List<BehaviourTreeNode> children;
 
-        public override void Load(BehaviourTreeController controller)
+        public override void LoadController(BehaviourTreeController controller)
         {
-            base.Load(controller);
+            base.LoadController(controller);
             for (int i = 0; i < children.Count; i++)
             {
                 var child = children[i];
@@ -29,13 +29,13 @@ namespace Common.Logic
                     continue;
                 }
 
-                child.Load(controller);
+                child.LoadController(controller);
             }
         }
 
-        public override void Unload(BehaviourTreeController controller)
+        public override void ClearController(BehaviourTreeController controller)
         {
-            base.Unload(controller);
+            base.ClearController(controller);
             for (int i = 0; i < children.Count; i++)
             {
                 var child = children[i];
@@ -44,7 +44,7 @@ namespace Common.Logic
                     continue;
                 }
 
-                child.Unload(controller);
+                child.ClearController(controller);
             }
         }
 
