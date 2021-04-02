@@ -15,10 +15,10 @@ namespace Common.Logic
     public class BehaviourTree : NodeGraph
     {
         public RootNode root;
-        
+
         public Dictionary<BehaviourTreeController, HashSet<Monitor>> monitorsByController =
             new Dictionary<BehaviourTreeController, HashSet<Monitor>>();
-        
+
         public Color nodeCompleted = new Color32(45, 76, 37, 255);
         public Color nodeRunning = new Color32(76, 66, 33, 255);
         public Color nodeFailed = new Color32(76, 39, 28, 255);
@@ -34,7 +34,7 @@ namespace Common.Logic
             root.Load(controller);
             monitorsByController[controller] = new HashSet<Monitor>();
         }
-        
+
         public virtual void Unload(BehaviourTreeController controller)
         {
             root.Unload(controller);
@@ -63,7 +63,7 @@ namespace Common.Logic
         {
             monitorsByController[controller].Add(monitor);
         }
-        
+
         public void RemoveMonitor(BehaviourTreeController controller, Monitor monitor)
         {
             monitorsByController.Remove(controller);
@@ -116,7 +116,7 @@ namespace Common.Logic
             NodeEditorWindow.current.SelectNode(_behaviourTree.root, false);
             NodeEditorWindow.current.Home();
         }
-        
+
         public override void OnGUI()
         {
             if (!EditorApplication.isPlaying)
