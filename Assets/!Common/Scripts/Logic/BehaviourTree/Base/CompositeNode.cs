@@ -1,7 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
-using XNode;
 #if UNITY_EDITOR
 using XNodeEditor;
 #endif
@@ -18,9 +17,9 @@ namespace Common.Logic
         [SerializeField]
         protected List<BehaviourTreeNode> children;
 
-        public override void LoadController(BehaviourTreeController controller)
+        public override void ResetController(BehaviourTreeController controller)
         {
-            base.LoadController(controller);
+            base.ResetController(controller);
             for (int i = 0; i < children.Count; i++)
             {
                 var child = children[i];
@@ -29,13 +28,13 @@ namespace Common.Logic
                     continue;
                 }
 
-                child.LoadController(controller);
+                child.ResetController(controller);
             }
         }
 
-        public override void ClearController(BehaviourTreeController controller)
+        public override void RemoveController(BehaviourTreeController controller)
         {
-            base.ClearController(controller);
+            base.RemoveController(controller);
             for (int i = 0; i < children.Count; i++)
             {
                 var child = children[i];
@@ -44,40 +43,13 @@ namespace Common.Logic
                     continue;
                 }
 
-                child.ClearController(controller);
+                child.RemoveController(controller);
             }
         }
 
-        public override void Enter(BehaviourTreeController controller)
+        protected override void Serialize()
         {
-            for (int i = 0; i < children.Count; i++)
-            {
-                var child = children[i];
-                if (child == null)
-                {
-                    continue;
-                }
-                child.SetStatus(controller, Status.Ready);
-            }
-        }
-
-        protected override void Init()
-        {
-            OnValidate();
-        }
-
-        public override void OnCreateConnection(NodePort from, NodePort to)
-        {
-            OnValidate();
-        }
-
-        public override void OnRemoveConnection(NodePort port)
-        {
-            OnValidate();
-        }
-
-        private void OnValidate()
-        {
+            // Serialize all child ports
             var outputPorts = DynamicOutputs.ToArray();
             for (int i = 0; i < outputPorts.Length; i++)
             {

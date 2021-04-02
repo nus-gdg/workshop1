@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using XNode;
 #if UNITY_EDITOR
@@ -27,53 +26,6 @@ namespace Common.Logic
         /// </summary>
         private Dictionary<BehaviourTreeController, Status> _statusOfControllers =
             new Dictionary<BehaviourTreeController, Status>();
-
-        /// <summary>
-        /// Resets the node status for the given controller.
-        /// </summary>
-        public virtual void LoadController(BehaviourTreeController controller)
-        {
-            _statusOfControllers[controller] = Status.Ready;
-        }
-        
-        /// <summary>
-        /// Clears the node status for the given controller.
-        /// </summary>
-        public virtual void ClearController(BehaviourTreeController controller)
-        {
-            _statusOfControllers.Remove(controller);
-        }
-
-        /// <summary>
-        /// Returns the node status for the given controller.
-        /// </summary>
-        public Status GetStatus(BehaviourTreeController controller)
-        {
-            try
-            {
-                return _statusOfControllers[controller];
-            }
-            catch (Exception e)
-            {
-                throw new KeyNotFoundException($"{name} has not been loaded into the Behaviour Tree '{graph.name}'", e);
-            }
-        }
-
-        /// <summary>
-        /// Returns true if the node status for the given controller equals the given <paramref name="status"/>.
-        /// </summary>
-        public bool IsStatus(BehaviourTreeController controller, Status status)
-        {
-            return GetStatus(controller) == status;
-        }
-
-        /// <summary>
-        /// Sets the node status for the given controller.
-        /// </summary>
-        public void SetStatus(BehaviourTreeController controller, Status status)
-        {
-            _statusOfControllers[controller] = status;
-        }
 
         /// <summary>
         /// Updates the node status for the given controller.
@@ -107,19 +59,71 @@ namespace Common.Logic
         }
 
         /// <summary>
-        /// Runs an update for the controller and returns the on-going status.
-        /// </summary>
-        public abstract Status Evaluate(BehaviourTreeController controller);
-
-        /// <summary>
         /// Runs a setup for the controller before evaluating it.
         /// </summary>
         public virtual void Enter(BehaviourTreeController controller) { }
         
         /// <summary>
+        /// Runs an update for the controller and returns the on-going status.
+        /// </summary>
+        public abstract Status Evaluate(BehaviourTreeController controller);
+        
+        /// <summary>
         /// Runs a teardown for the controller after evaluating it.
         /// </summary>
         public virtual void Exit(BehaviourTreeController controller) { }
+
+        /// <summary>
+        /// Returns the node status for the given controller.
+        /// </summary>
+        public Status GetStatus(BehaviourTreeController controller)
+        {
+            if (!_statusOfControllers.TryGetValue(controller, out Status status))
+            {
+                return Status.Ready;
+            }
+            return status;
+        }
+
+        /// <summary>
+        /// Returns true if the node status for the given controller equals the given <paramref name="status"/>.
+        /// </summary>
+        public bool IsStatus(BehaviourTreeController controller, Status status)
+        {
+            return GetStatus(controller) == status;
+        }
+
+        /// <summary>
+        /// Sets the node status for the given controller.
+        /// </summary>
+        public void SetStatus(BehaviourTreeController controller, Status status)
+        {
+            _statusOfControllers[controller] = status;
+        }
+        
+        /// <summary>
+        /// Resets the node status for the given controller.
+        /// </summary>
+        public virtual void ResetController(BehaviourTreeController controller)
+        {
+            _statusOfControllers[controller] = Status.Ready;
+        }
+        
+        /// <summary>
+        /// Resets the node status for all controllers running this node.
+        /// </summary>
+        public virtual void ResetControllers()
+        {
+            _statusOfControllers.Clear();
+        }
+        
+        /// <summary>
+        /// Clears the node status for the given controller.
+        /// </summary>
+        public virtual void RemoveController(BehaviourTreeController controller)
+        {
+            _statusOfControllers.Remove(controller);
+        }
 
         /// <summary>
         /// Serializes the references to connected nodes in the editor.
@@ -143,6 +147,31 @@ namespace Common.Logic
             // Return a dummy value since this method is not being used.
             return this;
         }
+        
+        protected override void Init()
+        {
+            OnValidate();
+        }
+        
+        public override void OnCreateConnection(NodePort from, NodePort to)
+        {
+            OnValidate();
+        }
+        
+        public override void OnRemoveConnection(NodePort port)
+        {
+            OnValidate();
+        }
+
+        private void OnValidate()
+        {
+            Serialize();
+        }
+
+        /// <summary>
+        /// Serializes custom node properties.
+        /// </summary>
+        protected virtual void Serialize() { }
     }
 
     #if UNITY_EDITOR

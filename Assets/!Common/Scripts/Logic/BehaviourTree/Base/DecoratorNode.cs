@@ -1,5 +1,4 @@
 using UnityEngine;
-using XNode;
 #if UNITY_EDITOR
 using XNodeEditor;
 #endif
@@ -16,52 +15,29 @@ namespace Common.Logic
         [SerializeField]
         protected BehaviourTreeNode child;
 
-        public override void LoadController(BehaviourTreeController controller)
+        public override void ResetController(BehaviourTreeController controller)
         {
-            base.LoadController(controller);
+            base.ResetController(controller);
             if (child == null)
             {
                 return;
             }
-            child.LoadController(controller);
+            child.ResetController(controller);
         }
 
-        public override void ClearController(BehaviourTreeController controller)
+        public override void RemoveController(BehaviourTreeController controller)
         {
-            base.ClearController(controller);
+            base.RemoveController(controller);
             if (child == null)
             {
                 return;
             }
-            child.ClearController(controller);
-        }
-        
-        public override void Enter(BehaviourTreeController controller)
-        {
-            if (child == null)
-            {
-                return;
-            }
-            child.SetStatus(controller, Status.Ready);
+            child.RemoveController(controller);
         }
 
-        protected override void Init()
+        protected override void Serialize()
         {
-            OnValidate();
-        }
-
-        public override void OnCreateConnection(NodePort from, NodePort to)
-        {
-            OnValidate();
-        }
-
-        public override void OnRemoveConnection(NodePort port)
-        {
-            OnValidate();
-        }
-
-        private void OnValidate()
-        {
+            // Serialize child port
             var outputPort = GetOutputPort("child");
             child = GetConnectedNode(outputPort);
         }

@@ -1,5 +1,4 @@
 using UnityEngine;
-using XNode;
 #if UNITY_EDITOR
 using XNodeEditor;
 #endif
@@ -13,56 +12,52 @@ namespace Common.Logic
         [SerializeField]
         private BehaviourTreeNode child;
 
-        public override void LoadController(BehaviourTreeController controller)
-        {
-            base.LoadController(controller);
-            if (child == null)
-            {
-                return;
-            }
-            child.LoadController(controller);
-        }
-        
-        public override void ClearController(BehaviourTreeController controller)
-        {
-            base.ClearController(controller);
-            if (child == null)
-            {
-                return;
-            }
-            child.ClearController(controller);
-        }
-
+        /// <summary>
+        /// Starts the evaluation of the behaviour tree for the given controller.
+        /// <br/>
+        /// If the root node completed or failed in the previous tick,
+        /// resets the node status of the controller before ticking.
+        /// </summary>
         public override Status Evaluate(BehaviourTreeController controller)
         {
+            // Return completed when there is no child.
             if (child == null)
             {
                 return Status.Completed;
             }
+            
+            // Reset if the last tick completed or failed.
             if (!child.IsStatus(controller, Status.Running))
             {
-                child.SetStatus(controller, Status.Ready);
+                child.ResetController(controller);
             }
+
             return child.Tick(controller);
         }
 
-        protected override void Init()
+        public override void ResetController(BehaviourTreeController controller)
         {
-            OnValidate();
+            base.ResetController(controller);
+            if (child == null)
+            {
+                return;
+            }
+            child.ResetController(controller);
+        }
+        
+        public override void RemoveController(BehaviourTreeController controller)
+        {
+            base.RemoveController(controller);
+            if (child == null)
+            {
+                return;
+            }
+            child.RemoveController(controller);
         }
 
-        public override void OnCreateConnection(NodePort from, NodePort to)
+        protected override void Serialize()
         {
-            OnValidate();
-        }
-
-        public override void OnRemoveConnection(NodePort port)
-        {
-            OnValidate();
-        }
-
-        private void OnValidate()
-        {
+            // Serialize child port
             var outputPort = GetOutputPort("child");
             child = GetConnectedNode(outputPort);
         }

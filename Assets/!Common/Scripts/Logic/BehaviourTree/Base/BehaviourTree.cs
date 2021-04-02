@@ -22,8 +22,8 @@ namespace Common.Logic
         /// <summary>
         /// The list of monitored nodes for each controller using this behaviour tree.
         /// </summary>
-        public Dictionary<BehaviourTreeController, HashSet<Monitor>> monitorsByController =
-            new Dictionary<BehaviourTreeController, HashSet<Monitor>>();
+        public Dictionary<BehaviourTreeController, List<Monitor>> monitorsByController =
+            new Dictionary<BehaviourTreeController, List<Monitor>>();
 
 #if UNITY_EDITOR
 
@@ -43,43 +43,35 @@ namespace Common.Logic
 #endif
 
         /// <summary>
-        /// Adds the controller to the behaviour tree.
-        /// </summary>
-        public virtual void LoadController(BehaviourTreeController controller)
-        {
-            root.LoadController(controller);
-            monitorsByController[controller] = new HashSet<Monitor>();
-        }
-
-        /// <summary>
-        /// Removes the controller from the behaviour tree.
-        /// </summary>
-        public virtual void ClearController(BehaviourTreeController controller)
-        {
-            root.ClearController(controller);
-            monitorsByController.Remove(controller);
-        }
-
-        /// <summary>
         /// Ticks the behaviour tree.
-        /// Monitored nodes are ticked before other nodes.
+        /// <para/>
+        /// The following is the sequence of events that occur every tick:
+        /// Monitors -> Services -> Nodes.
         /// </summary>
-        public BehaviourTreeNode.Status Tick(BehaviourTreeController controller)
+        public void Tick(BehaviourTreeController controller)
         {
             TickMonitors(controller);
-            return root.Tick(controller);
+            TickNodes(controller);
         }
 
         private void TickMonitors(BehaviourTreeController controller)
         {
-            foreach (var monitor in monitorsByController[controller])
+            var monitors = monitorsByController[controller];
+            for (int i = 0; i < monitors.Count; i++)
             {
-                var result = monitor.TickCondition(controller);
+                // Reset when a monitor returns a completed status.
+                var result = monitors[i].Refresh(controller);
                 if (result == BehaviourTreeNode.Status.Completed)
                 {
-                    LoadController(controller);
+                    ResetController(controller);
+                    break;
                 }
             }
+        }
+
+        private void TickNodes(BehaviourTreeController controller)
+        {
+            root.Tick(controller);
         }
 
         /// <summary>
@@ -111,6 +103,44 @@ namespace Common.Logic
                 root = node as RootNode;
             }
             return node;
+        }
+
+        /// <summary>
+        /// Resets the node status for the given behaviour tree controller.
+        /// </summary>
+        public virtual void ResetController(BehaviourTreeController controller)
+        {
+            root.ResetController(controller);
+            monitorsByController[controller] = new List<Monitor>();
+        }
+
+        /// <summary>
+        /// Resets the node status for all controllers running this behaviour tree.
+        /// </summary>
+        public virtual void ResetControllers()
+        {
+            root.ResetControllers();
+            foreach (var controller in monitorsByController.Keys)
+            {
+                monitorsByController[controller] = new List<Monitor>();
+            }
+        }
+
+        /// <summary>
+        /// Removes the node status for the given behaviour tree controller.
+        /// </summary>
+        public virtual void RemoveController(BehaviourTreeController controller)
+        {
+            root.RemoveController(controller);
+            monitorsByController.Remove(controller);
+        }
+
+        /// <summary>
+        /// Refreshes the graph editor after making changes.
+        /// </summary>
+        private void OnValidate()
+        {
+            ResetControllers();
         }
     }
 
