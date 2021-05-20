@@ -1,3 +1,4 @@
+using Project.Models;
 using UnityEngine;
 
 namespace Project.Data
@@ -14,6 +15,26 @@ namespace Project.Data
         {
             saveDataStorage.FilePath = saveDataFilePath;
             userPrefsStorage.FilePath = userPrefsFilePath;
+        }
+
+        public SaveData ReadSaveData()
+        {
+            return saveDataStorage.ReadData();
+        }
+
+        public UserPrefs ReadUserPrefs()
+        {
+            return userPrefsStorage.ReadData();
+        }
+
+        public void WriteSaveData(SaveData saveData)
+        {
+            saveDataStorage.WriteData(saveData);
+        }
+
+        public void WriteUserPrefs(UserPrefs userPrefs)
+        {
+            userPrefsStorage.WriteData(userPrefs);
         }
     }
 }

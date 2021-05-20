@@ -1,3 +1,4 @@
+using Project.Models;
 using UnityEngine;
 
 namespace Project.Data
@@ -10,5 +11,15 @@ namespace Project.Data
         }
 
         public string FilePath { get; set; }
+
+        public UserPrefs ReadData()
+        {
+            return new UserPrefs();
+        }
+
+        public void WriteData(UserPrefs data)
+        {
+            // Write to json file
+        }
     }
 }
