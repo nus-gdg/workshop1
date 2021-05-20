@@ -9,9 +9,6 @@ namespace Project.Views.Controllers
     public class CameraController : MonoBehaviour
     {
         [SerializeField]
-        private WorldView view;
-
-        [SerializeField]
         private CameraLogic defaultCameraLogic;
 
         [SerializeField]
@@ -19,6 +16,8 @@ namespace Project.Views.Controllers
 
         private new Camera camera;
         private Stack<CameraLogic> cameraLogicStack;
+
+        private WorldView _view;
 
         private Vector3 velocity = Vector3.zero;
         private float zoomSpeed = 0.0f;
@@ -60,9 +59,9 @@ namespace Project.Views.Controllers
             PushCameraLogic(defaultCameraLogic);
         }
 
-        public void Init()
+        public void Init(WorldView view)
         {
-
+            _view = view;
         }
 
         void OnApplicationQuit()
@@ -73,7 +72,7 @@ namespace Project.Views.Controllers
 
         void LateUpdate()
         {
-            cameraLogicStack.Peek().UpdateCamera(this, view);
+            cameraLogicStack.Peek().UpdateCamera(this, _view);
         }
 
         void FixedUpdate()
@@ -92,7 +91,7 @@ namespace Project.Views.Controllers
         public void PushCameraLogic(CameraLogic cameraLogic)
         {
             cameraLogicStack.Push(cameraLogic);
-            cameraLogicStack.Peek().InitCamera(this, view);
+            cameraLogicStack.Peek().InitCamera(this, _view);
         }
 
         /// <summary>
@@ -106,7 +105,7 @@ namespace Project.Views.Controllers
                 return;
             }
             cameraLogicStack.Pop();
-            cameraLogicStack.Peek().InitCamera(this, view);
+            cameraLogicStack.Peek().InitCamera(this, _view);
         }
 
         public Vector2 ClampWorldPositionInsideCamera2D(Vector2 worldPosition)

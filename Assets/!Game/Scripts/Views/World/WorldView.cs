@@ -26,7 +26,7 @@ namespace Project.Views.World
 
         public override void Init()
         {
-            camera.Init();
+            camera.Init(this);
             player.Init(this);
             cursor.Init(this);
 
