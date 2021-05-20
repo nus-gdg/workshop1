@@ -7,7 +7,7 @@ using UnityEditor;
 using UnityEditorInternal;
 #endif
 
-namespace World.Floors
+namespace Project.Views.World.Floors
 {
     [Serializable]
     public struct TilemapByFloor
