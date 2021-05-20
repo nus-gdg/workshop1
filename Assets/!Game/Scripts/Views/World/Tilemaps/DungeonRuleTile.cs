@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.Tilemaps;
 
-namespace Tilemaps
+namespace Project.Views.World.Tilemaps
 {
     [CreateAssetMenu]
     public class DungeonRuleTile : RuleTile<DungeonRuleTile.Neighbor>
