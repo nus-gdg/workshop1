@@ -6,8 +6,7 @@ namespace Project.Views.World.Entities
     {
         // Properties
 
-        [SerializeField]
-        private WorldView view;
+        private WorldView _view;
 
         public Vector2 Position
         {
@@ -15,14 +14,15 @@ namespace Project.Views.World.Entities
             private set => transform.position = value;
         }
 
-        public void Init()
+        public void Init(WorldView view)
         {
+            _view = view;
             // Init player cursor in world
         }
 
         private void Update()
         {
-            Position = view.GetWorldMousePosition();
+            Position = _view.GetWorldMousePosition();
         }
     }
 }

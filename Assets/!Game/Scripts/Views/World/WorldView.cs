@@ -28,7 +28,7 @@ namespace Project.Views.World
         {
             camera.Init();
             player.Init(this);
-            cursor.Init();
+            cursor.Init(this);
 
             foreach (var enemy in enemies)
             {
