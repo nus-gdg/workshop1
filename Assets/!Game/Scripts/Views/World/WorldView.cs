@@ -15,6 +15,9 @@ namespace Project.Views.World
         [SerializeField]
         private PlayerCursorUi cursor;
 
+        public Vector3 PlayerPosition => player.transform.position;
+        public Vector3 CursorPosition => cursor.transform.position;
+
         public override void Init()
         {
             camera.Init();
