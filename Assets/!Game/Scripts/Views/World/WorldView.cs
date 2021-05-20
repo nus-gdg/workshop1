@@ -12,10 +12,19 @@ namespace Project.Views.World
         [SerializeField]
         private PlayerUi player;
 
+        [SerializeField]
+        private PlayerCursorUi cursor;
+
         public override void Init()
         {
             camera.Init();
             player.Init();
+            cursor.Init();
+        }
+
+        public Vector3 GetWorldMousePosition()
+        {
+            return camera.GetWorldMousePosition();
         }
     }
 }
