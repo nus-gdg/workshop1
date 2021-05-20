@@ -40,10 +40,14 @@ SpriteAtlas:
       allowAlphaSplitting: 0
       enableRotation: 1
       enableTightPacking: 1
+    secondaryTextureSettings: {}
     variantMultiplier: 1
     packables:
     - {fileID: 2800000, guid: a51e743cd78e513489bb4b23cd3d13f2, type: 3}
+    totalSpriteSurfaceArea: 122880
     bindAsDefault: 1
+    isAtlasV2: 0
+    cachedData: {fileID: 0}
   m_MasterAtlas: {fileID: 0}
   m_PackedSprites:
   - {fileID: 21300068, guid: a51e743cd78e513489bb4b23cd3d13f2, type: 3}
@@ -107,5 +111,6 @@ SpriteAtlas:
   - Pebbles_11
   - Pebbles_05
   - Pebbles_04
+  m_RenderDataMap: {}
   m_Tag: Terrain Tiles
   m_IsVariant: 0
