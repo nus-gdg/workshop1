@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 using UnityEditor;
 #endif
 
-namespace Core.Levels
+namespace Project.Models.Levels
 {
 
     [CreateAssetMenu(fileName = "Level", menuName = "ScriptableObjects/Progression/Level")]

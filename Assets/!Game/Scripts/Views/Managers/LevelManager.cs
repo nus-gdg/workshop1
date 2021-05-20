@@ -1,6 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using Core.Levels;
+using Project.Models.Levels;
 using UnityEngine;
 using UnityEngine.Assertions;
 using UnityEngine.SceneManagement;
