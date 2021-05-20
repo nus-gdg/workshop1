@@ -32,7 +32,7 @@ namespace Project.Views.World
 
             foreach (var enemy in enemies)
             {
-                enemy.Init();
+                enemy.Init(this);
             }
         }
 
