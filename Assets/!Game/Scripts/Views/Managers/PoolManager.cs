@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Core.Managers
+namespace Project.Views.Managers
 {
     /* Notes:
      * 1) Get a reference to this class (should be a singleton placed with 

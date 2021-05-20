@@ -4,11 +4,12 @@ using Core.Levels;
 using UnityEngine;
 using UnityEngine.Assertions;
 using UnityEngine.SceneManagement;
+using UnitySceneManager = UnityEngine.SceneManagement.SceneManager;
 #if UNITY_EDITOR
 using UnityEditor;
 #endif
 
-namespace Core.Managers
+namespace Project.Views.Managers
 {
     public class LevelManager : MonoBehaviour
     {
@@ -22,7 +23,7 @@ namespace Core.Managers
             // Scene scene = SceneManager.GetActiveScene();
             CurrentLevel = ScriptableObject.CreateInstance<Level>();
 #if UNITY_EDITOR
-            CurrentLevel.EditorOnly_SceneAsset = AssetDatabase.LoadAssetAtPath<SceneAsset>(SceneManager.GetActiveScene().path);
+            CurrentLevel.EditorOnly_SceneAsset = AssetDatabase.LoadAssetAtPath<SceneAsset>(UnitySceneManager.GetActiveScene().path);
             EditorOnly_LevelHelper.RefreshBuildSettings();
 #endif
         }
@@ -56,7 +57,7 @@ namespace Core.Managers
             }
 #if UNITY_EDITOR
             string scenePath = AssetDatabase.GetAssetPath(level.EditorOnly_SceneAsset);
-            Scene scene = SceneManager.GetSceneByPath(scenePath);
+            Scene scene = UnitySceneManager.GetSceneByPath(scenePath);
             if (scene.isLoaded)
             {
                 Debug.Log("LevelManager.RequestLoadLevel scene is loaded but not recorded as a level. Did you try to load a scene while its already open? Something went wrong");
@@ -72,7 +73,7 @@ namespace Core.Managers
         {
             Assert.IsNull(CurrentLoadingLevel);
             CurrentLoadingLevel = level;
-            AsyncOperation asyncOp = SceneManager.LoadSceneAsync(level.BuildIndex, LoadSceneMode.Additive);
+            AsyncOperation asyncOp = UnitySceneManager.LoadSceneAsync(level.BuildIndex, LoadSceneMode.Additive);
             while (!asyncOp.isDone)
             {
                 yield return null;
@@ -84,7 +85,7 @@ namespace Core.Managers
         IEnumerator UnloadLevelAsync(Level level)
         {
             UnloadingLevels.Add(level);
-            AsyncOperation asyncOp = SceneManager.UnloadSceneAsync(level.BuildIndex);
+            AsyncOperation asyncOp = UnitySceneManager.UnloadSceneAsync(level.BuildIndex);
             while (!asyncOp.isDone)
             {
                 yield return null;
