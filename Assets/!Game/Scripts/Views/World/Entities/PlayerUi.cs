@@ -1,3 +1,4 @@
+using Project.Views.Combat;
 using Project.Views.Common;
 using UnityEngine;
 
@@ -5,19 +6,16 @@ namespace Project.Views.World.Entities
 {
     public class PlayerUi : MonoBehaviour
     {
-        [SerializeField]
-        private WorldView view;
-
-        [Header("Visuals")]
-        [SerializeField]
-        private SpriteRenderer spriteRenderer;
-
         [Header("Movement")]
         [SerializeField]
         private new Rigidbody2D rigidbody;
 
         [SerializeField]
         private int maxSpeed;
+
+        [Header("Weapon")]
+        [SerializeField]
+        private WeaponUi weapon;
 
         [Header("HUD")]
         [SerializeField]
@@ -26,6 +24,8 @@ namespace Project.Views.World.Entities
         [Header("Debug")]
         [SerializeField]
         private bool debug;
+
+        private WorldView _view;
 
         private int _speed = 0;
         private Vector2 _direction = Vector2.down;
@@ -54,11 +54,19 @@ namespace Project.Views.World.Entities
             set => rigidbody.position = value;
         }
 
-        public void Init()
+        public void Init(WorldView view)
         {
+            _view = view;
         }
 
         private void Update()
+        {
+            UpdateMovement();
+            UpdateWeapon();
+            UpdateInteraction();
+        }
+
+        private void UpdateMovement()
         {
             int directionX = 0;
             int directionY = 0;
@@ -89,7 +97,20 @@ namespace Project.Views.World.Entities
                 Speed = MaxSpeed;
                 Direction = new Vector2(directionX, directionY);
             }
+        }
 
+        private void UpdateWeapon()
+        {
+            weapon.Aim(_view.GetWorldMousePosition());
+
+            if (Input.GetMouseButton(0))
+            {
+                weapon.Attack();
+            }
+        }
+
+        private void UpdateInteraction()
+        {
             if (Input.GetKeyDown(KeyCode.Space) && interactable != null)
             {
                 interactable.Interact();
@@ -98,10 +119,6 @@ namespace Project.Views.World.Entities
 
         private void FixedUpdate()
         {
-            // if (view.IsLoadingScene())
-            // {
-            //     return;
-            // }
             rigidbody.MovePosition(Position + Speed * Time.deltaTime * Direction);
             var other = Physics2D.OverlapPoint(Position + Direction.normalized);
             if (other == null)

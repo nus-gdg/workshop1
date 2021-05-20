@@ -27,7 +27,7 @@ namespace Project.Views.World
         public override void Init()
         {
             camera.Init();
-            player.Init();
+            player.Init(this);
             cursor.Init();
 
             foreach (var enemy in enemies)
