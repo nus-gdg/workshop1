@@ -1,6 +1,6 @@
-﻿using Combat;
-using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using Project.Models.Combat;
+using Project.Views.Combat;
 using UnityEngine;
 using UnityEngine.Assertions;
 
@@ -13,7 +13,7 @@ namespace Testing
         void Start()
         {
             // Initial parameters: Fire (x2), Water (x0.5)
-            var receiver = GetComponent<DamageReceiver>();
+            var receiver = GetComponent<DamageReceiverUi>();
             var receiverStats = GetComponent<EntityStats>();
 
             {
