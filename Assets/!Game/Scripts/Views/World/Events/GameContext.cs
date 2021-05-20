@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Core.Events
+namespace Project.Views.World.Events
 {
     public class GameContext
     {

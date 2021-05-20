@@ -1,16 +1,16 @@
-﻿using Core.Levels;
+﻿using Project.Models.Levels;
 using UnityEngine;
 
-namespace Core.Events
+namespace Project.Views.World.Events
 {
-
     [CreateAssetMenu(fileName = "LoadLevelAction", menuName = "ScriptableObjects/GameAction/LoadLevelAction", order = 1)]
     public class LoadLevelAction : GameAction
     {
         public Level Level;
-        public override GameAction.Status Evaluate(GameContext context)
+
+        public override Status Evaluate(GameContext context, WorldView view)
         {
-            return Game.Instance.Levels.RequestLoadLevel(Level) ? GameAction.Status.Success : GameAction.Status.Fail;
+            return view.RequestLoadLevel(Level) ? Status.Success : Status.Fail;
         }
     }
 }

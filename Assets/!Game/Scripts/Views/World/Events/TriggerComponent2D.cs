@@ -1,7 +1,6 @@
-﻿using Core.Events;
-using UnityEngine;
+﻿using UnityEngine;
 
-namespace World.Trigger
+namespace Project.Views.World.Events
 {
     [RequireComponent(typeof(Rigidbody2D))]
     [RequireComponent(typeof(Collider2D))]

@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Core.Events
+namespace Project.Views.World.Events
 {
     public abstract class GameCondition : ScriptableObject
     {
@@ -9,6 +9,6 @@ namespace Core.Events
             True,
             False
         }
-        public abstract Result Evaluate(GameContext context);
+        public abstract Result Evaluate(GameContext context, WorldView view);
     }
 }

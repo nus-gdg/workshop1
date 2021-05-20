@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Core.Events
+namespace Project.Views.World.Events
 {
     public abstract class GroupGameCondition : GameCondition
     {
@@ -10,11 +10,11 @@ namespace Core.Events
     [CreateAssetMenu(fileName = "OrGameCondition", menuName = "ScriptableObjects/GameCondition/OrGameCondition", order = 1)]
     public class OrGameCondition : GroupGameCondition
     {
-        public override Result Evaluate(GameContext context)
+        public override Result Evaluate(GameContext context, WorldView view)
         {
             foreach (GameCondition condition in Conditions)
             {
-                if (condition.Evaluate(context) == Result.True)
+                if (condition.Evaluate(context, view) == Result.True)
                 {
                     return Result.True;
                 }
@@ -26,11 +26,11 @@ namespace Core.Events
     [CreateAssetMenu(fileName = "AndGameCondition", menuName = "ScriptableObjects/GameCondition/AndGameCondition", order = 1)]
     public class AndGameCondition : GroupGameCondition
     {
-        public override Result Evaluate(GameContext context)
+        public override Result Evaluate(GameContext context, WorldView view)
         {
             foreach (GameCondition condition in Conditions)
             {
-                if (condition.Evaluate(context) == Result.False)
+                if (condition.Evaluate(context, view) == Result.False)
                 {
                     return Result.False;
                 }

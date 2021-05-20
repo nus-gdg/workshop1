@@ -1,15 +1,13 @@
 ﻿using UnityEngine;
-using World.Camera;
 
-namespace Core.Events
+namespace Project.Views.World.Events
 {
     [CreateAssetMenu(fileName = "PopCameraLogicAction", menuName = "ScriptableObjects/GameAction/PopCameraLogicAction", order = 1)]
     public class PopCameraLogicAction : GameAction
     {
-        public CameraLogic CameraLogic;
-        public override Status Evaluate(GameContext context)
+        public override Status Evaluate(GameContext context, WorldView view)
         {
-            Core.Game.Instance.World.Camera.PopCameraLogic(CameraLogic);
+            view.PopCameraLogic();
             return Status.Success;
         }
     }

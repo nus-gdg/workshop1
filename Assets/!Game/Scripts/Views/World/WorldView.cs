@@ -1,4 +1,6 @@
+using System;
 using System.Collections.Generic;
+using Project.Models.Levels;
 using Project.Views.Controllers;
 using Project.Views.World.Entities;
 using UnityEngine;
@@ -37,6 +39,21 @@ namespace Project.Views.World
         public Vector3 GetWorldMousePosition()
         {
             return camera.GetWorldMousePosition();
+        }
+
+        public void PushCameraLogic(CameraLogic cameraLogic)
+        {
+            camera.PushCameraLogic(cameraLogic);
+        }
+
+        public void PopCameraLogic()
+        {
+            camera.PopCameraLogic();
+        }
+
+        public bool RequestLoadLevel(Level level)
+        {
+            throw new NotImplementedException();
         }
     }
 }
