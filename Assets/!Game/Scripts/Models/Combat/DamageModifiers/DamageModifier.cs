@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Combat
+namespace Project.Models.Combat
 {
     public struct DamageModifierRuntimeParams
     {

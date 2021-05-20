@@ -1,24 +1,26 @@
-﻿using UnityEngine;
+﻿using Project.Models.Combat;
+using UnityEngine;
 using UnityEngine.Assertions;
 
-namespace Combat
+namespace Project.Views.Combat
 {
     [RequireComponent(typeof(Collider2D))]
     [RequireComponent(typeof(Rigidbody2D))]
-    [RequireComponent(typeof(DamageReceiver))]
-    public class HurtBox : MonoBehaviour
+    [RequireComponent(typeof(DamageReceiverUi))]
+    public class HurtBoxUi : MonoBehaviour
     {
-        private DamageReceiver damageReceiver;
+        private DamageReceiverUi damageReceiver;
+
         void Awake()
         {
-            damageReceiver = GetComponent<DamageReceiver>();
+            damageReceiver = GetComponent<DamageReceiverUi>();
             Collider2D col = GetComponent<Collider2D>();
             Assert.IsTrue(col.isTrigger, "HurtBox expects a trigger collider");
         }
 
         void OnTriggerEnter2D(Collider2D other)
         {
-            HitBox hitbox = other.GetComponent<HitBox>();
+            HitBoxUi hitbox = other.GetComponent<HitBoxUi>();
             if (hitbox != null)
             {
                 DamageSource damageSource = hitbox.DamageSource;
@@ -30,5 +32,4 @@ namespace Combat
             }
         }
     }
-
 }

@@ -1,11 +1,12 @@
-﻿using UnityEngine;
+﻿using Project.Models.Combat;
+using UnityEngine;
 using UnityEngine.Assertions;
 
-namespace Combat
+namespace Project.Views.Combat
 {
 
     [RequireComponent(typeof(Collider2D))]
-    public class HitBox : MonoBehaviour
+    public class HitBoxUi : MonoBehaviour
     {
         public DamageSource DamageSource;
 
@@ -15,5 +16,4 @@ namespace Combat
             Assert.IsTrue(col.isTrigger, "HurtBox expects a trigger collider");
         }
     }
-
 }

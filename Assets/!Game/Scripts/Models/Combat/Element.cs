@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Combat
+namespace Project.Models.Combat
 {
     /// <summary>
     /// A scriptable object that defines a new element. Effectively an enum.

@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Combat
+namespace Project.Models.Combat
 {
     // optimizable with a new modifier that contains a list of these modifiers and does a lookup for it
     [CreateAssetMenu(fileName = "ElementDamageModifier", menuName = "ScriptableObjects/Combat/DamageModifier/ElementDamageModifier")]

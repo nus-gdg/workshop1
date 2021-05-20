@@ -1,26 +1,27 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Project.Models.Combat;
 using UnityEngine;
 using UnityEngine.Assertions;
 
-namespace Combat
+namespace Project.Views.Combat
 {
     public struct DamageResult
     {
         public int DamageAmount;
     }
 
-    [RequireComponent(typeof(Health))]
-    public class DamageReceiver : MonoBehaviour
+    [RequireComponent(typeof(HealthUi))]
+    public class DamageReceiverUi : MonoBehaviour
     {
         private EntityStats entityStats;
-        private Health entityHealth;
+        private HealthUi entityHealth;
 
         void Awake()
         {
             entityStats = GetComponent<EntityStats>();
-            entityHealth = GetComponent<Health>();
+            entityHealth = GetComponent<HealthUi>();
         }
 
         public DamageResult ApplyDamage(DamageSource damageSource)

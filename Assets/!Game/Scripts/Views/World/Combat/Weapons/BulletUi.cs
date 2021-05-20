@@ -1,8 +1,8 @@
 ﻿using UnityEngine;
 
-namespace Combat.Weapons
+namespace Project.Views.Combat
 {
-    public class Bullet : MonoBehaviour
+    public class BulletUi : MonoBehaviour
     {
         [SerializeField]
         private new Collider2D collider;
@@ -13,8 +13,8 @@ namespace Combat.Weapons
         public Rigidbody2D Rigidbody => rigidbody;
 
         [SerializeField]
-        private HitBox hitBox;
-        public HitBox HitBox => hitBox;
+        private HitBoxUi hitBox;
+        public HitBoxUi HitBox => hitBox;
     
         private void Start()
         {
@@ -36,7 +36,7 @@ namespace Combat.Weapons
             }
             if (hitBox == null)
             {
-                hitBox = GetComponent<HitBox>();
+                hitBox = GetComponent<HitBoxUi>();
                 if (hitBox == null)
                 {
                     throw new MissingComponentException("Missing component: HitBox");

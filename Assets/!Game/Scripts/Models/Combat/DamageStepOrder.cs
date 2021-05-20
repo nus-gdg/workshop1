@@ -3,7 +3,7 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.Assertions;
 
-namespace Combat
+namespace Project.Models.Combat
 {
     [CreateAssetMenu(fileName = "DamageStepOrder", menuName = "ScriptableObjects/Combat/DamageStepOrder")]
     public class DamageStepOrder : ScriptableObject

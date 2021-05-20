@@ -1,9 +1,9 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 
-namespace Combat
+namespace Project.Views.Combat
 {
-    public class Health : MonoBehaviour
+    public class HealthUi : MonoBehaviour
     {
         // To do (from Gabriel and Daniel): 
         // Make certain fields readonly? Add event system for death. 

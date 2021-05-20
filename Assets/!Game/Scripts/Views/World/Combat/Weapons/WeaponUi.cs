@@ -3,9 +3,9 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.Events;
 
-namespace Combat.Weapons
+namespace Project.Views.Combat
 {
-    public class Weapon : MonoBehaviour
+    public class WeaponUi : MonoBehaviour
     {
         public Transform Transform { get; private set; }
 
@@ -60,6 +60,6 @@ namespace Combat.Weapons
         }
 
         [Serializable]
-        protected class WeaponEvent : UnityEvent<Weapon> { }
+        protected class WeaponEvent : UnityEvent<WeaponUi> { }
     }
 }

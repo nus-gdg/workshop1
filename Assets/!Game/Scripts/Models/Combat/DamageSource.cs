@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
-namespace Combat
+namespace Project.Models.Combat
 {
 
     [System.Serializable]

@@ -1,5 +1,5 @@
-using Combat.Weapons;
 using Pathfinding;
+using Project.Views.Combat;
 using UnityEngine;
 
 namespace Project.Views.World.Entities
@@ -13,7 +13,7 @@ namespace Project.Views.World.Entities
         private IAstarAI ai;
 
         [SerializeField]
-        private Weapon weapon;
+        private WeaponUi weapon;
 
         [SerializeField]
         private int range;

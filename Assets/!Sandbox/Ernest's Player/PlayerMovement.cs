@@ -1,4 +1,4 @@
-﻿using Combat.Weapons;
+﻿using Project.Views.Combat;
 using UnityEngine;
 
 namespace Testing
@@ -8,7 +8,7 @@ namespace Testing
         public float moveSpeed = 5f;
         public Rigidbody2D rb;
         public Camera cam;
-        public Weapon weapon;
+        public WeaponUi weapon;
 
         Vector2 movement;
         Vector2 mousePos;
