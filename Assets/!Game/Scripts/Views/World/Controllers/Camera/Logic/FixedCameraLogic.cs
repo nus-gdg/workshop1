@@ -1,23 +1,25 @@
-﻿
+﻿using Project.Views.Controllers;
+using Project.Views.World;
 using UnityEngine;
-using World.Camera;
 #if UNITY_EDITOR
 using UnityEditor;
 #endif
 
-namespace World.Camera
+namespace Project.Views.Controllers
 {
     [CreateAssetMenu(fileName = "FixedCameraLogic", menuName = "ScriptableObjects/CameraLogic/FixedCameraLogic", order = 1)]
     public class FixedCameraLogic : CameraLogic
     {
-        public Vector3 Position;
-        public float OrthographicSize = 0.0f;
+        [SerializeField]
+        public Vector3 position;
 
-        public override void OnPush(CameraController controller)
+        [SerializeField]
+        public float orthographicSize = 0.0f;
+
+        public override void InitCamera(CameraController camera, WorldView view)
         {
-            base.OnPush(controller);
-            controller.CurrentSettings.TargetPosition = Position;
-            controller.CurrentSettings.TargetOrthographicSize = OrthographicSize;
+            camera.Settings.targetPosition = position;
+            camera.Settings.targetOrthographicSize = orthographicSize;
         }
     }
 }
@@ -33,8 +35,8 @@ public class FixedCamerLogicEditor : Editor
         FixedCameraLogic fixedCameraLogic = (FixedCameraLogic)target;
         if (GUILayout.Button("Copy Main Camera"))
         {
-            fixedCameraLogic.Position = Camera.main.transform.position;
-            fixedCameraLogic.OrthographicSize = Camera.main.orthographicSize;
+            fixedCameraLogic.position = Camera.main.transform.position;
+            fixedCameraLogic.orthographicSize = Camera.main.orthographicSize;
         }
     }
 }
