@@ -1,19 +1,19 @@
 fileFormatVersion: 2
-guid: acfae3b6895dbde44a0e4c203cf06b37
+guid: 472484cf2857a12499284ea7c1ff4f6d
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -2934438944226731720
-    second: walk_down_0
+      213: -350773885812749289
+    second: walk_right_0
   - first:
-      213: 2601514537129177563
-    second: walk_down_1
+      213: -6404821201272558385
+    second: walk_right_1
   - first:
-      213: -6021245859881801256
-    second: walk_down_2
+      213: -5378578620819458117
+    second: walk_right_2
   - first:
-      213: 6933450678567269769
-    second: walk_down_3
+      213: 5827144690303107238
+    second: walk_right_3
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -35,6 +35,7 @@ TextureImporter:
   isReadable: 0
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
+  vTOnly: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -44,8 +45,8 @@ TextureImporter:
   textureSettings:
     serializedVersion: 2
     filterMode: 0
-    aniso: -1
-    mipBias: -100
+    aniso: 1
+    mipBias: 0
     wrapU: 1
     wrapV: 1
     wrapW: 1
@@ -66,9 +67,12 @@ TextureImporter:
   textureType: 8
   textureShape: 1
   singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
   maxTextureSizeSet: 0
   compressionQualitySet: 0
   textureFormatSet: 0
+  ignorePngGamma: 0
   applyGammaDecoding: 0
   platformSettings:
   - serializedVersion: 3
@@ -99,13 +103,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: walk_down_0
+      name: walk_right_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
         width: 16
-        height: 22
+        height: 19
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -113,20 +117,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8391b4ad357c647d0800000000000000
-      internalID: -2934438944226731720
+      spriteID: 71cc5a3620dc12bf0800000000000000
+      internalID: -350773885812749289
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: walk_down_1
+      name: walk_right_1
       rect:
         serializedVersion: 2
         x: 16
         y: 0
         width: 16
-        height: 22
+        height: 19
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -134,20 +138,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: bd1799720bf6a1420800000000000000
-      internalID: 2601514537129177563
+      spriteID: fcc22483d018d17a0800000000000000
+      internalID: -6404821201272558385
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: walk_down_2
+      name: walk_right_2
       rect:
         serializedVersion: 2
         x: 32
         y: 0
         width: 16
-        height: 22
+        height: 19
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -155,20 +159,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8d92478dacc307ca0800000000000000
-      internalID: -6021245859881801256
+      spriteID: bb7bb85cd337b55b0800000000000000
+      internalID: -5378578620819458117
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: walk_down_3
+      name: walk_right_3
       rect:
         serializedVersion: 2
         x: 48
         y: 0
         width: 16
-        height: 22
+        height: 19
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -176,8 +180,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 98571bb38a0983060800000000000000
-      internalID: 6933450678567269769
+      spriteID: 6a00258e83d2ed050800000000000000
+      internalID: 5827144690303107238
       vertices: []
       indices: 
       edges: []

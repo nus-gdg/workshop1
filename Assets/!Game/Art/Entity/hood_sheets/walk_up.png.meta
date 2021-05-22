@@ -1,19 +1,19 @@
 fileFormatVersion: 2
-guid: 9f6b149fc5925034e937e53ec7b96683
+guid: 6d6f6d02b1072a14692315650124dd08
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 1662698073010213696
-    second: walk_left_0
+      213: -4778624461764053770
+    second: walk_up_0
   - first:
-      213: 6571582165766299699
-    second: walk_left_1
+      213: -9096989396093648339
+    second: walk_up_1
   - first:
-      213: -5592563272734792801
-    second: walk_left_2
+      213: -8467170227996590455
+    second: walk_up_2
   - first:
-      213: 5858914145492465574
-    second: walk_left_3
+      213: -8745426631189603992
+    second: walk_up_3
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -35,6 +35,7 @@ TextureImporter:
   isReadable: 0
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
+  vTOnly: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -44,8 +45,8 @@ TextureImporter:
   textureSettings:
     serializedVersion: 2
     filterMode: 0
-    aniso: -1
-    mipBias: -100
+    aniso: 1
+    mipBias: 0
     wrapU: 1
     wrapV: 1
     wrapW: 1
@@ -66,9 +67,12 @@ TextureImporter:
   textureType: 8
   textureShape: 1
   singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
   maxTextureSizeSet: 0
   compressionQualitySet: 0
   textureFormatSet: 0
+  ignorePngGamma: 0
   applyGammaDecoding: 0
   platformSettings:
   - serializedVersion: 3
@@ -99,7 +103,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: walk_left_0
+      name: walk_up_0
       rect:
         serializedVersion: 2
         x: 0
@@ -113,14 +117,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 043108a8617131710800000000000000
-      internalID: 1662698073010213696
+      spriteID: 6f4bf89ce5aeeadb0800000000000000
+      internalID: -4778624461764053770
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: walk_left_1
+      name: walk_up_1
       rect:
         serializedVersion: 2
         x: 16
@@ -134,14 +138,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 330eaca7923f23b50800000000000000
-      internalID: 6571582165766299699
+      spriteID: d22c758975001c180800000000000000
+      internalID: -9096989396093648339
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: walk_left_2
+      name: walk_up_2
       rect:
         serializedVersion: 2
         x: 32
@@ -155,14 +159,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f932fb885593362b0800000000000000
-      internalID: -5592563272734792801
+      spriteID: 98eff73e9819e7a80800000000000000
+      internalID: -8467170227996590455
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: walk_left_3
+      name: walk_up_3
       rect:
         serializedVersion: 2
         x: 48
@@ -176,8 +180,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6a7f69b9f5b0f4150800000000000000
-      internalID: 5858914145492465574
+      spriteID: 869d3be60d002a680800000000000000
+      internalID: -8745426631189603992
       vertices: []
       indices: 
       edges: []
