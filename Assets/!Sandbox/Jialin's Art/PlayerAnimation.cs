@@ -19,6 +19,8 @@ namespace Project.Views.World.Entities {
           var moveInput = player.Direction;
           anim.SetFloat("inputX", moveInput.x);
           anim.SetFloat("inputY", moveInput.y);
+          var isWalking = player.Speed != 0;
+          anim.SetBool("isWalking", isWalking);
       }
   }
 }
