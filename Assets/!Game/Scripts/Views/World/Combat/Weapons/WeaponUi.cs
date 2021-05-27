@@ -38,9 +38,9 @@ namespace Project.Views.Combat
 
         public void Aim(Vector2 target)
         {
-            Vector2 lookDir = target - (Vector2)Transform.position;
+            Vector2 lookDir = target - (Vector2)transform.position;
             float rotateAngle = Mathf.Atan2(lookDir.x, lookDir.y) * Mathf.Rad2Deg;
-            Transform.rotation = Quaternion.Euler(0, 0, -rotateAngle);
+            transform.rotation = Quaternion.Euler(0, 0, -rotateAngle);
         }
 
         public void Cooldown(float time)
