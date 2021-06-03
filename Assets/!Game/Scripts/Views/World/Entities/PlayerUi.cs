@@ -103,9 +103,20 @@ namespace Project.Views.World.Entities
         {
             weapon.Aim(_view.GetWorldMousePosition());
 
+            if (Input.GetMouseButtonDown(0))
+            {
+                weapon.Charge();
+                weapon.Attack();
+            }
+
             if (Input.GetMouseButton(0))
             {
-                weapon.Attack();
+                weapon.Autofire();
+            }
+
+            if (Input.GetMouseButtonUp(0))
+            {
+                weapon.Unleash();
             }
         }
 
