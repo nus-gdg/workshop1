@@ -15,8 +15,6 @@ namespace Project.Views.World.Entities
         [SerializeField]
         private int range;
 
-        private WorldView _view;
-
         public Vector3 Position => transform.position;
 
         private void Awake()
@@ -24,20 +22,15 @@ namespace Project.Views.World.Entities
             ai = GetComponent<IAstarAI>();
         }
 
-        public void Init(WorldView view)
-        {
-            _view = view;
-        }
-
         // Always update state in the Update loop.
         // Note that we can also not update the state if the game is paused
         private void Update()
         {
-            ai.destination = _view.PlayerPosition;
-            weapon.Aim(_view.PlayerPosition);
+            ai.destination = view.PlayerPosition;
+            weapon.Aim(view.PlayerPosition);
 
             var currentPosition = transform.position;
-            var playerPosition = _view.PlayerPosition;
+            var playerPosition = view.PlayerPosition;
             var distance = (playerPosition - currentPosition).sqrMagnitude;
 
             if (distance < range * range)

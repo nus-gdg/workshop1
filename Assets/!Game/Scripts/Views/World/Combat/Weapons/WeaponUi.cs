@@ -61,6 +61,7 @@ namespace Project.Views.Combat
         {
             if (Time.time - _chargeStartTime >= chargeTime)
             {
+                chargeTime = 0f;
                 onUnleash?.Invoke(this);
             }
         }

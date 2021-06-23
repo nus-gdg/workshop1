@@ -19,7 +19,7 @@ namespace Project.Views.World
         private PlayerCursorUi cursor;
 
         [SerializeField]
-        private List<EnemyUi> enemies;
+        private List<EnemyUi2> enemies;
 
         public Vector3 PlayerPosition => player.transform.position;
         public Vector3 CursorPosition => cursor.transform.position;
