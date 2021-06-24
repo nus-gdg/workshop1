@@ -11,17 +11,30 @@ namespace Project.Views.Combat
 
         [SerializeField]
         private Transform firePoint;
+
+        [SerializeField]
+        private bool canShoot = true;
+
+        [SerializeField]
+        private bool autofire;
+
+        [SerializeField]
+        public float chargeTime;
+
+        [SerializeField]
+        private WeaponEvent onAttack;
+
+        [SerializeField]
+        private WeaponEvent onUnleash;
+
+        private Coroutine _cooldown;
+        private float _chargeStartTime;
+
         public Transform FirePoint
         {
             get => firePoint;
             set => firePoint = value;
         }
-
-        public bool canShoot = true;
-        private Coroutine _cooldown;
-
-        [SerializeField]
-        private WeaponEvent onAttack;
 
         public void Awake()
         {
@@ -31,6 +44,31 @@ namespace Project.Views.Combat
         public void Attack()
         {
             if (canShoot)
+            {
+                onAttack?.Invoke(this);
+            }
+        }
+
+        public void Charge()
+        {
+            if (canShoot)
+            {
+                _chargeStartTime = Time.time;
+            }
+        }
+
+        public void Unleash()
+        {
+            if (Time.time - _chargeStartTime >= chargeTime)
+            {
+                chargeTime = 0f;
+                onUnleash?.Invoke(this);
+            }
+        }
+
+        public void Autofire()
+        {
+            if (autofire && canShoot)
             {
                 onAttack?.Invoke(this);
             }
