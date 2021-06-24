@@ -7,6 +7,9 @@ namespace Project.Views.World.Entities
     public class EnemyUi : MonoBehaviour
     {
         [SerializeField]
+        private WorldView view;
+
+        [SerializeField]
         private IAstarAI ai;
 
         [SerializeField]
@@ -20,6 +23,11 @@ namespace Project.Views.World.Entities
         private void Awake()
         {
             ai = GetComponent<IAstarAI>();
+        }
+
+        public void Init(WorldView view)
+        {
+            this.view = view;
         }
 
         // Always update state in the Update loop.
