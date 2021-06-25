@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using UnityEngine;
 
 namespace Project.Common
 {
@@ -11,6 +12,7 @@ namespace Project.Common
         private Dictionary<Type, List<Transition>> transitions;
         private List<Transition> anyTransitions;
         private static readonly List<Transition> EmptyTransitions = new List<Transition>();
+        private float decisionUpdateTimer = 0;
 
         public StateMachine()
         {
@@ -19,35 +21,17 @@ namespace Project.Common
             anyTransitions = new List<Transition>();
         }
 
-        /// <summary>
-        /// The method makes StateMachine updating the current decision.
-        /// </summary>
-        /// <returns>the new Decision Update Rate</returns>
-        public float UpdateDecision()
-        {
-            Transition transition = GetTransition();
-            if (transition != null)
-            {
-                if (currentState != null)
-                {
-                    currentState.OnExit();
-                }
-
-                IState toState = GetToState(transition);
-                if (toState != null)
-                {
-                    SetState(toState);
-                    return toState.DecisionUpdateRate;
-                }
-            }
-            return currentState.DecisionUpdateRate;
-        }
-
         public void Tick()
         {
             if (currentState != null)
             {
                 currentState.Tick();
+            }
+
+            decisionUpdateTimer -= Time.deltaTime;
+            if (decisionUpdateTimer < 0)
+            {
+                UpdateDecision();
             }
         }
 
@@ -69,7 +53,6 @@ namespace Project.Common
         /// </summary>
         /// <param name="from"></param>
         /// <param name="tos">toStates and their probabilites</param>
-        /// <param name="condition"></param>
         public void AddTransitions(IState from, Func<bool> condition, params KeyValuePair<IState, float>[] tos)
         {
             Transition transition = new Transition(tos, condition);
@@ -86,8 +69,6 @@ namespace Project.Common
         /// <summary>
         /// An AnyTransition can be transited from any States.
         /// </summary>
-        /// <param name="to"></param>
-        /// <param name="condition"></param>
         public void AddAnyTransition(IState to, Func<bool> condition)
         {
             Transition transition = new Transition(to, condition);
@@ -98,11 +79,44 @@ namespace Project.Common
         /// Adds multiple any transitions together.
         /// </summary>
         /// <param name="condition">toStates and their probabilites</param>
-        /// <param name="tos"></param>
         public void AddAnyTransitions(Func<bool> condition, params KeyValuePair<IState, float>[] tos)
         {
             Transition transition = new Transition(tos, condition);
             anyTransitions.Add(transition);
+        }
+
+        /// <summary>
+        /// SetState sets the current state to be the given state, can be used to set the enter state.
+        /// </summary>
+        public void SetState(IState state)
+        {
+            currentState = state;
+            if (!transitions.TryGetValue(state.GetType(), out currentTransitions))
+            {
+                currentTransitions = EmptyTransitions;
+            }
+            decisionUpdateTimer = state.DecisionUpdateRate;
+            state.OnEnter();
+        }
+
+        private void UpdateDecision()
+        {
+            Transition transition = GetTransition();
+            if (transition != null)
+            {
+                if (currentState != null)
+                {
+                    currentState.OnExit();
+                }
+
+                IState toState = GetToState(transition);
+                if (toState != null)
+                {
+                    SetState(toState);
+                    return;
+                }
+            }
+            decisionUpdateTimer = currentState.DecisionUpdateRate;
         }
 
         private IState GetToState(Transition transition)
@@ -127,16 +141,6 @@ namespace Project.Common
             }
 
             return null;
-        }
-
-        private void SetState(IState state)
-        {
-            currentState = state;
-            if (!transitions.TryGetValue(state.GetType(), out currentTransitions))
-            {
-                currentTransitions = EmptyTransitions;
-            }
-            state.OnEnter();
         }
 
         private Transition GetTransition()
